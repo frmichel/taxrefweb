@@ -1,0 +1,50 @@
+INSERT {
+    ?taxonUri a dwc:Taxon;
+        dwc:taxonID ?id;
+        dwc:scientificName ?scientificname;
+        taxrefp:hasRank ?taxrefRankUri;
+        schema:sameAs ?webpage;
+        skos:broader ?parentTaxon;
+.
+}
+WHERE {
+    ?c
+        api:AphiaID ?id;
+        api:scientificname ?scientificname;
+        api:rank ?rkName.
+     OPTIONAL {
+        ?c1 api:child ?c.
+        ?c1 api:AphiaID ?parentID.
+     }
+
+    bind(iri(concat("http://www.marinespecies.org/aphia.php?p=taxdetails&id=", ?id)) AS ?webpage)
+	bind(sms:getRankUri(?rkName) AS ?taxrefRankUri)
+    bind (IRI(concat("http://example.org/ld/worms/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("http://example.org/ld/worms/taxon/", ?parentID)) AS ?parentTaxon)
+
+}
+
+function sms:getRankUri(?rankName){
+	IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
+}
+
+#Return the TAXREF-LD rank name, given the name rank name in WoRMS
+function sms:getTaxrefRankName(?rkName){
+	if(?rkName = "Subterclass"){
+		return("Subter-class")
+	}else if(?rkName = "Forma"){
+		return("Form")
+	}else if(?rkName = "Subforma"){
+		return("Sub-form")
+	}else if(regex(?rkName, "Sub")){
+		return(replace(?rkName, "Sub", "Sub-"))
+	}else if(regex(?rkName, "Super")){
+		return(replace(?rkName, "Super", "Super-"))
+	}else if(regex(?rkName, "Infra")){
+		return(replace(?rkName, "Infra", "Infra-"))
+	}else if(regex(?rkName, "Parv")){
+		return(replace(?rkName, "Parv", "Parv-"))
+	}else{
+		return(?rkName)
+	}
+}

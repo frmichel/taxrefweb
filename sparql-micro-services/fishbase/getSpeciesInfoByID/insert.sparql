@@ -1,0 +1,42 @@
+INSERT {
+    [] a dwc:Taxon;
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName ?name;
+        taxrefp:habitat ?habitats;
+        dwc:vernacularName ?eng_name;
+.
+}
+WHERE {
+    ?content
+        api:SpecCode ?id;
+        api:Genus ?genus;
+        api:Species ?species;
+        api:Author ?author.
+    OPTIONAL { ?content api:FBname ?vernacularName}.
+    OPTIONAL {?content api:Fresh ?fresh }.
+    OPTIONAL {?content api:Brack ?brack }.
+    OPTIONAL {?content api:Saltwater ?marine }.
+
+
+    # the scientific name of the taxon is the concatenation of genus and species name
+    bind(concat(?genus, " ", ?species) AS ?name)
+    bind (sms:formatAuthorName(?author) AS ?authorname)
+    bind (STRLANG(?vernacularName, "en") AS ?eng_name)
+	bind(sms:getHabitatsList(coalesce(?fresh, false), coalesce(?brack, false), coalesce(?marine, false)) AS ?list)
+	values ?habitats { unnest(?list) }
+}
+
+function sms:getHabitatsList(?fresh, ?brack, ?mar){
+    if(!?mar && !?fresh && !?brack){
+        return(xt:list())
+    }else {
+    	xt:merge(xt:merge(IF(?mar, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")), xt:list()), IF(?fresh, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")), xt:list())), IF(?brack, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/BrackishWater")), xt:list()))
+    }
+}
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+function sms:formatAuthorName(?author){
+    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+}

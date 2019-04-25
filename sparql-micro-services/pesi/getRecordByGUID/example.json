@@ -1,0 +1,19 @@
+{
+  "GUID": "6A8E85BD-5E52-4AE2-9444-99128C87A672",
+  "url": "http:\/\/www.eu-nomen.eu\/portal\/taxon.php?GUID=6A8E85BD-5E52-4AE2-9444-99128C87A672",
+  "scientificname": "Abies alba",
+  "authority": "Mill.",
+  "status": "accepted",
+  "rank": "Species",
+  "valid_guid": "6A8E85BD-5E52-4AE2-9444-99128C87A672",
+  "valid_name": "Abies alba",
+  "valid_authority": "Mill.",
+  "kingdom": "Plantae",
+  "phylum": "Tracheophyta",
+  "class": "Pinopsida",
+  "order": "Pinales",
+  "family": "Pinaceae",
+  "genus": "Abies",
+  "citation": "Raab-Straube, E. von (2014): Gymnospermae. \u2013 In: Euro+Med Plantbase - the information resource for Euro-Mediterranean plant diversity. Abies alba Mill.. Accessed through: Euro+Med PlantBase at http:\/\/ww2.bgbm.org\/euroPlusMed\/PTaxonDetail.asp?UUID=6A8E85BD-5E52-4AE2-9444-99128C87A672",
+  "match_type": "exact"
+}

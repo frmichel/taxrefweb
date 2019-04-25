@@ -1,0 +1,97 @@
+{
+  "id": 67104,
+  "referenceId": 67104,
+  "parentId": 188934,
+  "scientificName": "Alburnoides bipunctatus",
+  "authority": "(Bloch, 1782)",
+  "fullName": "Alburnoides bipunctatus (Bloch, 1782)",
+  "fullNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+  "rankId": "ES",
+  "rankName": "Espèce",
+  "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+  "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+  "frenchVernacularName": "Spirlin",
+  "englishVernacularName": "Schneider",
+  "genusName": "Alburnoides",
+  "familyName": "Leuciscidae",
+  "orderName": "Cypriniformes",
+  "className": "Actinopterygii",
+  "phylumName": "Chordata",
+  "kingdomName": "Animalia",
+  "vernacularGenusName": null,
+  "vernacularFamilyName": null,
+  "vernacularOrderName": null,
+  "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+  "vernacularPhylumName": "Chordés",
+  "vernacularKingdomName": "Animaux",
+  "vernacularGroup1": "Chordés",
+  "vernacularGroup2": "Poissons",
+  "habitat": "2",
+  "fr": "P",
+  "gf": null,
+  "mar": null,
+  "gua": null,
+  "sm": null,
+  "sb": null,
+  "spm": null,
+  "may": null,
+  "epa": null,
+  "reu": null,
+  "sa": null,
+  "ta": null,
+  "nc": null,
+  "wf": null,
+  "pf": null,
+  "cli": null,
+  "taxrefVersion": "12.0",
+  "_links": {
+    "self": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104"
+    },
+    "reference": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104"
+    },
+    "parent": {
+      "href": "https://taxref.mnhn.fr/api/taxa/188934"
+    },
+    "classification": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/classification"
+    },
+    "synonyms": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/synonyms"
+    },
+    "children": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/children"
+    },
+    "vernacularNames": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/vernacularNames"
+    },
+    "media": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/media"
+    },
+    "status": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/status/lines"
+    },
+    "interactions": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/interactions"
+    },
+    "taxrefHistory": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/taxrefHistory"
+    },
+    "externalIds": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/externalIds"
+    },
+    "taxonomicRank": {
+      "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+    },
+    "habitat": {
+      "href": "https://taxref.mnhn.fr/api/habitats/2"
+    },
+    "taxrefUri": {
+      "href": "http://taxref.mnhn.fr/lod/taxon/67104"
+    },
+    "inpnWebpage": {
+      "href": "https://inpn.mnhn.fr/espece/cd_nom/67104"
+    }
+  }
+}

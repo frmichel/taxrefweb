@@ -1,0 +1,80 @@
+INSERT {
+    ?taxonUri a dwc:Taxon;
+        dwc:taxonID ?id;
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName ?scientificname;
+        dwc:acceptedNameUsage ?ref_name;
+        dwc:vernacularName ?fr_name;
+        taxrefp:hasRank ?rankUri;
+        skos:broader ?parentTaxon;
+.
+}
+WHERE {
+    ?c
+        api:CdAppelTaxon ?id;
+        api:AuteurAppelTaxon ?author;
+        api:NomLatinAppelTaxon ?scientificname;
+        api:TypeAppelTaxon ?typeTaxon;
+        api:NiveauTaxonomique[
+		    api:LbNiveauTaxonomique ?rank
+	    ].
+	OPTIONAL { ?c api:AppelTaxonParent [
+                	api:CdAppelTaxon ?parentID
+        	       ];
+	}.
+	OPTIONAL { ?c api:NomCommunAppelTaxon [ api:LbNomCommunAppelTaxon ?frname]}.			
+	OPTIONAL { ?c api:EstSynonyme [
+        api:NomLatinAppelTaxon ?reference_name];
+	}. 
+
+    bind (sms:formatAuthorName(?author) AS ?authorname)
+
+    #if there is not the reference name and the type taxon is R, the reference name is the scientific name of the current taxon
+	bind(if(!bound(?reference_name) && ?typeTaxon = "R", concat(?scientificname, " ", ?authorname), ?reference_name) AS ?ref_name)
+
+	bind (IRI(concat("http://example.org/ld/sandre/taxon/", ?id)) AS ?taxonUri)
+	bind (IRI(concat("http://example.org/ld/sandre/taxon/", ?parentID)) AS ?parentTaxon)
+	bind (STRLANG(?frname, "fr") AS ?fr_name)
+	bind (sms:getRankUri(?rank) AS ?rankUri)
+}
+
+function sms:getRankUri(?rankFrName){
+    #If the rank name is unknown, then returns an unbound value
+	IF(?rankFrName = "Inconnu"){
+		return(?x)
+	}ELSE{
+        IRI(CONCAT("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankFrName)))
+	}
+}
+
+#Translate french rank name into the english name used by TAXREF-LD
+function sms:getTaxrefRankName(?rankName){
+	IF(?rankName = "Genre", "Genus", 
+	IF(?rankName = "Espèce", "Species", 
+	IF(?rankName = "Ordre", "Order",
+	IF(?rankName = "Variété", "Variety", 
+	IF(?rankName = "Famille", "Family", 
+	IF(?rankName = "Règne", "Kingdom",
+	IF(?rankName = "Embranchement", "Phylum", 
+	IF(?rankName = "Forme", "Form", 
+	IF(?rankName = "Sous-Famille", "Sub-family", 
+	IF(?rankName = "Classe", "Class", 
+	IF(?rankName = "Sous-Ordre", "Sub-order", 
+	IF(?rankName = "Infra-Ordre", "Infra-order", 
+	IF(?rankName = "Sous-Espèce", "Sub-species", 
+	IF(?rankName = "Sous-Règne", "Sub-kingdom",
+	IF(?rankName = "Tribu", "Tribe", 
+	IF(?rankName = "Sous-Classe", "Sub-class", 
+	IF(?rankName = "Sous-Genre", "Sub-genus", 
+	IF(?rankName = "Sous-Embranchement", "Sub-phylum", 
+	IF(?rankName = "Super-Classe", "Super-class", 
+	IF(?rankName = "Super-Famille", "Super-family", 
+	IF(?rankName = "Super-Ordre", "Super-order", "")))))))))))))))))))))
+}
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+function sms:formatAuthorName(?author){
+    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+}

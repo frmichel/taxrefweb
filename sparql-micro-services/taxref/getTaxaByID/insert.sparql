@@ -1,0 +1,89 @@
+INSERT {
+    ?taxonUri a dwc:Taxon;
+
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName ?scientificname;
+        dwc:acceptedNameUsage ?full_reference_name;
+        dwc:genus ?genus_name;
+        dwc:family ?family_name;
+        dwc:order ?order_name;
+        dwc:class ?class_name;
+        dwc:phylum ?phylum_name;
+        dwc:kingdom ?kingdom_name;
+        dwc:vernacularName ?fr_name;
+        dwc:vernacularName ?eng_name;
+        dwc:namePublishedInYear ?year;
+        taxrefp:hasRank ?taxrefRankUri;
+        taxrefp:habitat ?habitats;
+        skos:broader ?parentTaxon;
+.
+}
+WHERE {
+    ?c
+        api:id ?id;
+        api:authority ?author;
+        api:scientificName ?scientificname;
+        api:referenceName ?full_reference_name;
+        api:rankId ?rankID.
+	OPTIONAL { ?c api:genusName ?genus_name}.
+    OPTIONAL { ?c api:familyName ?family_name}.
+    OPTIONAL { ?c api:orderName ?order_name}.
+    OPTIONAL { ?c api:className ?class_name}.
+    OPTIONAL { ?c api:phylumName ?phylum_name}.
+    OPTIONAL { ?c api:kingdomName ?kingdom_name}.
+    OPTIONAL { ?c api:frenchVernacularName ?frname}.
+    OPTIONAL { ?c api:englishVernacularName ?engname}.
+    OPTIONAL {
+        ?c api:habitat ?habitat
+        bind(sms:getHabitats(?habitat) AS ?list)
+        values ?habitats {
+            unnest(?list)
+        }
+    }.
+    OPTIONAL { ?c api:parentId ?parentID}.
+
+    bind(IRI(concat("http://example.org/sparql-ms-tw/taxref/getRankByRankID?id=", ?rankID)) AS ?rankService)
+    SERVICE ?rankService {
+        [] schema:url ?taxrefRankUri.
+    }
+	bind(IRI(concat("http://example.org/ld/taxref/taxon/", ?id)) AS ?taxonUri)
+	bind(STRLANG(?frname, "fr") AS ?fr_name)
+	bind(STRLANG(?engname, "en") AS ?eng_name)
+	bind(sms:getYearFromAuthority(?author) AS ?year)
+	bind(sms:formatAuthorName(?author) AS ?authorname)
+	bind(IRI(concat("http://example.org/ld/taxref/taxon/", ?parentID)) AS ?parentTaxon)
+
+}
+
+#Return the list of thr TAXREF-LD habitats URIs, given the habitat code in TAXREF
+function sms:getHabitats(?habitat){
+     if(?habitat = "1"){
+        return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")))
+    }else if(?habitat = "2"){
+        return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")))
+    }else if(?habitat = "3"){
+        return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial")))
+    }else if(?habitat = "4"){
+        return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine"), IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")))
+    }else if(?habitat = "5"){
+        return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine"), IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial")))
+    }else if(?habitat = "6"){
+        return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Brackish")))
+    }else if(?habitat = "7" || ?habitat= "8"){
+        return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater"), IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial")))
+    }else{
+        return(xt:list())
+    }
+}
+
+#Return the year in which a name was coined, given the full author name
+function sms:getYearFromAuthority(?author){
+	replace(?author, "^.*([1-2][0-9]{3}).*$", "$1")
+}
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+function sms:formatAuthorName(?author){
+    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+}

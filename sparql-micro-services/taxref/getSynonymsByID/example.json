@@ -1,0 +1,1179 @@
+{
+  "_embedded": {
+    "taxa": [
+      {
+        "id": 561662,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Abramis bipunctatus",
+        "authority": "(Bloch, 1782)",
+        "fullName": "Abramis bipunctatus (Bloch, 1782)",
+        "fullNameHtml": "<i>Abramis bipunctatus</i> (Bloch, 1782)",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561662"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561662/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561662/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561662"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561662"
+          }
+        }
+      },
+      {
+        "id": 560485,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Alburnus bipunctatus",
+        "authority": "(Bloch, 1782)",
+        "fullName": "Alburnus bipunctatus (Bloch, 1782)",
+        "fullNameHtml": "<i>Alburnus bipunctatus</i> (Bloch, 1782)",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560485"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560485/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560485/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/560485"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/560485"
+          }
+        }
+      },
+      {
+        "id": 561676,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Aspius bipunctatus",
+        "authority": "(Bloch, 1782)",
+        "fullName": "Aspius bipunctatus (Bloch, 1782)",
+        "fullNameHtml": "<i>Aspius bipunctatus</i> (Bloch, 1782)",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561676"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561676/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561676/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561676"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561676"
+          }
+        }
+      },
+      {
+        "id": 561693,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus annoni",
+        "authority": "Walbaum, 1792",
+        "fullName": "Cyprinus annoni Walbaum, 1792",
+        "fullNameHtml": "<i>Cyprinus annoni</i> Walbaum, 1792",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561693"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561693/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561693/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561693"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561693"
+          }
+        }
+      },
+      {
+        "id": 546686,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus bipunctatus",
+        "authority": "Bloch, 1782",
+        "fullName": "Cyprinus bipunctatus Bloch, 1782",
+        "fullNameHtml": "<i>Cyprinus bipunctatus</i> Bloch, 1782",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/546686"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/546686/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/546686/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/546686"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/546686"
+          }
+        }
+      },
+      {
+        "id": 561697,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus blockii",
+        "authority": "Nau, 1788",
+        "fullName": "Cyprinus blockii Nau, 1788",
+        "fullNameHtml": "<i>Cyprinus blockii</i> Nau, 1788",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561697"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561697/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561697/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561697"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561697"
+          }
+        }
+      },
+      {
+        "id": 561842,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus gronovii",
+        "authority": "Bloch & Schneider, 1801",
+        "fullName": "Cyprinus gronovii Bloch & Schneider, 1801",
+        "fullNameHtml": "<i>Cyprinus gronovii</i> Bloch & Schneider, 1801",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561842"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561842/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561842/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561842"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561842"
+          }
+        }
+      },
+      {
+        "id": 561878,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus punctatus",
+        "authority": "Shaw, 1804",
+        "fullName": "Cyprinus punctatus Shaw, 1804",
+        "fullNameHtml": "<i>Cyprinus punctatus</i> Shaw, 1804",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561878"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561878/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561878/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561878"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561878"
+          }
+        }
+      },
+      {
+        "id": 561885,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus riemling",
+        "authority": "Hermann, 1804",
+        "fullName": "Cyprinus riemling Hermann, 1804",
+        "fullNameHtml": "<i>Cyprinus riemling</i> Hermann, 1804",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561885"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561885/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561885/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561885"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561885"
+          }
+        }
+      },
+      {
+        "id": 561892,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus sanderi",
+        "authority": "Bloch & Schneider, 1801",
+        "fullName": "Cyprinus sanderi Bloch & Schneider, 1801",
+        "fullNameHtml": "<i>Cyprinus sanderi</i> Bloch & Schneider, 1801",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561892"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561892/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561892/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561892"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561892"
+          }
+        }
+      },
+      {
+        "id": 561899,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus spirlin",
+        "authority": "Lacepède, 1803",
+        "fullName": "Cyprinus spirlin Lacepède, 1803",
+        "fullNameHtml": "<i>Cyprinus spirlin</i> Lacepède, 1803",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561899"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561899/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/561899/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/561899"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/561899"
+          }
+        }
+      },
+      {
+        "id": 565135,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus tinca nota",
+        "authority": "Walbaum, 1792",
+        "fullName": "Cyprinus tinca nota Walbaum, 1792",
+        "fullNameHtml": "<i>Cyprinus tinca nota</i> Walbaum, 1792",
+        "rankId": "SSES",
+        "rankName": "Sous-Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/565135"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/565135/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/565135/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/SSES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/565135"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/565135"
+          }
+        }
+      },
+      {
+        "id": 580361,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Cyprinus tinca notha",
+        "authority": "Walbaum, 1792",
+        "fullName": "Cyprinus tinca notha Walbaum, 1792",
+        "fullNameHtml": "<i>Cyprinus tinca notha</i> Walbaum, 1792",
+        "rankId": "SSES",
+        "rankName": "Sous-Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/580361"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/580361/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/580361/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/SSES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/580361"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/580361"
+          }
+        }
+      },
+      {
+        "id": 560690,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Leuciscus baldneri",
+        "authority": "Valenciennes, 1844",
+        "fullName": "Leuciscus baldneri Valenciennes, 1844",
+        "fullNameHtml": "<i>Leuciscus baldneri</i> Valenciennes, 1844",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560690"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560690/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560690/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/560690"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/560690"
+          }
+        }
+      },
+      {
+        "id": 560691,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Leuciscus bipunctatus",
+        "authority": "(Bloch, 1782)",
+        "fullName": "Leuciscus bipunctatus (Bloch, 1782)",
+        "fullNameHtml": "<i>Leuciscus bipunctatus</i> (Bloch, 1782)",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560691"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560691/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/560691/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/560691"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/560691"
+          }
+        }
+      },
+      {
+        "id": 566268,
+        "referenceId": 67104,
+        "parentId": null,
+        "scientificName": "Spirlinus bipunctatus",
+        "authority": "(Bloch, 1782)",
+        "fullName": "Spirlinus bipunctatus (Bloch, 1782)",
+        "fullNameHtml": "<i>Spirlinus bipunctatus</i> (Bloch, 1782)",
+        "rankId": "ES",
+        "rankName": "Espèce",
+        "referenceName": "Alburnoides bipunctatus (Bloch, 1782)",
+        "referenceNameHtml": "<i>Alburnoides bipunctatus</i> (Bloch, 1782)",
+        "frenchVernacularName": "Spirlin",
+        "englishVernacularName": "Schneider",
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": "12.0",
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/566268"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/67104"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/566268/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/566268/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/566268"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/566268"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/synonyms"
+    }
+  }
+}

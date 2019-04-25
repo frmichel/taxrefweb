@@ -1,0 +1,1715 @@
+{
+  "_embedded": {
+    "taxa": [
+      {
+        "id": 349525,
+        "referenceId": 349525,
+        "parentId": null,
+        "scientificName": "Biota",
+        "authority": null,
+        "fullName": "Biota ",
+        "fullNameHtml": "Biota",
+        "rankId": "Dumm",
+        "rankName": "Domaine",
+        "referenceName": "Biota ",
+        "referenceNameHtml": "Biota",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": null,
+        "kingdomName": null,
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": null,
+        "vernacularKingdomName": null,
+        "vernacularGroup1": "Autres",
+        "vernacularGroup2": "Autres",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/Dumm"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/349525"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/349525"
+          }
+        }
+      },
+      {
+        "id": 183716,
+        "referenceId": 183716,
+        "parentId": 349525,
+        "scientificName": "Animalia",
+        "authority": "Linnaeus, 1758",
+        "fullName": "Animalia Linnaeus, 1758",
+        "fullNameHtml": "Animalia Linnaeus, 1758",
+        "rankId": "KD",
+        "rankName": "Règne",
+        "referenceName": "Animalia Linnaeus, 1758",
+        "referenceNameHtml": "Animalia Linnaeus, 1758",
+        "frenchVernacularName": "Animaux",
+        "englishVernacularName": "animals",
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": null,
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": null,
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Autres",
+        "vernacularGroup2": "Autres",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/349525"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/KD"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/183716"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/183716"
+          }
+        }
+      },
+      {
+        "id": 838319,
+        "referenceId": 838319,
+        "parentId": 183716,
+        "scientificName": "Eumetazoa",
+        "authority": "Bütschli, 1910",
+        "fullName": "Eumetazoa Bütschli, 1910",
+        "fullNameHtml": "Eumetazoa Bütschli, 1910",
+        "rankId": "SSRG",
+        "rankName": "Sous-Règne",
+        "referenceName": "Eumetazoa Bütschli, 1910",
+        "referenceNameHtml": "Eumetazoa Bütschli, 1910",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": null,
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": null,
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Autres",
+        "vernacularGroup2": "Autres",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/183716"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/SSRG"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/838319"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/838319"
+          }
+        }
+      },
+      {
+        "id": 838320,
+        "referenceId": 838320,
+        "parentId": 838319,
+        "scientificName": "Bilateria",
+        "authority": "Haeckel, 1874",
+        "fullName": "Bilateria Haeckel, 1874",
+        "fullNameHtml": "Bilateria Haeckel, 1874",
+        "rankId": "CLAD",
+        "rankName": "Clade",
+        "referenceName": "Bilateria Haeckel, 1874",
+        "referenceNameHtml": "Bilateria Haeckel, 1874",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": null,
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": null,
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Autres",
+        "vernacularGroup2": "Autres",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838319"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/CLAD"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/838320"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/838320"
+          }
+        }
+      },
+      {
+        "id": 838322,
+        "referenceId": 838322,
+        "parentId": 838320,
+        "scientificName": "Deuterostomia",
+        "authority": "Karl Grobben, 1908",
+        "fullName": "Deuterostomia Karl Grobben, 1908",
+        "fullNameHtml": "Deuterostomia Karl Grobben, 1908",
+        "rankId": "IFRG",
+        "rankName": "Infra-Règne",
+        "referenceName": "Deuterostomia Karl Grobben, 1908",
+        "referenceNameHtml": "Deuterostomia Karl Grobben, 1908",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": null,
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": null,
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Autres",
+        "vernacularGroup2": "Autres",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838320"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/IFRG"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/838322"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/838322"
+          }
+        }
+      },
+      {
+        "id": 185694,
+        "referenceId": 185694,
+        "parentId": 838322,
+        "scientificName": "Chordata",
+        "authority": "Haeckel, 1874",
+        "fullName": "Chordata Haeckel, 1874",
+        "fullNameHtml": "Chordata Haeckel, 1874",
+        "rankId": "PH",
+        "rankName": "Phylum",
+        "referenceName": "Chordata Haeckel, 1874",
+        "referenceNameHtml": "Chordata Haeckel, 1874",
+        "frenchVernacularName": "Chordés",
+        "englishVernacularName": "chordates",
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Autres",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838322"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/PH"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/185694"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/185694"
+          }
+        }
+      },
+      {
+        "id": 838103,
+        "referenceId": 838103,
+        "parentId": 185694,
+        "scientificName": "Craniata",
+        "authority": "Janvier, 1981",
+        "fullName": "Craniata Janvier, 1981",
+        "fullNameHtml": "Craniata Janvier, 1981",
+        "rankId": "SBPH",
+        "rankName": "Sous-Phylum",
+        "referenceName": "Craniata Janvier, 1981",
+        "referenceNameHtml": "Craniata Janvier, 1981",
+        "frenchVernacularName": "Craniates",
+        "englishVernacularName": "Craniates",
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Autres",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185694"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/SBPH"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/838103"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/838103"
+          }
+        }
+      },
+      {
+        "id": 185695,
+        "referenceId": 185695,
+        "parentId": 838103,
+        "scientificName": "Vertebrata",
+        "authority": null,
+        "fullName": "Vertebrata ",
+        "fullNameHtml": "Vertebrata",
+        "rankId": "IFPH",
+        "rankName": "Infra-Phylum",
+        "referenceName": "Vertebrata ",
+        "referenceNameHtml": "Vertebrata",
+        "frenchVernacularName": "Vertébrés",
+        "englishVernacularName": "vertebrates",
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Autres",
+        "habitat": "1",
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838103"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/IFPH"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/1"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/185695"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/185695"
+          }
+        }
+      },
+      {
+        "id": 185703,
+        "referenceId": 185703,
+        "parentId": 185695,
+        "scientificName": "Gnathostomata",
+        "authority": null,
+        "fullName": "Gnathostomata ",
+        "fullNameHtml": "Gnathostomata",
+        "rankId": "SPCL",
+        "rankName": "Super-Classe",
+        "referenceName": "Gnathostomata ",
+        "referenceNameHtml": "Gnathostomata",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Autres",
+        "habitat": "1",
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185695"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/SPCL"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/1"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/185703"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/185703"
+          }
+        }
+      },
+      {
+        "id": 838092,
+        "referenceId": 838092,
+        "parentId": 185703,
+        "scientificName": "Euteleostomi",
+        "authority": null,
+        "fullName": "Euteleostomi ",
+        "fullNameHtml": "Euteleostomi",
+        "rankId": "CLAD",
+        "rankName": "Clade",
+        "referenceName": "Euteleostomi ",
+        "referenceNameHtml": "Euteleostomi",
+        "frenchVernacularName": "Vertébrés à squelette osseux",
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": null,
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": null,
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Autres",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185703"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/CLAD"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/838092"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/838092"
+          }
+        }
+      },
+      {
+        "id": 185704,
+        "referenceId": 185704,
+        "parentId": 838092,
+        "scientificName": "Actinopterygii",
+        "authority": null,
+        "fullName": "Actinopterygii ",
+        "fullNameHtml": "Actinopterygii",
+        "rankId": "CL",
+        "rankName": "Classe",
+        "referenceName": "Actinopterygii ",
+        "referenceNameHtml": "Actinopterygii",
+        "frenchVernacularName": "Actinopterygiens, Poissons actinoptérygiens",
+        "englishVernacularName": "ray-finned fishes",
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "1",
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838092"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/CL"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/1"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/185704"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/185704"
+          }
+        }
+      },
+      {
+        "id": 838106,
+        "referenceId": 838106,
+        "parentId": 185704,
+        "scientificName": "Neopterygii",
+        "authority": "Regan, 1923",
+        "fullName": "Neopterygii Regan, 1923",
+        "fullNameHtml": "Neopterygii Regan, 1923",
+        "rankId": "SBCL",
+        "rankName": "Sous-Classe",
+        "referenceName": "Neopterygii Regan, 1923",
+        "referenceNameHtml": "Neopterygii Regan, 1923",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "1",
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185704"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/SBCL"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/1"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/838106"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/838106"
+          }
+        }
+      },
+      {
+        "id": 185709,
+        "referenceId": 185709,
+        "parentId": 838106,
+        "scientificName": "Teleostei",
+        "authority": null,
+        "fullName": "Teleostei ",
+        "fullNameHtml": "Teleostei",
+        "rankId": "IFCL",
+        "rankName": "Infra-Classe",
+        "referenceName": "Teleostei ",
+        "referenceNameHtml": "Teleostei",
+        "frenchVernacularName": "Poissons à nageoires rayonnées, Poissons téléostéens, Téléostéens",
+        "englishVernacularName": "modern ray-finned fishes",
+        "genusName": null,
+        "familyName": null,
+        "orderName": null,
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": "P",
+        "sm": "P",
+        "sb": "P",
+        "spm": "P",
+        "may": "P",
+        "epa": "P",
+        "reu": "P",
+        "sa": "P",
+        "ta": "P",
+        "nc": "P",
+        "wf": "P",
+        "pf": "P",
+        "cli": "P",
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/838106"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/IFCL"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/185709"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/185709"
+          }
+        }
+      },
+      {
+        "id": 419279,
+        "referenceId": 419279,
+        "parentId": 185709,
+        "scientificName": "Cypriniformes",
+        "authority": null,
+        "fullName": "Cypriniformes ",
+        "fullNameHtml": "Cypriniformes",
+        "rankId": "OR",
+        "rankName": "Ordre",
+        "referenceName": "Cypriniformes ",
+        "referenceNameHtml": "Cypriniformes",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": "P",
+        "sa": null,
+        "ta": null,
+        "nc": "P",
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/185709"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/OR"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/419279"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/419279"
+          }
+        }
+      },
+      {
+        "id": 903695,
+        "referenceId": 903695,
+        "parentId": 419279,
+        "scientificName": "Cyprinoidei",
+        "authority": null,
+        "fullName": "Cyprinoidei ",
+        "fullNameHtml": "Cyprinoidei",
+        "rankId": "SBOR",
+        "rankName": "Sous-Ordre",
+        "referenceName": "Cyprinoidei ",
+        "referenceNameHtml": "Cyprinoidei",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": null,
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": null,
+        "fr": "P",
+        "gf": "P",
+        "mar": "P",
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": "P",
+        "sa": null,
+        "ta": null,
+        "nc": "P",
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/419279"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/SBOR"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/903695"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/903695"
+          }
+        }
+      },
+      {
+        "id": 905695,
+        "referenceId": 905695,
+        "parentId": 903695,
+        "scientificName": "Leuciscidae",
+        "authority": "Bonaparte, 1835",
+        "fullName": "Leuciscidae Bonaparte, 1835",
+        "fullNameHtml": "Leuciscidae Bonaparte, 1835",
+        "rankId": "FM",
+        "rankName": "Famille",
+        "referenceName": "Leuciscidae Bonaparte, 1835",
+        "referenceNameHtml": "Leuciscidae Bonaparte, 1835",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": null,
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/903695"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/FM"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/905695"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/905695"
+          }
+        }
+      },
+      {
+        "id": 825329,
+        "referenceId": 825329,
+        "parentId": 905695,
+        "scientificName": "Leuciscinae",
+        "authority": "Bonaparte, 1835",
+        "fullName": "Leuciscinae Bonaparte, 1835",
+        "fullNameHtml": "Leuciscinae Bonaparte, 1835",
+        "rankId": "SBFM",
+        "rankName": "Sous-Famille",
+        "referenceName": "Leuciscinae Bonaparte, 1835",
+        "referenceNameHtml": "Leuciscinae Bonaparte, 1835",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": null,
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": null,
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/905695"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/SBFM"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/825329"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/825329"
+          }
+        }
+      },
+      {
+        "id": 188934,
+        "referenceId": 188934,
+        "parentId": 825329,
+        "scientificName": "Alburnoides",
+        "authority": "Jeitteles, 1861",
+        "fullName": "Alburnoides Jeitteles, 1861",
+        "fullNameHtml": "<i>Alburnoides</i> Jeitteles, 1861",
+        "rankId": "GN",
+        "rankName": "Genre",
+        "referenceName": "Alburnoides Jeitteles, 1861",
+        "referenceNameHtml": "<i>Alburnoides</i> Jeitteles, 1861",
+        "frenchVernacularName": null,
+        "englishVernacularName": null,
+        "genusName": "Alburnoides",
+        "familyName": "Leuciscidae",
+        "orderName": "Cypriniformes",
+        "className": "Actinopterygii",
+        "phylumName": "Chordata",
+        "kingdomName": "Animalia",
+        "vernacularGenusName": null,
+        "vernacularFamilyName": null,
+        "vernacularOrderName": null,
+        "vernacularClassName": "Actinopterygiens, Poissons actinoptérygiens",
+        "vernacularPhylumName": "Chordés",
+        "vernacularKingdomName": "Animaux",
+        "vernacularGroup1": "Chordés",
+        "vernacularGroup2": "Poissons",
+        "habitat": "2",
+        "fr": "P",
+        "gf": null,
+        "mar": null,
+        "gua": null,
+        "sm": null,
+        "sb": null,
+        "spm": null,
+        "may": null,
+        "epa": null,
+        "reu": null,
+        "sa": null,
+        "ta": null,
+        "nc": null,
+        "wf": null,
+        "pf": null,
+        "cli": null,
+        "taxrefVersion": null,
+        "_links": {
+          "self": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934"
+          },
+          "reference": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934"
+          },
+          "parent": {
+            "href": "https://taxref.mnhn.fr/api/taxa/825329"
+          },
+          "classification": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/classification"
+          },
+          "synonyms": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/synonyms"
+          },
+          "children": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/children"
+          },
+          "vernacularNames": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/vernacularNames"
+          },
+          "media": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/media"
+          },
+          "status": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/status/lines"
+          },
+          "interactions": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/interactions"
+          },
+          "taxrefHistory": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/taxrefHistory"
+          },
+          "externalIds": {
+            "href": "https://taxref.mnhn.fr/api/taxa/188934/externalIds"
+          },
+          "taxonomicRank": {
+            "href": "https://taxref.mnhn.fr/api/taxonomicRanks/GN"
+          },
+          "habitat": {
+            "href": "https://taxref.mnhn.fr/api/habitats/2"
+          },
+          "taxrefUri": {
+            "href": "http://taxref.mnhn.fr/lod/taxon/188934"
+          },
+          "inpnWebpage": {
+            "href": "https://inpn.mnhn.fr/espece/cd_nom/188934"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://taxref.mnhn.fr/api/taxa/67104/classification"
+    }
+  }
+}

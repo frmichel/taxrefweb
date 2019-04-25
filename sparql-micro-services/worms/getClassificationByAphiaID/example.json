@@ -1,0 +1,61 @@
+{
+  "AphiaID": 1,
+  "rank": "Superdomain",
+  "scientificname": "Biota",
+  "child": {
+    "AphiaID": 2,
+    "rank": "Kingdom",
+    "scientificname": "Animalia",
+    "child": {
+      "AphiaID": 1821,
+      "rank": "Phylum",
+      "scientificname": "Chordata",
+      "child": {
+        "AphiaID": 146419,
+        "rank": "Subphylum",
+        "scientificname": "Vertebrata",
+        "child": {
+          "AphiaID": 1828,
+          "rank": "Superclass",
+          "scientificname": "Gnathostomata",
+          "child": {
+            "AphiaID": 11676,
+            "rank": "Superclass",
+            "scientificname": "Pisces",
+            "child": {
+              "AphiaID": 10194,
+              "rank": "Class",
+              "scientificname": "Actinopterygii",
+              "child": {
+                "AphiaID": 154156,
+                "rank": "Order",
+                "scientificname": "Cypriniformes",
+                "child": {
+                  "AphiaID": 154163,
+                  "rank": "Family",
+                  "scientificname": "Cyprinidae",
+                  "child": {
+                    "AphiaID": 826613,
+                    "rank": "Subfamily",
+                    "scientificname": "Alburninae",
+                    "child": {
+                      "AphiaID": 154286,
+                      "rank": "Genus",
+                      "scientificname": "Alburnoides",
+                      "child": {
+                        "AphiaID": 154288,
+                        "rank": "Species",
+                        "scientificname": "Alburnoides bipunctatus",
+                        "child": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+INSERT {
+    [] a schema:Thing;
+    schema:url ?uri;
+    schema:name ?frname.
+}
+WHERE {
+	?rank
+	    api:name ?name;
+		api:_links [
+			api:taxrefUri [
+				api:href ?taxrefUri
+			]
+		].
+		bind(IRI(?taxrefUri) AS ?uri)
+        bind (STRLANG(?name, "fr") AS ?frname)
+}

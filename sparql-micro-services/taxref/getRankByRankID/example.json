@@ -1,0 +1,27 @@
+{
+  "id": "ES",
+  "name": "Espèce",
+  "_links": {
+    "self": {
+      "href": "https://taxref.mnhn.fr/api/taxonomicRanks/ES"
+    },
+    "taxrefUri": {
+      "href": "http://taxref.mnhn.fr/lod/taxrank/Species"
+    },
+    "taxonConceptUri": {
+      "href": "http://lod.taxonconcept.org/ontology/txn.owl#RankSpecies"
+    },
+    "taxRankUri": {
+      "href": "http://purl.obolibrary.org/obo/TAXRANK_0000006"
+    },
+    "tdwgUri": {
+      "href": "http://rs.tdwg.org/ontology/voc/TaxonRank#Species"
+    },
+    "geoSpeciesUri": {
+      "href": "http://rdf.geospecies.org/ont/geospecies#TaxonRank_species"
+    },
+    "ncbiUri": {
+      "href": "http://purl.obolibrary.org/obo/NCBITaxon_species"
+    }
+  }
+}
