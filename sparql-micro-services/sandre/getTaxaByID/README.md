@@ -42,7 +42,7 @@ Each taxon is identified by an instance of the `dwc:Taxon` that provides the fol
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <https://example.org/sparql-ms/sandre/getTaxaByID?id=2088>
+  SERVICE <http://example.org/sparql-ms/sandre/getTaxaByID?id=2088>
     { ?taxon dwc:scientificName ?name; dwc:scientificNameAuthorship ?author.  }
 }
 ```

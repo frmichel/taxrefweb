@@ -19,7 +19,7 @@ WHERE {
              ]
         ]
 
-    bind(IRI(concat("http://example.org/sparql-ms-tw/taxref/getRankByRankID?id=", ?rankID)) AS ?service)
+    bind(IRI(concat("http://example.org/sparql-ms/taxref/getRankByRankID?id=", ?rankID)) AS ?service)
     SERVICE ?service {
         [] schema:url ?taxrefRankUri.
     }

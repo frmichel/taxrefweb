@@ -42,7 +42,7 @@ WHERE {
     }.
     OPTIONAL { ?c api:parentId ?parentID}.
 
-    bind(IRI(concat("http://example.org/sparql-ms-tw/taxref/getRankByRankID?id=", ?rankID)) AS ?rankService)
+    bind(IRI(concat("http://example.org/sparql-ms/taxref/getRankByRankID?id=", ?rankID)) AS ?rankService)
     SERVICE ?rankService {
         [] schema:url ?taxrefRankUri.
     }

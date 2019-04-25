@@ -32,7 +32,7 @@ _:b42015
 prefix schema: <http://schema.org/> .
 
 SELECT * WHERE {
-  SERVICE <https://example.org/sparql-ms/taxref/getRankByRankId?id=ES>
+  SERVICE <http://example.org/sparql-ms/taxref/getRankByRankId?id=ES>
     { [] schema:url ?uri.  }
 }
 ```

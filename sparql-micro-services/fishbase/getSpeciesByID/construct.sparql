@@ -4,11 +4,14 @@ CONSTRUCT {
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName ?name;
         dwc:namePublishedInYear ?year;
+        dwc:vernacularName ?vernacularName;
         taxrefp:hasRank ?rankUri;
+        taxrefp:habitat ?habitats;
 .
 }
 WHERE {
     ?content
+        api:SpecCode ?specCode;
         api:SynCode ?id;
         api:SynGenus ?genus_name;
         api:SynSpecies ?species;
@@ -19,14 +22,13 @@ WHERE {
 
 	# the scientific name of the taxon is the concatenation of genus and species name
 	bind(concat(?genus_name, " ", ?species) AS ?name)
-
-    bind(IRI(concat("http://example.org/sparql-ms-tw/fishbase/getHabitatsBySpeciesID?id=", ?specCode)) AS ?habitatsService)
-    OPTIONAL {
+	bind(IRI(concat("http://example.org/sparql-ms/fishbase/getSpeciesInfoByID?id=", ?specCode)) AS ?service)
+	OPTIONAL {
         SERVICE ?service {
             [] taxrefp:habitat ?habitats;
                 dwc:vernacularName ?vernacularName;
         }
-    }
+	}
     bind (sms:getRankUri(?rankName) AS ?rankUri)
     bind (sms:formatAuthorName(?author) AS ?authorname)
     bind (IRI(concat("http://example.org/ld/fishbase/taxon/", ?id)) AS ?taxonUri)

@@ -40,7 +40,7 @@ _:b42176
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <https://example.org/sparql-ms/pesi/getSynonymsByGUID?id=6A8E85BD-5E52-4AE2-9444-99128C87A672>
+  SERVICE <http://example.org/sparql-ms/pesi/getSynonymsByGUID?id=6A8E85BD-5E52-4AE2-9444-99128C87A672>
     { [] dwc:scientificName ?name.  }
 }
 ```

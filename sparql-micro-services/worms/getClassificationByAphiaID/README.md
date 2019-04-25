@@ -49,7 +49,7 @@ Each taxon belonging to the classification is identified by an instance of the `
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <https://example.org/sparql-ms/worms/getClassificationyAphiaID?id=154288>
+  SERVICE <http://example.org/sparql-ms/worms/getClassificationyAphiaID?id=154288>
     { [] dwc:scientificName ?name.  }
 }
 ```

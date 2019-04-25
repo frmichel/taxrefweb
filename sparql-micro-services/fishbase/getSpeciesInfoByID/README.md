@@ -38,7 +38,7 @@ _:b42015
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <https://example.org/sparql-ms/fishbase/getSpeciesInfoByID?id=4875>
+  SERVICE <http://example.org/sparql-ms/fishbase/getSpeciesInfoByID?id=4875>
     { [] dwc:scientificName ?name; dwc:scientificNameAuthorship ?author.  }
 }
 ```

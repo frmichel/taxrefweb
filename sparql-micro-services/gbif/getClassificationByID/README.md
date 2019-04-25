@@ -47,7 +47,7 @@ Each taxon belonging to the classification comes with the following information:
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <https://example.org/sparql-ms/gbif/getClassificationByID?id=2360279>
+  SERVICE <http://example.org/sparql-ms/gbif/getClassificationByID?id=2360279>
     { [] dwc:scientificName ?name.  }
 }
 ```

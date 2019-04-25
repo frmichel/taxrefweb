@@ -41,7 +41,7 @@ _:b42016
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <https://example.org/sparql-ms/taxref/getSynonymsById?id=67104>
+  SERVICE <http://example.org/sparql-ms/taxref/getSynonymsById?id=67104>
     { [] dwc:scientificName ?name.  }
 }
 ```
