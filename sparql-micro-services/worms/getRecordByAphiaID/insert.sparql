@@ -47,7 +47,7 @@ WHERE {
 
 	bind (sms:formatAuthorName(?author) AS ?authorname)
     bind(sms:getHabitatsList(coalesce(?is_marine, false), coalesce(?is_freshwater, false), coalesce(?is_brackish, false), coalesce(?is_terrestrial, false)) AS ?list)
-    values ?habitats { unnest(?list) }
+    OPTIONAL { values ?list { UNDEF }   values ?habitats { unnest(?list) } }
 }
 
 

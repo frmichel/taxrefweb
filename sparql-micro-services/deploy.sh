@@ -7,7 +7,7 @@
 # The machine where the services are deployed. Will replace the 'http://example.org'
 SERVER='http:\/\/sms.i3s.unice.fr'
 # URL at which SPARQL micro-services are deployed
-SMSPATH=$SERVER'\/sparql-ms-tw'
+SMSURL=$SERVER'\/sparql-ms-tw'
 
 # Directory where to search for SPARQL micro-services, from the directory where this script is launched
 SMSDIR=.
@@ -31,8 +31,8 @@ done
 # --- Replace example.org/sparql-ms with local sparql micro-services path in sparql files ---
 for FILE in `ls $SMSDIR/*/*/*.sparql`; do
     replace='http:\/\/example.org\/sparql-ms'
-    echo "Changing $replace into $SMSPATH in $FILE"
-    substitute "$replace" "$SMSPATH" "$FILE"
+    echo "Changing $replace into $SMSURL in $FILE"
+    substitute "$replace" "$SMSURL" "$FILE"
 done
 
 # --- Replace example.org with local server URL in sparql files ---
@@ -45,6 +45,6 @@ done
 # --- Replace example.org with local server URL in config.ini file ---
 for FILE in `ls $SMSDIR/config.ini`; do
     replace='http:\/\/example.org'
-    echo "Changing $replace into $SMSPATH in $FILE"
-    substitute "$replace" "$SMSPATH" "$FILE"
+    echo "Changing $replace into $SMSURL in $FILE"
+    substitute "$replace" "$SMSURL" "$FILE"
 done
