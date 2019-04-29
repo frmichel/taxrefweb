@@ -10,7 +10,7 @@ WHERE {
         api:CdAppelTaxon ?id
      ];
 
-    bind(IRI(concat("http://example.org/sparql-ms/sandre/getTaxaByID?id=", ?id)) AS ?service)
+    bind(IRI(concat("http://example.org/sparql-ms/sandre/getTaxonByID?id=", ?id)) AS ?service)
     SERVICE ?service {
         ?taxonUri dwc:scientificName ?scientificname;
             taxrefp:hasRank ?rankUri;

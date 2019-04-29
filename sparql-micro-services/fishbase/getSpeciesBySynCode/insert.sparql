@@ -1,4 +1,4 @@
-CONSTRUCT {
+INSERT {
     ?taxonUri a dwc:Taxon;
 
         dwc:scientificNameAuthorship ?authorname;
@@ -22,7 +22,7 @@ WHERE {
 
 	# the scientific name of the taxon is the concatenation of genus and species name
 	bind(concat(?genus_name, " ", ?species) AS ?name)
-	bind(IRI(concat("http://example.org/sparql-ms/fishbase/getSpeciesInfoByID?id=", ?specCode)) AS ?service)
+	bind(IRI(concat("http://example.org/sparql-ms/fishbase/getSpeciesBySpecCode?id=", ?specCode)) AS ?service)
 	OPTIONAL {
         SERVICE ?service {
             [] taxrefp:habitat ?habitats;

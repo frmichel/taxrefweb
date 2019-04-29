@@ -2,7 +2,8 @@
 # gbif/getClassificationByID
 
 
-This service retrieves the classification of a given taxon from [GBIF (Global Biodiversity Information Facility)](https://www.gbif.org/) by using its identifier (AphiaID). 
+This service retrieves the classification of a given taxon from [GBIF (Global Biodiversity Information Facility)](https://www.gbif.org/) by using its identifier.
+The result is a list of instances of `dwc:Taxon`, one for each parent of the taxon. 
 
 Each taxon belonging to the classification comes with the following information:
 - identifier of the taxon in GBIF (`dwc:taxonID`),
@@ -10,6 +11,10 @@ Each taxon belonging to the classification comes with the following information:
 - the URL of the taxon Web page (`schema:sameAs`),
 - taxonomic rank,
 - parent taxon (`skos:broader`).
+
+Compared to the gbif/getTaxonByID micro-service, that provides, together with the taxon information, the names of the taxa 
+corresponding to the major taxonomic ranks (kingdom, phylum, class, order, family, genus), this service provides the whole 
+classification, including taxa corresponding to secondary ranks (superfamily, subfamily, subgenus, etc.).
 
 **Query mode**: SPARQL
 

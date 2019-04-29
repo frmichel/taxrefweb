@@ -1,8 +1,8 @@
 
-# pesi/getSynonymsByGUID
+# pesi/getSynonymsByID
 
 
-This service retrieves the list of synonyms of a taxon from [PESI (Pan-European Species directories Infrastructure)](http://www.eu-nomen.eu/portal/) by using its identifier. 
+This service retrieves the list of synonyms of a taxon from [PESI (Pan-European Species directories Infrastructure)](http://www.eu-nomen.eu/portal/) by using its identifier (GUID). 
 
 Each synonym comes with the following information:
 - scientific name (`dwc:scientificName`),
@@ -40,7 +40,7 @@ _:b42176
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/pesi/getSynonymsByGUID?id=6A8E85BD-5E52-4AE2-9444-99128C87A672>
+  SERVICE <http://example.org/sparql-ms/pesi/getSynonymsByID?id=6A8E85BD-5E52-4AE2-9444-99128C87A672>
     { [] dwc:scientificName ?name.  }
 }
 ```

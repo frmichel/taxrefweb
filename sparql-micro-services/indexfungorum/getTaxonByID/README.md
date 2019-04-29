@@ -1,8 +1,8 @@
 
-# indexfungorum/getTaxonByNameKey
+# indexfungorum/getTaxonByID
 
 
-This service retrieves information about a taxon from [Index Fungorum](http://www.indexfungorum.org/) by using its identifier. 
+This service retrieves information about a taxon from [Index Fungorum](http://www.indexfungorum.org/) by using its identifier (NameKey). 
 Index Fungorum Web API returns a XML response, that is converted into JSON by a PHP script. 
 The result of the conversion is processed like any other Web API JSON response, i.e. the JSON-LD profile is applied and, then, the INSERT query is executed.
 
@@ -49,7 +49,7 @@ Each taxon is identified by an instance of the `dwc:Taxon` that provides the fol
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/indexfungorum/getTaxonByNameKey?id=451112>
+  SERVICE <http://example.org/sparql-ms/indexfungorum/getTaxonByID?id=451112>
     { ?taxon dwc:scientificName ?name; dwc:scientificNameAuthorship ?author.  }
 }
 ```

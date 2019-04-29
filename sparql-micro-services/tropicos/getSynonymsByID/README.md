@@ -1,8 +1,8 @@
 
-# tropicos/getSynonymsByNameID
+# tropicos/getSynonymsByID
 
 
-This service retrieves the list of synonyms of a taxon from [Tropicos](https://www.tropicos.org/) by using its identifier. 
+This service retrieves the list of synonyms of a taxon from [Tropicos](https://www.tropicos.org/) by using its identifier (NameId). 
 
 Each retrieved synonym provides the following information:
 - scientific name (`dwc:scientificName`),
@@ -41,7 +41,7 @@ _:b42155
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/tropicos/getSynonymsByNameID?id=26800115>
+  SERVICE <http://example.org/sparql-ms/tropicos/getSynonymsByID?id=26800115>
     { [] dwc:scientificName ?name.  }
 }
 ```

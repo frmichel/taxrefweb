@@ -3,7 +3,7 @@
 
 
 This service retrieves information about the direct parent of a taxon from [Sandre (Service d'administration nationale des données et référentiels sur l'eau)](http://www.sandre.eaufrance.fr/) by using its identifier. 
-This service uses the sandre/getTaxaByID micro-service to get information about the parent taxon, given its ID.
+This service uses the sandre/getTaxonByID micro-service to get information about the parent taxon, given its ID.
 
 Each taxon is identified by an instance of the `dwc:Taxon` that provides the following information:
 - identifier of the taxon in Sandre (`dwc:taxonID`),
