@@ -13,61 +13,62 @@ CONSTRUCT {
         taxrefp:hasRank ?rankUri;
         schema:sameAs ?page;
         dwc:parentNameUsageID ?parentID;
-.
+        skos:broader ?parentTaxon;
+		.
 }
 WHERE {
     ?content
         api:key ?id;
         api:authorship ?author;
 	    api:canonicalName ?scientificname;
-        api:scientificName ?fullname;
-	OPTIONAL { ?content api:accepted ?refSN}.
-	OPTIONAL { ?content api:taxonomicStatus ?status}
-	OPTIONAL { ?content api:kingdom ?kingdom}.
+        api:scientificName ?fullname.
+        
+    OPTIONAL { ?content api:accepted ?refSN}.
+    OPTIONAL { ?content api:taxonomicStatus ?status}
+    OPTIONAL { ?content api:kingdom ?kingdom}.
     OPTIONAL { ?content api:phylum ?phylum}.
-	OPTIONAL { ?content api:order ?order}.
-	OPTIONAL { ?content api:family ?family}.
- 	OPTIONAL { ?content api:genus ?genus}.
-	OPTIONAL { ?content api:rank ?rankName}.
+    OPTIONAL { ?content api:order ?order}.
+    OPTIONAL { ?content api:family ?family}.
+    OPTIONAL { ?content api:genus ?genus}.
+    OPTIONAL { ?content api:rank ?rankName}.
     OPTIONAL { ?content api:class ?class}.
-    OPTIONAL { ?content api:parentKey ?parentID}.
+    OPTIONAL { ?content api:parentKey ?parentID}
 
     bind (IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
     #if the taxon is accepted the reference name is the name of that taxon
     bind (IF(?status = "ACCEPTED", ?fullname, ?refSN) AS ?referenceScientificName)
 
     bind(sms:formatAuthorName(?author) AS ?authorname)
-	bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?id)) AS ?taxonUri)
-	bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)
-	
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentID)) AS ?parentTaxon)
+    bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	
 }
 
 #Translate the GBIF rank name into the corresponding TAXREF-LD name
 function sms:getTaxrefRankName(?rankName){
-	LET(?name = concat(SUBSTR(?rankName,1,1), SUBSTR(LCASE(?rankName,2),2))){
-		if(?name = "Legion"){
-			return("Legio")
-		}else if(?name = "Species_aggregate"){
-			return("Aggregate")
-		}else if(?name = "Aberration"){
-			return("Abberatio")
-		}else if(?name = "Morph"){
-			return("Morpha")
-		}else if(regex(?name, "Sub")){
-			return(replace(?name, "Sub", "Sub-"))
-		}else if(regex(?name, "Super")){
-			return(replace(?name, "Super", "Super-"))
-		}else if(regex(?name, "Infra")){
-			return(replace(?name, "Infra", "Infra-"))
-		}else if(regex(?name, "Parv")){
-			return(replace(?name, "Parv", "Parv-"))
-		}else{
-			return(?name)
-		}
-
-	}
-	
+    LET(?name = concat(SUBSTR(?rankName,1,1), SUBSTR(LCASE(?rankName,2),2))){
+        if(?name = "Legion"){
+            return("Legio")
+        }else if(?name = "Species_aggregate"){
+            return("Aggregate")
+        }else if(?name = "Aberration"){
+            return("Abberatio")
+        }else if(?name = "Morph"){
+            return("Morpha")
+        }else if(regex(?name, "Sub")){
+            return(replace(?name, "Sub", "Sub-"))
+        }else if(regex(?name, "Super")){
+            return(replace(?name, "Super", "Super-"))
+        }else if(regex(?name, "Infra")){
+            return(replace(?name, "Infra", "Infra-"))
+        }else if(regex(?name, "Parv")){
+            return(replace(?name, "Parv", "Parv-"))
+        }else{
+            return(?name)
+        }
+    }
 }
+
 # Format author name removing extra spaces at beginning and end of the name and after a dot
 # and moving basionymName (in round brackets at the end of the name) to the beginning of the name (like in TAXREF)
 # " (Bloch, 1782)" => "(Bloch, 1782)";

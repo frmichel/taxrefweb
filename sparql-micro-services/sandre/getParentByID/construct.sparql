@@ -1,14 +1,14 @@
-INSERT {
+CONSTRUCT {
     ?taxonUri dwc:taxonID ?id;
         dwc:scientificName ?scientificname;
         taxrefp:hasRank ?rankUri;
         skos:broader ?parentTaxon;
-.
+        .
 }
 WHERE {
     ?c api:AppelTaxonParent [
         api:CdAppelTaxon ?id
-     ];
+    ];
 
     bind(IRI(concat("http://example.org/sparql-ms/sandre/getTaxonByID?id=", ?id)) AS ?service)
     SERVICE ?service {
@@ -16,5 +16,4 @@ WHERE {
             taxrefp:hasRank ?rankUri;
             skos:broader ?parentTaxon.
     }
-
 }

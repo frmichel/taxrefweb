@@ -1,10 +1,10 @@
-INSERT {
+CONSTRUCT {
     [] a dwc:Taxon;
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName ?name;
         taxrefp:habitat ?habitats;
         dwc:vernacularName ?eng_name;
-.
+        .
 }
 WHERE {
     ?content
@@ -20,10 +20,10 @@ WHERE {
 
     # the scientific name of the taxon is the concatenation of genus and species name
     bind(concat(?genus, " ", ?species) AS ?name)
-    bind (sms:formatAuthorName(?author) AS ?authorname)
-    bind (STRLANG(?vernacularName, "en") AS ?eng_name)
-	bind(sms:getHabitatsList(coalesce(?fresh, false), coalesce(?brack, false), coalesce(?marine, false)) AS ?list)
-	values ?habitats { unnest(?list) }
+    bind(sms:formatAuthorName(?author) AS ?authorname)
+    bind(STRLANG(?vernacularName, "en") AS ?eng_name)
+    bind(sms:getHabitatsList(coalesce(?fresh, false), coalesce(?brack, false), coalesce(?marine, false)) AS ?list)
+    values ?habitats { unnest(?list) }
 }
 
 function sms:getHabitatsList(?fresh, ?brack, ?mar){

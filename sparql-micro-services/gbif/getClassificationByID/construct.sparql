@@ -1,0 +1,48 @@
+CONSTRUCT {
+    ?taxonUri a dwc:Taxon;
+        dwc:taxonID ?id;
+        dwc:scientificName ?scientificname;
+        taxrefp:hasRank ?rankUri;
+        schema:sameAs ?page;
+        skos:broader ?parentTaxon;
+        .
+}
+WHERE {
+    ?content
+        api:key ?id;
+        api:canonicalName ?scientificname;
+        api:rank ?rankName.
+        
+    OPTIONAL { ?content api:parentKey ?parentID}.
+
+    bind (IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
+    bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentID)) AS ?parentTaxon)
+}
+
+#Translate the GBIF rank name into the correspondig TAXREF-LD name
+function sms:getTaxrefRankName(?rankName){
+    LET(?name = concat(SUBSTR(?rankName,1,1), SUBSTR(LCASE(?rankName,2),2))){
+        if(?name = "Legion"){
+            return("Legio")
+        }else if(?name = "Species_aggregate"){
+            return("Aggregate")
+        }else if(?name = "Aberration"){
+            return("Abberatio")
+        }else if(?name = "Morph"){
+            return("Morpha")
+        }else if(regex(?name, "Sub")){
+            return(replace(?name, "Sub", "Sub-"))
+        }else if(regex(?name, "Super")){
+            return(replace(?name, "Super", "Super-"))
+        }else if(regex(?name, "Infra")){
+            return(replace(?name, "Infra", "Infra-"))
+        }else if(regex(?name, "Parv")){
+            return(replace(?name, "Parv", "Parv-"))
+        }else{
+            return(?name)
+        }
+    }
+}
+

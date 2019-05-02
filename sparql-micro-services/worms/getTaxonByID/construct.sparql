@@ -1,6 +1,5 @@
 CONSTRUCT {
    ?taxonUri a dwc:Taxon;
-
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName ?scientificname;
         dwc:acceptedNameUsage ?full_reference_name;
@@ -13,20 +12,21 @@ CONSTRUCT {
         schema:sameAs ?page;
         taxrefp:hasRank ?taxrefRankUri;
         taxrefp:habitat ?habitats;
-.
+        .
 }
 WHERE {
     ?c
         api:AphiaID ?id;
         api:authority ?author;
-	    api:rank ?rkName;
+        api:rank ?rkName;
         api:scientificname ?scientificname.
-	OPTIONAL {?c	
-			api:valid_name ?valid_name;
-			api:valid_authority ?valid_author;
-	}.
-	OPTIONAL { ?c api:url ?url}.
-	OPTIONAL { ?c api:kingdom ?kingdom }.
+    
+    OPTIONAL {?c
+            api:valid_name ?valid_name;
+            api:valid_authority ?valid_author;
+    }.
+    OPTIONAL { ?c api:url ?url}.
+    OPTIONAL { ?c api:kingdom ?kingdom }.
     OPTIONAL { ?c api:phylum ?phylum }.
     OPTIONAL { ?c api:class ?class }.
     OPTIONAL { ?c api:order ?order }.
@@ -37,43 +37,42 @@ WHERE {
     OPTIONAL { ?c api:isFreshwater ?is_freshwater }.
     OPTIONAL { ?c api:isTerrestrial ?is_terrestrial}.
 
-	bind(IRI(?url) AS ?page)
-	bind(sms:getRankUri(?rkName) AS ?taxrefRankUri)
-     
-    bind (IRI(concat("http://example.org/ld/worms/taxon/", ?id)) AS ?taxonUri)
+    bind(IRI(?url) AS ?page)
+    bind(sms:getRankUri(?rkName) AS ?taxrefRankUri)
+    bind(IRI(concat("http://example.org/ld/worms/taxon/", ?id)) AS ?taxonUri)
 
     #The full reference name is the concatenation of the valid name and its author
-	bind (concat(concat(?valid_name, " "), sms:formatAuthorName(?valid_author)) AS ?full_reference_name)
+    bind(concat(concat(?valid_name, " "), sms:formatAuthorName(?valid_author)) AS ?full_reference_name)
 
-	bind (sms:formatAuthorName(?author) AS ?authorname)
+    bind(sms:formatAuthorName(?author) AS ?authorname)
     bind(sms:getHabitatsList(coalesce(?is_marine, false), coalesce(?is_freshwater, false), coalesce(?is_brackish, false), coalesce(?is_terrestrial, false)) AS ?list)
     OPTIONAL { values ?list { UNDEF }   values ?habitats { unnest(?list) } }
 }
 
 
 function sms:getRankUri(?rankName){
-	IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
+    IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
 }
 
 #Return the TAXREF-LD rank name, given the name rank name in WoRMS
 function sms:getTaxrefRankName(?rkName){
-	if(?rkName = "Subterclass"){
-		return("Subter-class")
-	}else if(?rkName = "Forma"){
-		return("Form")
-	}else if(?rkName = "Subforma"){
-		return("Sub-form")
-	}else if(regex(?rkName, "Sub")){
-		return(replace(?rkName, "Sub", "Sub-"))
-	}else if(regex(?rkName, "Super")){
-		return(replace(?rkName, "Super", "Super-"))
-	}else if(regex(?rkName, "Infra")){
-		return(replace(?rkName, "Infra", "Infra-"))
-	}else if(regex(?rkName, "Parv")){
-		return(replace(?rkName, "Parv", "Parv-"))
-	}else{
-		return(?rkName)
-	}
+    if(?rkName = "Subterclass"){
+        return("Subter-class")
+    }else if(?rkName = "Forma"){
+        return("Form")
+    }else if(?rkName = "Subforma"){
+        return("Sub-form")
+    }else if(regex(?rkName, "Sub")){
+        return(replace(?rkName, "Sub", "Sub-"))
+    }else if(regex(?rkName, "Super")){
+        return(replace(?rkName, "Super", "Super-"))
+    }else if(regex(?rkName, "Infra")){
+        return(replace(?rkName, "Infra", "Infra-"))
+    }else if(regex(?rkName, "Parv")){
+        return(replace(?rkName, "Parv", "Parv-"))
+    }else{
+        return(?rkName)
+    }
 }
 
 #Return the list of the TAXREF-LD habitats URIs of the taxon
@@ -81,7 +80,7 @@ function sms:getHabitatsList(?mar, ?fresh, ?brack, ?terr){
     if(!?mar && !?fresh && !?brack && !?terr){
         return(xt:list())
     }else {
-	    xt:merge(xt:merge(IF(?mar, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")), xt:list()), IF(?fresh, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")), xt:list())), xt:merge(IF(?brack, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/BrackishWater")), xt:list()), IF(?terr, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial")), xt:list())))
+        xt:merge(xt:merge(IF(?mar, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")), xt:list()), IF(?fresh, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")), xt:list())), xt:merge(IF(?brack, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/BrackishWater")), xt:list()), IF(?terr, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial")), xt:list())))
     }
 }
 

@@ -1,8 +1,8 @@
-INSERT {
+CONSTRUCT {
     []
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName ?fullname;
-.
+        .
 }
 WHERE {
     ?content

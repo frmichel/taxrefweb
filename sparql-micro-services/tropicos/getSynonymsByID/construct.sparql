@@ -1,24 +1,26 @@
-INSERT {
+CONSTRUCT {
     []
         dwc:scientificNameAuthorship ?author;
         dwc:scientificName ?fullname;
         schema:sameAs ?page;
+        .
 }
 WHERE {
-    ?c  api:SynonymName[
-        api:NameId ?id;
-        api:ScientificName ?scientific_name;
-	    api:ScientificNameWithAuthors ?full_name;]
+    ?c  api:SynonymName [
+            api:NameId ?id;
+            api:ScientificName ?scientific_name;
+            api:ScientificNameWithAuthors ?full_name;
+        ].
 
-	bind(sms:getAuthorFromName(?scientific_name, ?full_name) AS ?author)
-	bind (sms:formatAuthorName(?author) AS ?authorname)
-	bind (concat(?scientific_name, " ", ?authorname) AS ?fullname)
-	bind (IRI(concat("https://www.tropicos.org/Name/", ?id)) AS ?page)
+    bind(sms:getAuthorFromName(?scientific_name, ?full_name) AS ?author)
+    bind(sms:formatAuthorName(?author) AS ?authorname)
+    bind(concat(?scientific_name, " ", ?authorname) AS ?fullname)
+    bind(IRI(concat("https://www.tropicos.org/Name/", ?id)) AS ?page)
 }
 
 #Return the author name, given the scientific name and the full name
 function sms:getAuthorFromName(?name, ?fullname){
-	replace(?fullname, ?name, "")
+    replace(?fullname, ?name, "")
 }
 
 # Format author name removing extra whitespaces at beginning and end of the name and after a dot

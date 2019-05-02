@@ -1,20 +1,21 @@
-INSERT {
+CONSTRUCT {
     []
-        dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName ?fullname;
-        schema:sameAs ?wormsPage
-	.
+        dwc:scientificNameAuthorship ?authorname;
+        schema:sameAs ?page;
+        .
 }
 WHERE {
-    ?content
-        api:AphiaID ?id;
-        api:authority ?author;
+    ?c
+        api:valid_guid ?id;
         api:scientificname ?scientificname;
-        api:url ?url;
-	.
-	bind(sms:formatAuthorName(?author) AS ?authorname)
-	bind(concat(?scientificname, " ", ?authorname) AS ?fullname)
-	bind (IRI(?url) AS ?wormsPage)
+        api:authority ?author.
+        
+	OPTIONAL {?c api:url ?url}
+
+    bind (sms:formatAuthorName(?author) AS ?authorname)
+    bind (concat(?scientificname, " ", ?authorname) AS ?fullname)
+    bind (IRI(?url) AS ?page)
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot

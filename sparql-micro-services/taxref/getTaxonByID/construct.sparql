@@ -1,6 +1,5 @@
 CONSTRUCT {
     ?taxonUri a dwc:Taxon;
-
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName ?scientificname;
         dwc:acceptedNameUsage ?full_reference_name;
@@ -16,7 +15,8 @@ CONSTRUCT {
         taxrefp:hasRank ?taxrefRankUri;
         taxrefp:habitat ?habitats;
         dwc:parentNameUsageID ?parentID;
-.
+        skos:broader ?parentTaxon;
+        .
 }
 WHERE {
     ?c
@@ -25,38 +25,36 @@ WHERE {
         api:scientificName ?scientificname;
         api:referenceName ?full_reference_name;
         api:rankId ?rankID.
-	OPTIONAL { ?c api:genusName ?genus_name}.
-    OPTIONAL { ?c api:familyName ?family_name}.
-    OPTIONAL { ?c api:orderName ?order_name}.
-    OPTIONAL { ?c api:className ?class_name}.
-    OPTIONAL { ?c api:phylumName ?phylum_name}.
-    OPTIONAL { ?c api:kingdomName ?kingdom_name}.
-    OPTIONAL { ?c api:frenchVernacularName ?frname}.
-    OPTIONAL { ?c api:englishVernacularName ?engname}.
+        
+	OPTIONAL { ?c api:genusName ?genus_name }
+    OPTIONAL { ?c api:familyName ?family_name }
+    OPTIONAL { ?c api:orderName ?order_name }
+    OPTIONAL { ?c api:className ?class_name }
+    OPTIONAL { ?c api:phylumName ?phylum_name }
+    OPTIONAL { ?c api:kingdomName ?kingdom_name }
+    OPTIONAL { ?c api:frenchVernacularName ?frname }
+    OPTIONAL { ?c api:englishVernacularName ?engname }
+    OPTIONAL { ?c api:parentId ?parentID}
     OPTIONAL {
-        ?c api:habitat ?habitat
+        ?c api:habitat ?habitat.
         bind(sms:getHabitats(?habitat) AS ?list)
-        values ?habitats {
-            unnest(?list)
-        }
-    }.
-    OPTIONAL { ?c api:parentId ?parentID}.
+        values ?habitats { unnest(?list) }
+    }
 
     bind(IRI(concat("http://example.org/sparql-ms/taxref/getRankByRankID?id=", ?rankID)) AS ?rankService)
-    SERVICE ?rankService {
-        [] schema:url ?taxrefRankUri.
-    }
-	bind (IRI(concat("http://example.org/ld/taxref/taxon/", ?id)) AS ?taxonUri)
-	bind (STRLANG(?frname, "fr") AS ?fr_name)
-	bind (STRLANG(?engname, "en") AS ?eng_name)
-	bind(sms:getYearFromAuthority(?author) AS ?year)
-	bind(sms:formatAuthorName(?author) AS ?authorname)
-
+    SERVICE ?rankService { [] schema:url ?taxrefRankUri. }
+    
+    bind(IRI(concat("http://example.org/ld/taxref/taxon/", ?id)) AS ?taxonUri)
+    bind(STRLANG(?frname, "fr") AS ?fr_name)
+    bind(STRLANG(?engname, "en") AS ?eng_name)
+    bind(sms:getYearFromAuthority(?author) AS ?year)
+    bind(sms:formatAuthorName(?author) AS ?authorname)
+    bind(IRI(concat("http://example.org/ld/taxref/taxon/", ?parentID)) AS ?parentTaxon)
 }
 
 #Return the list of thr TAXREF-LD habitats URIs, given the habitat code in TAXREF
 function sms:getHabitats(?habitat){
-     if(?habitat = "1"){
+    if(?habitat = "1"){
         return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")))
     }else if(?habitat = "2"){
         return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")))
@@ -77,7 +75,7 @@ function sms:getHabitats(?habitat){
 
 #Return the year in which a name was coined, given the full author name
 function sms:getYearFromAuthority(?author){
-	replace(?author, "^.*([1-2][0-9]{3}).*$", "$1")
+    replace(?author, "^.*([1-2][0-9]{3}).*$", "$1")
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot

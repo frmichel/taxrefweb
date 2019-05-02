@@ -12,16 +12,17 @@ CONSTRUCT {
         dwc:kingdom ?kingdom_name;
         taxrefp:hasRank ?rankUri;
         schema:sameAs ?page;
-.
+        .
 }
 WHERE {
     ?c
         api:RECORD_x0020_NUMBER ?id;
         api:AUTHORS ?author;
         api:NAME_x0020_OF_x0020_FUNGUS ?scientificname;
-	    api:INFRASPECIFIC_x0020_RANK ?rankAbbr.
-	OPTIONAL { ?c api:CURRENT_x0020_NAME ?refName}.
-	OPTIONAL { ?c api:Genus_x0020_name ?genus_name}.
+        api:INFRASPECIFIC_x0020_RANK ?rankAbbr.
+        
+    OPTIONAL { ?c api:CURRENT_x0020_NAME ?refName}.
+    OPTIONAL { ?c api:Genus_x0020_name ?genus_name}.
     OPTIONAL { ?c api:Family_x0020_name ?family_name}.
     OPTIONAL { ?c api:Order_x0020_name ?order_name}.
     OPTIONAL { ?c api:Class_x0020_name ?class_name}.
@@ -30,18 +31,17 @@ WHERE {
 
     bind (sms:formatAuthorName(?author) AS ?authorname)
     bind (IRI(concat("http://www.indexfungorum.org/Names/NamesRecord.asp?RecordID=", ?id)) AS ?page)
-	bind (sms:getRankUriByAbbr(?rankAbbr) AS ?rankUri)
-	bind (IRI(concat("http://example.org/ld/indexfungorum/taxon/", ?id)) AS ?taxonUri)
-	
+    bind (sms:getRankUriByAbbr(?rankAbbr) AS ?rankUri)
+    bind (IRI(concat("http://example.org/ld/indexfungorum/taxon/", ?id)) AS ?taxonUri)
 }
 
 function sms:getRankUriByAbbr(?rankAb){
-	IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankAb)))
+    IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankAb)))
 }
 
 #Return the TAXREF-LD rank name given the rank abbreviation
 function sms:getTaxrefRankName(?rankAb){
-	if(?rankAb = "regn."){
+    if(?rankAb = "regn."){
             return("Kingdom")
     } else if(?rankAb = "subregn."){
             return("Sub-kingdom")
