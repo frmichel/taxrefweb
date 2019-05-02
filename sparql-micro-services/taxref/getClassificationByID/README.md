@@ -2,14 +2,21 @@
 # taxref/getClassificationByID
 
 
-This service retrieves the classification of a given taxon from [TAXREF](https://taxref.mnhn.fr/taxref-web/accueil) by using its identifier (AphiaID). 
+This service retrieves the classification of a given taxon from [TAXREF](https://taxref.mnhn.fr/taxref-web/accueil) by using its identifier.
+The result is a list of instances of `dwc:Taxon`, one for each parent of the taxon.  
 
-Each taxon belonging to the classification is identified by an instance of the `dwc:Taxon` that provides the following information
+Each taxon belonging to the classification comes with the following information
 - identifier of the taxon in TAXREF (`dwc:taxonID`),
 - scientific name (`dwc:scientificName`),
 - the URL of the taxon Web page on the [INPN (Inventaire National du Patrimoine Naturel)](https://inpn.mnhn.fr/accueil/index) website (`schema:sameAs`),
 - taxonomic rank,
 - parent taxon (`skos:broader`).
+
+Compared to the taxref/getTaxonByID micro-service, that provides, together with the taxon information, the names of the taxa 
+corresponding to the major taxonomic ranks (kingdom, phylum, class, order, family, genus), this service provides the whole 
+classification, including taxa corresponding to secondary ranks (superfamily, subfamily, subgenus, etc.).
+
+This service uses the taxref/getRankByRankID micro-service to map the rankID to the correct TAXREF-LD URI.
 
 **Query mode**: SPARQL
 

@@ -1,8 +1,8 @@
 
-# fishbase/getSynonymsByID
+# fishbase/getSynonymsBySynCode
 
 
-This service retrieves the list of synonyms of a taxon from  [FishBase](https://www.fishbase.se/search.php) by using its identifier. 
+This service retrieves the list of synonyms of a taxon from  [FishBase](https://www.fishbase.se/search.php) by using its name identifier (SynCode). 
 
 Each synonym comes with the following information:
 - scientific name (`dwc:scientificName`),
@@ -11,7 +11,7 @@ Each synonym comes with the following information:
 **Query mode**: SPARQL
 
 **Parameters**: 
-- id: FishBase's internal taxon identifier
+- id: FishBase's internal taxon's name identifier (SynCode)
 
 
 
@@ -38,7 +38,7 @@ _:b42233
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/fishbase/getSynonymsById?id=25357>
+  SERVICE <http://example.org/sparql-ms/fishbase/getSynonymsBySynCode?id=25357>
     { [] dwc:scientificName ?name.  }
 }
 ```

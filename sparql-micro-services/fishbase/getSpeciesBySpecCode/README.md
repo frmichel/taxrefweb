@@ -1,8 +1,8 @@
 
-# fishbase/getSpeciesInfoByID
+# fishbase/getSpeciesBySpecCode
 
 
-This service retrieves the information about a species from [FishBase](https://www.fishbase.se/search.php) by using the identifier of the species (SpecCode). 
+This service retrieves the information about a species from [FishBase](https://www.fishbase.se/search.php) by using its identifier (SpecCode). 
 
 Each taxon is identified by an instance of the `dwc:Taxon` that provides the following information:
 - scientific name (`dwc:scientificName`),
@@ -38,7 +38,7 @@ _:b42015
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/fishbase/getSpeciesInfoByID?id=4875>
+  SERVICE <http://example.org/sparql-ms/fishbase/getSpeciesBySpecCode?id=4875>
     { [] dwc:scientificName ?name; dwc:scientificNameAuthorship ?author.  }
 }
 ```

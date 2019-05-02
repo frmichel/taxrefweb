@@ -1,15 +1,20 @@
 
-# worms/getClassificationByAphiaID
+# worms/getClassificationByID
 
 
-This service retrieves the classification of a given taxon from [WoRMS (World Register of Marine Species)](http://www.marinespecies.org/) by using its identifier (AphiaID). 
+This service retrieves the classification of a given taxon from [WoRMS (World Register of Marine Species)](http://www.marinespecies.org/) by using its identifier (AphiaID).
+The result is a list of instances of `dwc:Taxon`, one for each parent of the taxon, including the taxon itself.  
 
-Each taxon belonging to the classification is identified by an instance of the `dwc:Taxon` that provides the following information:
+Each taxon belonging to the classification comes with the following information:
 - identifier of the taxon in WoRMS (`dwc:taxonID`),
 - scientific name (`dwc:scientificName`),
 - URL of the taxon Web page (`schema:sameAs`),
 - taxonomic rank,
 - parent taxon (`skos:broader`).
+
+Compared to the worms/getTaxonByID micro-service, that provides, together with the taxon information, the names of the taxa 
+corresponding to the major taxonomic ranks (kingdom, phylum, class, order, family, genus), this service provides the whole 
+classification, including taxa corresponding to secondary ranks (superfamily, subfamily, subgenus, etc.).
 
 **Query mode**: SPARQL
 
@@ -49,7 +54,7 @@ Each taxon belonging to the classification is identified by an instance of the `
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/worms/getClassificationyAphiaID?id=154288>
+  SERVICE <http://example.org/sparql-ms/worms/getClassificationByID?id=154288>
     { [] dwc:scientificName ?name.  }
 }
 ```

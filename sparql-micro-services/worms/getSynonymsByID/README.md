@@ -1,5 +1,5 @@
 
-# worms/getSynonymsByAphiaID
+# worms/getSynonymsByID
 
 
 This service retrieves the list of synonyms of a taxon from [WoRMS (World Register of Marine Species)](http://www.marinespecies.org/) by using its identifier (AphiaID). 
@@ -40,7 +40,7 @@ _:b42016
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/worms/getSynonymsByAphiaId?id=154288>
+  SERVICE <http://example.org/sparql-ms/worms/getSynonymsByID?id=154288>
     { [] dwc:scientificName ?name.  }
 }
 ```

@@ -1,9 +1,9 @@
 
-# fishbase/getSpeciesByID
+# fishbase/getSpeciesBySynCode
 
 
 This service retrieves the information about a taxon from [FishBase](https://www.fishbase.se/search.php) by using its name identifier (SynCode). 
-It uses the fishbase/getSpeciesInfoByID micro-service to enrich the result with additional information about the species, such as habitats and vernacular name.
+It uses the fishbase/getSpeciesBySpecCode micro-service to enrich the result with additional information about the species, such as habitats and vernacular name.
 
 Each taxon is identified by an instance of the `dwc:Taxon` that provides the following information:
 - scientific name (`dwc:scientificName`),
@@ -42,7 +42,7 @@ Each taxon is identified by an instance of the `dwc:Taxon` that provides the fol
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/fishbase/getSpeciesByID?id=25357>
+  SERVICE <http://example.org/sparql-ms/fishbase/getSpeciesBySynCode?id=25357>
     { ?taxon dwc:scientificName ?name; dwc:scientificNameAuthorship ?author.  }
 }
 ```

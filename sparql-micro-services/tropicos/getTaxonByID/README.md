@@ -1,8 +1,8 @@
 
-# tropicos/getSummaryByNameID
+# tropicos/getTaxonByID
 
 
-This service retrieves the information about a taxon from [Tropicos](https://www.tropicos.org/) by using its identifier. 
+This service retrieves the information about a taxon from [Tropicos](https://www.tropicos.org/) by using its identifier (NameId). 
 
 Each taxon is identified by an instance of the `dwc:Taxon` that provides the following information:
 - scientific name (`dwc:scientificName`),
@@ -41,7 +41,7 @@ Each taxon is identified by an instance of the `dwc:Taxon` that provides the fol
 prefix dwc: <http://rs.tdwg.org/dwc/terms/>
 
 SELECT * WHERE {
-  SERVICE <http://example.org/sparql-ms/tropicos/getSummaryByNameID?id=26800115>
+  SERVICE <http://example.org/sparql-ms/tropicos/getTaxonByID?id=26800115>
     { ?taxon dwc:scientificName ?name; dwc:scientificNameAuthorship ?author.  }
 }
 ```
