@@ -38,7 +38,7 @@ WHERE {
     #if the taxon is accepted the reference name is the name of that taxon
     bind (IF(?status = "ACCEPTED", ?fullname, ?refSN) AS ?referenceScientificName)
 
-    bind(sms:formatAuthorName(?author) AS ?authorname)
+    bind (sms:formatAuthorName(?author) AS ?authorname)
     bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?id)) AS ?taxonUri)
     bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentID)) AS ?parentTaxon)
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	
