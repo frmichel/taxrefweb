@@ -27,23 +27,28 @@ function sms:getRankUri(?rankName){
     IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
 }
 
-#Return the TAXREF-LD rank name, given the name rank name in WoRMS
-function sms:getTaxrefRankName(?rkName){
-    if(?rkName = "Subterclass"){
-        return("Subter-class")
-    }else if(?rkName = "Forma"){
-        return("Form")
-    }else if(?rkName = "Subforma"){
-        return("Sub-form")
-    }else if(regex(?rkName, "Sub")){
-        return(replace(?rkName, "Sub", "Sub-"))
-    }else if(regex(?rkName, "Super")){
-        return(replace(?rkName, "Super", "Super-"))
-    }else if(regex(?rkName, "Infra")){
-        return(replace(?rkName, "Infra", "Infra-"))
-    }else if(regex(?rkName, "Parv")){
-        return(replace(?rkName, "Parv", "Parv-"))
-    }else{
-        return(?rkName)
+# Return the TAXREF-LD rank name, given the name rank name in WoRMS
+function sms:getTaxrefRankName(?rkName) {
+    # Transform "Subabc" into "SubAbc", then thing same for Super, Infra and Parv
+    if (strstarts(?rkName, "Sub")) {
+        let (?after = strafter(?rkName, "Sub")) {
+            return(concat("Sub", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
     }
+    else if (strstarts(?rkName, "Super")) {
+        let (?after = strafter(?rkName, "Super")) {
+            return(concat("Super", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "Infra")) {
+        let (?after = strafter(?rkName, "Infra")) {
+            return(concat("Infra", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "Parv")) {
+        let (?after = strafter(?rkName, "Parv")) {
+            return(concat("Parv", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else { return(?rkName) }
 }

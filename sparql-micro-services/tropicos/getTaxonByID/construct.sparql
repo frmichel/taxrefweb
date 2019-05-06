@@ -33,21 +33,30 @@ function sms:getTaxrefRankUri(?rankName){
     IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
 }
 
-#Return the TAXREF-LD rank name given the rank name in Tropicos
+# Return the TAXREF-LD rank name given the rank name in Tropicos that is given in lowercase
 function sms:getTaxrefRankName(?rankName){
-    LET(?name = concat(UCASE(SUBSTR(?rankName,1,1)), SUBSTR(?rankName,2))){
-        if(regex(?name, "Sub")){
-                return(replace(?name, "Sub", "Sub-"))
-        }else if(regex(?name, "Super")){
-                return(replace(?name, "Super", "Super-"))
-        }else if(regex(?name, "Infra")){
-                return(replace(?name, "Infra", "Infra-"))
-        }else if(regex(?name, "Parv")){
-                return(replace(?name, "Parv", "Parv-"))
-        }else{
-                return(?name)
+    # Transform "subabc" into "SubAbc", then same thing for Super, Infra and Parv
+    if (strstarts(?rkName, "sub")) {
+        let (?after = strafter(?rkName, "sub")) {
+            return(concat("Sub", ucase(substr(?after, 1, 1)), substr(?after, 2)))
         }
     }
+    else if (strstarts(?rkName, "super")) {
+        let (?after = strafter(?rkName, "super")) {
+            return(concat("Super", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "infra")) {
+        let (?after = strafter(?rkName, "infra")) {
+            return(concat("Infra", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "parv")) {
+        let (?after = strafter(?rkName, "parv")) {
+            return(concat("Parv", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else { return(?rkName) }
 }
 
 # Format author name removing extra whitespaces at beginning and end of the name and after a dot

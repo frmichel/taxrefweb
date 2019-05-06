@@ -1,21 +1,22 @@
 CONSTRUCT {
-    ?taxonUri a dwc:Taxon;
-        dwc:taxonID ?id;
-        dwc:scientificName ?scientificname;
-        taxrefp:hasRank ?taxrefRankUri;
-        schema:sameAs ?url;
-        skos:broader ?parentTaxon;
+    ?taxonUri 
+        a                   dwc:Taxon;
+        dwc:taxonID         ?id;
+        dwc:scientificName  ?scientificname;
+        taxrefp:hasRank     ?taxrefRankUri;
+        schema:sameAs       ?url;
+        skos:broader        ?parentTaxon;
         .
 }
 WHERE {
     ?c
-        api:id ?id;
-        api:scientificName ?scientificname;
-        api:rankId ?rankID;
-        api:parentId ?parentID;
+        api:id              ?id;
+        api:scientificName  ?scientificname;
+        api:rankId          ?rankID;
+        api:parentId        ?parentID;
         api:_links [
             api:inpnWebpage [
-                api:href ?page
+                api:href    ?page
              ]
         ]
 
@@ -25,14 +26,6 @@ WHERE {
     }
 
     bind(iri(?page) AS ?url)
-    bind(sms:formatAuthorName(?author) AS ?authorname)
     bind(IRI(concat("http://example.org/ld/taxref/taxon/", ?id)) AS ?taxonUri)
     bind(IRI(concat("http://example.org/ld/taxref/taxon/", ?parentID)) AS ?parentTaxon)
-}
-
-# Format author name removing extra spaces at beginning and end of the name and after a dot
-# " (Bloch, 1782)" => "(Bloch, 1782)";
-# "A. Gray" => "A.Gray"
-function sms:formatAuthorName(?author){
-    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
 }

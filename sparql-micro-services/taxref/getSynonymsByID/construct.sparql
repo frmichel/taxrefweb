@@ -1,17 +1,17 @@
 CONSTRUCT {
     []
-        dwc:scientificName ?full_name;
-        dwc:scientificNameAuthorship ?authorname;
-        dwc:namePublishedInYear ?year;
-        schema:sameAs ?webpage;
+        dwc:scientificName              ?full_name;
+        dwc:scientificNameAuthorship    ?authorname;
+        dwc:namePublishedInYear         ?year;
+        schema:sameAs                   ?webpage;
         .
 }
 WHERE {
     ?content
-        api:id ?id;
-        api:scientificName ?scientific_name;
-        api:authority ?author;
-        api:_links [api:inpnWebpage [api:href ?url] ];
+        api:id              ?id;
+        api:scientificName  ?scientific_name;
+        api:authority       ?author;
+        api:_links          [ api:inpnWebpage [ api:href ?url ] ];
         .
         
     bind(sms:getYearFromAuthor(?author) AS ?year)

@@ -39,42 +39,26 @@ function sms:getRankUriByAbbr(?rankAb){
     IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankAb)))
 }
 
-#Return the TAXREF-LD rank name given the rank abbreviation
+# Return the TAXREF-LD rank name given the rank abbreviation
 function sms:getTaxrefRankName(?rankAb){
-    if(?rankAb = "regn."){
-            return("Kingdom")
-    } else if(?rankAb = "subregn."){
-            return("Sub-kingdom")
-    } else if(?rankAb = "phyl."){
-            return("Phylum")
-    } else if(?rankAb = "subphyl."){
-            return("Sub-phylum")
-    } else if(?rankAb = "class."){
-            return("Class")
-    } else if(?rankAb = "subclass."){
-            return("Sub-class")
-    } else if(?rankAb = "ord."){
-            return("Order")
-    } else if(?rankAb = "subord."){
-            return("Sub-order")
-    } else if(?rankAb = "fam."){
-            return("Family")
-    } else if(?rankAb = "gen."){
-            return("Genus")
-    } else if(?rankAb = "sp."){
-            return("Species")
-    } else if(?rankAb = "subsp."){
-            return("Sub-species")
-    } else if(?rankAb = "f."){
-            return("Form")
-    } else if(?rankAb = "f.sp."){
-            return("Forma-species")
-    } else if(?rankAb = "trib."){
-            return("Tribe")
-    # * or a single greek or latin letter represents variety
-    } else if(?rankAb = "var." || ?rankAb = "*" || (STRLEN(?rankAb) = 1 && REGEX(?rankAb, "([α-ω])|([A-Ω])|([a-z])|([A-Z])"))){
-            return("Variety")
-    }
+    if      (?rankAb = "regn.")    { return("Kingdom") }
+    else if (?rankAb = "subregn.") { return("SubKingdom") }
+    else if (?rankAb = "phyl.")    { return("Phylum") }
+    else if (?rankAb = "subphyl.") { return("SubPhylum") }
+    else if (?rankAb = "class.")   { return("Class") }
+    else if (?rankAb = "subclass."){ return("SubClass") }
+    else if (?rankAb = "ord.")     { return("Order") }
+    else if (?rankAb = "subord.")  { return("SubOrder") }
+    else if (?rankAb = "fam.")     { return("Family") }
+    else if (?rankAb = "gen.")     { return("Genus") }
+    else if (?rankAb = "sp.")      { return("Species") }
+    else if (?rankAb = "subsp.")   { return("SubSpecies") }
+    else if (?rankAb = "f.")       { return("Forma") }
+    else if (?rankAb = "f.sp.")    { return("FormaSpecies") }
+    else if (?rankAb = "trib.")    { return("Tribe") }
+    # '*' or a single greek or latin letter represents variety
+    else if (?rankAb = "var." || ?rankAb = "*" || (STRLEN(?rankAb) = 1 && REGEX(?rankAb, "([α-ω])|([A-Ω])|([a-z])|([A-Z])")))
+                                   { return("Varietas") }
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot

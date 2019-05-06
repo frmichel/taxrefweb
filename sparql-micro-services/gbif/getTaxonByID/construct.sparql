@@ -44,29 +44,45 @@ WHERE {
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	
 }
 
-#Translate the GBIF rank name into the corresponding TAXREF-LD name
+# Translate the GBIF rank name into the corresponding TAXREF-LD name.
+# The ranks in GBIF that do not exist in TAXREF-LD will still be translated into URIs 
+# following the Camel-case convention. This applies to: 
+# SUPERLEGION, SUBLEGION, INFRALEGION, SUPERCOHORT, SUBCOHORT, INFRACOHORT, MAGNORDER, GRANDORDER, 
+# INFRAFAMILY, INFRATRIBE, SUPRAGENERIC_NAME, INFRAGENUS, INFRAGENERIC_NAME, INFRASPECIFIC_NAME,
+# CONVARIETY, INFRASUBSPECIFIC_NAME, PROLES, GREX, PATHOVAR, BIOVAR, CHEMOVAR, MORPHOVAR, PHAGOVAR,
+# SEROVAR, CHEMOFORM, FORMA_SPECIALIS, CULTIVAR_GROUP, STRAIN, OTHER, UNRANKED
 function sms:getTaxrefRankName(?rankName){
-    LET(?name = concat(SUBSTR(?rankName,1,1), SUBSTR(LCASE(?rankName,2),2))){
-        if(?name = "Legion"){
-            return("Legio")
-        }else if(?name = "Species_aggregate"){
-            return("Aggregate")
-        }else if(?name = "Aberration"){
-            return("Abberatio")
-        }else if(?name = "Morph"){
-            return("Morpha")
-        }else if(regex(?name, "Sub")){
-            return(replace(?name, "Sub", "Sub-"))
-        }else if(regex(?name, "Super")){
-            return(replace(?name, "Super", "Super-"))
-        }else if(regex(?name, "Infra")){
-            return(replace(?name, "Infra", "Infra-"))
-        }else if(regex(?name, "Parv")){
-            return(replace(?name, "Parv", "Parv-"))
-        }else{
-            return(?name)
+    if      (?name = "LEGION")              { return("Legio") }
+    else if (?name = "SPECIES_AGGREGATE")   { return("Aggregate") }
+    else if (?name = "ABERRATION")          { return("Abberatio") }
+    else if (?name = "MORPH")               { return("Morpha") }
+    else if (?name = "FORM")                { return("Forma") }
+    else if (?name = "SUBFORM")             { return("SubForma") }
+    else if (?name = "VARIETY")             { return("Varietas") }
+    else if (?name = "SUBVARIETY")          { return("SubVarietas") }
+
+    # Transform "SUBABCD..." into "SubAbc", then same thing for Super, Infra and Parv
+    else if (strstarts(?rkName, "SUB")) {
+        let (?after = strafter(?rkName, "SUB")) {
+            return(concat("Sub", substr(?after, 1, 1), lcase(substr(?after, 2))))
         }
     }
+    else if (strstarts(?rkName, "SUPER")) {
+        let (?after = strafter(?rkName, "SUPER")) {
+            return(concat("Super", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else if (strstarts(?rkName, "INFRA")) {
+        let (?after = strafter(?rkName, "INFRA")) {
+            return(concat("Infra", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else if (strstarts(?rkName, "PARV")) {
+        let (?after = strafter(?rkName, "PARV")) {
+            return(concat("Parv", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else { return(substr(?after, 1, 1), lcase(substr(?after, 2))) }
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot

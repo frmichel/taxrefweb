@@ -42,29 +42,30 @@ function sms:getRankUri(?rankFrName){
 	}
 }
 
-#Translate french rank name into the english name used by TAXREF-LD
-function sms:getTaxrefRankName(?rankName){
-    IF(?rankName = "Genre", "Genus", 
-    IF(?rankName = "Espèce", "Species", 
-    IF(?rankName = "Ordre", "Order",
-    IF(?rankName = "Variété", "Variety", 
-    IF(?rankName = "Famille", "Family", 
-    IF(?rankName = "Règne", "Kingdom",
-    IF(?rankName = "Embranchement", "Phylum", 
-    IF(?rankName = "Forme", "Form", 
-    IF(?rankName = "Sous-Famille", "Sub-family", 
-    IF(?rankName = "Classe", "Class", 
-    IF(?rankName = "Sous-Ordre", "Sub-order", 
-    IF(?rankName = "Infra-Ordre", "Infra-order", 
-    IF(?rankName = "Sous-Espèce", "Sub-species", 
-    IF(?rankName = "Sous-Règne", "Sub-kingdom",
-    IF(?rankName = "Tribu", "Tribe", 
-    IF(?rankName = "Sous-Classe", "Sub-class", 
-    IF(?rankName = "Sous-Genre", "Sub-genus", 
-    IF(?rankName = "Sous-Embranchement", "Sub-phylum", 
-    IF(?rankName = "Super-Classe", "Super-class", 
-    IF(?rankName = "Super-Famille", "Super-family", 
-    IF(?rankName = "Super-Ordre", "Super-order", "")))))))))))))))))))))
+# Translate french rank name into the english name used by TAXREF-LD
+function sms:getTaxrefRankName(?rankName) {
+    IF (?rankName = "Genre",                "Genus", 
+    IF (?rankName = "Espèce",               "Species", 
+    IF (?rankName = "Ordre",                "Order",
+    IF (?rankName = "Variété",              "Varietas",
+    IF (?rankName = "Famille",              "Family", 
+    IF (?rankName = "Règne",                "Kingdom",
+    IF (?rankName = "Embranchement",        "Phylum", 
+    IF (?rankName = "Forme",                "Forma", 
+    IF (?rankName = "Sous-Famille",         "SubFamily", 
+    IF (?rankName = "Classe",               "Class", 
+    IF (?rankName = "Sous-Ordre",           "SubOrder", 
+    IF (?rankName = "Infra-Ordre",          "InfraOrder", 
+    IF (?rankName = "Sous-Espèce",          "SubSpecies", 
+    IF (?rankName = "Sous-Règne",           "SubKingdom",
+    IF (?rankName = "Tribu",                "Tribe", 
+    IF (?rankName = "Sous-Classe",          "SubClass", 
+    IF (?rankName = "Sous-Genre",           "SubGenus", 
+    IF (?rankName = "Sous-Embranchement",   "SubPhylum", 
+    IF (?rankName = "Super-Classe",         "SuperClass", 
+    IF (?rankName = "Super-Famille",        "SuperFamily", 
+    IF (?rankName = "Super-Ordre",          "SuperOrder", "")
+    ))))))))))))))))))))
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot
