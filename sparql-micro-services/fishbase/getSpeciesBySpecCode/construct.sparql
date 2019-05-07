@@ -1,22 +1,23 @@
 CONSTRUCT {
-    [] a dwc:Taxon;
-        dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName ?name;
-        taxrefp:habitat ?habitats;
-        dwc:vernacularName ?eng_name;
+    []
+        a                               dwc:Taxon;
+        dwc:scientificNameAuthorship    ?authorname;
+        dwc:scientificName              ?name;
+        taxrefp:habitat                 ?habitats;
+        dwc:vernacularName              ?eng_name;
         .
 }
 WHERE {
     ?content
-        api:SpecCode ?id;
-        api:Genus ?genus;
-        api:Species ?species;
-        api:Author ?author.
-    OPTIONAL { ?content api:FBname ?vernacularName}.
-    OPTIONAL {?content api:Fresh ?fresh }.
-    OPTIONAL {?content api:Brack ?brack }.
-    OPTIONAL {?content api:Saltwater ?marine }.
-
+        api:SpecCode    ?id;
+        api:Genus       ?genus;
+        api:Species     ?species;
+        api:Author      ?author.
+        
+    OPTIONAL { ?content api:FBname    ?vernacularName}.
+    OPTIONAL { ?content api:Fresh     ?fresh }.
+    OPTIONAL { ?content api:Brack     ?brack }.
+    OPTIONAL { ?content api:Saltwater ?marine }.
 
     # the scientific name of the taxon is the concatenation of genus and species name
     bind(concat(?genus, " ", ?species) AS ?name)
@@ -27,9 +28,9 @@ WHERE {
 }
 
 function sms:getHabitatsList(?fresh, ?brack, ?mar){
-    if(!?mar && !?fresh && !?brack){
+    if (!?mar && !?fresh && !?brack) {
         return(xt:list())
-    }else {
+    } else {
     	xt:merge(xt:merge(IF(?mar, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")), xt:list()), IF(?fresh, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")), xt:list())), IF(?brack, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/BrackishWater")), xt:list()))
     }
 }

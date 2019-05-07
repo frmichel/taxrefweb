@@ -1,16 +1,16 @@
 CONSTRUCT {
     []
         dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName ?fullname;
-        schema:sameAs ?wormsPage;
+        dwc:scientificName           ?fullname;
+        schema:sameAs                ?wormsPage;
         .
 }
 WHERE {
     ?content
-        api:AphiaID ?id;
-        api:authority ?author;
-        api:scientificname ?scientificname;
-        api:url ?url;
+        api:AphiaID         ?id;
+        api:authority       ?author;
+        api:scientificname  ?scientificname;
+        api:url             ?url;
         .
         
     bind(sms:formatAuthorName(?author) AS ?authorname)
@@ -21,6 +21,6 @@ WHERE {
 # Format author name removing extra spaces at beginning and end of the name and after a dot
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-function sms:formatAuthorName(?author){
+function sms:formatAuthorName(?author) {
     replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
 }

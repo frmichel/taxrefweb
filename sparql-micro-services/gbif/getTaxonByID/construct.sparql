@@ -2,37 +2,39 @@ CONSTRUCT {
     ?taxonUri a dwc:Taxon;
 
         dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName ?scientificname;
-        dwc:acceptedNameUsage ?referenceScientificName;
-        dwc:kingdom ?kingdom;
-        dwc:phylum ?phylum;
-        dwc:class ?class;
-        dwc:order ?order;
-        dwc:family ?family;
-        dwc:genus ?genus;
-        taxrefp:hasRank ?rankUri;
-        schema:sameAs ?page;
-        dwc:parentNameUsageID ?parentID;
-        skos:broader ?parentTaxon;
+        dwc:scientificName           ?scientificname;
+        dwc:acceptedNameUsage        ?referenceScientificName;
+
+        dwc:kingdom                  ?kingdom;
+        dwc:phylum                   ?phylum;
+        dwc:class                    ?class;
+        dwc:order                    ?order;
+        dwc:family                   ?family;
+        dwc:genus                    ?genus;
+
+        taxrefp:hasRank              ?rankUri;
+        schema:sameAs                ?page;
+        dwc:parentNameUsageID        ?parentID;
+        skos:broader                 ?parentTaxon;
 		.
 }
 WHERE {
     ?content
-        api:key ?id;
-        api:authorship ?author;
-	    api:canonicalName ?scientificname;
-        api:scientificName ?fullname.
+        api:key             ?id;
+        api:authorship      ?author;
+	    api:canonicalName   ?scientificname;
+        api:scientificName  ?fullname.
         
-    OPTIONAL { ?content api:accepted ?refSN}.
-    OPTIONAL { ?content api:taxonomicStatus ?status}
-    OPTIONAL { ?content api:kingdom ?kingdom}.
-    OPTIONAL { ?content api:phylum ?phylum}.
-    OPTIONAL { ?content api:order ?order}.
-    OPTIONAL { ?content api:family ?family}.
-    OPTIONAL { ?content api:genus ?genus}.
-    OPTIONAL { ?content api:rank ?rankName}.
-    OPTIONAL { ?content api:class ?class}.
-    OPTIONAL { ?content api:parentKey ?parentID}
+    OPTIONAL { ?content api:accepted        ?refSN }
+    OPTIONAL { ?content api:taxonomicStatus ?status }
+    OPTIONAL { ?content api:kingdom         ?kingdom }
+    OPTIONAL { ?content api:phylum          ?phylum }
+    OPTIONAL { ?content api:order           ?order }
+    OPTIONAL { ?content api:family          ?family }
+    OPTIONAL { ?content api:genus           ?genus}
+    OPTIONAL { ?content api:rank            ?rankName }
+    OPTIONAL { ?content api:class           ?class }
+    OPTIONAL { ?content api:parentKey       ?parentID }
 
     bind (IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
     #if the taxon is accepted the reference name is the name of that taxon
@@ -51,7 +53,7 @@ WHERE {
 # INFRAFAMILY, INFRATRIBE, SUPRAGENERIC_NAME, INFRAGENUS, INFRAGENERIC_NAME, INFRASPECIFIC_NAME,
 # CONVARIETY, INFRASUBSPECIFIC_NAME, PROLES, GREX, PATHOVAR, BIOVAR, CHEMOVAR, MORPHOVAR, PHAGOVAR,
 # SEROVAR, CHEMOFORM, FORMA_SPECIALIS, CULTIVAR_GROUP, STRAIN, OTHER, UNRANKED
-function sms:getTaxrefRankName(?rankName){
+function sms:getTaxrefRankName(?rankName) {
     if      (?name = "LEGION")              { return("Legio") }
     else if (?name = "SPECIES_AGGREGATE")   { return("Aggregate") }
     else if (?name = "ABERRATION")          { return("Abberatio") }
@@ -90,9 +92,9 @@ function sms:getTaxrefRankName(?rankName){
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
 # "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
-function sms:formatAuthorName(?author){
-    LET(?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")){
-        LET(?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))){
+function sms:formatAuthorName(?author) {
+    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
+        LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
             replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
         }
     }

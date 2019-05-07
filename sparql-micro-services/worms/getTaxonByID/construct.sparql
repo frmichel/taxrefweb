@@ -1,41 +1,44 @@
 CONSTRUCT {
    ?taxonUri a dwc:Taxon;
+   
         dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName ?scientificname;
-        dwc:acceptedNameUsage ?full_reference_name;
-        dwc:kingdom ?kingdom;
-        dwc:phylum ?phylum;
-        dwc:class ?class;
-        dwc:order ?order;
-        dwc:family ?family;
-        dwc:genus ?genus;
-        schema:sameAs ?page;
-        taxrefp:hasRank ?taxrefRankUri;
-        taxrefp:habitat ?habitats;
+        dwc:scientificName           ?scientificname;
+        dwc:acceptedNameUsage        ?full_reference_name;
+        
+        dwc:kingdom                  ?kingdom;
+        dwc:phylum                   ?phylum;
+        dwc:class                    ?class;
+        dwc:order                    ?order;
+        dwc:family                   ?family;
+        dwc:genus                    ?genus;
+        
+        schema:sameAs                ?page;
+        taxrefp:hasRank              ?taxrefRankUri;
+        taxrefp:habitat              ?habitats;
         .
 }
 WHERE {
     ?c
-        api:AphiaID ?id;
-        api:authority ?author;
-        api:rank ?rkName;
-        api:scientificname ?scientificname.
+        api:AphiaID                 ?id;
+        api:authority               ?author;
+        api:rank                    ?rkName;
+        api:scientificname          ?scientificname.
     
     OPTIONAL {?c
-            api:valid_name ?valid_name;
-            api:valid_authority ?valid_author;
-    }.
-    OPTIONAL { ?c api:url ?url}.
-    OPTIONAL { ?c api:kingdom ?kingdom }.
-    OPTIONAL { ?c api:phylum ?phylum }.
-    OPTIONAL { ?c api:class ?class }.
-    OPTIONAL { ?c api:order ?order }.
-    OPTIONAL { ?c api:family ?family }.
-    OPTIONAL { ?c api:genus ?genus }.
-    OPTIONAL { ?c api:isBrackish ?is_brackish}.
-    OPTIONAL { ?c api:isMarine ?is_marine}.
-    OPTIONAL { ?c api:isFreshwater ?is_freshwater }.
-    OPTIONAL { ?c api:isTerrestrial ?is_terrestrial}.
+            api:valid_name          ?valid_name;
+            api:valid_authority     ?valid_author;
+    }
+    OPTIONAL { ?c api:url           ?url }
+    OPTIONAL { ?c api:kingdom       ?kingdom  }
+    OPTIONAL { ?c api:phylum        ?phylum  }
+    OPTIONAL { ?c api:class         ?class  }
+    OPTIONAL { ?c api:order         ?order  }
+    OPTIONAL { ?c api:family        ?family  }
+    OPTIONAL { ?c api:genus         ?genus  }
+    OPTIONAL { ?c api:isBrackish    ?is_brackish }
+    OPTIONAL { ?c api:isMarine      ?is_marine }
+    OPTIONAL { ?c api:isFreshwater  ?is_freshwater  }
+    OPTIONAL { ?c api:isTerrestrial ?is_terrestrial }
 
     bind(IRI(?url) AS ?page)
     bind(sms:getRankUri(?rkName) AS ?taxrefRankUri)
@@ -81,10 +84,10 @@ function sms:getTaxrefRankName(?rkName) {
 }
 
 # Return the list of the TAXREF-LD habitats URIs of the taxon
-function sms:getHabitatsList(?mar, ?fresh, ?brack, ?terr){
-    if(!?mar && !?fresh && !?brack && !?terr){
+function sms:getHabitatsList(?mar, ?fresh, ?brack, ?terr) {
+    if (!?mar && !?fresh && !?brack && !?terr) {
         return(xt:list())
-    }else {
+    } else {
         xt:merge(xt:merge(IF(?mar, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")), xt:list()), IF(?fresh, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")), xt:list())), xt:merge(IF(?brack, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/BrackishWater")), xt:list()), IF(?terr, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial")), xt:list())))
     }
 }
@@ -92,6 +95,6 @@ function sms:getHabitatsList(?mar, ?fresh, ?brack, ?terr){
 # Format author name removing extra spaces at beginning and end of the name and after a dot
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-function sms:formatAuthorName(?author){
+function sms:formatAuthorName(?author) {
     replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
 }

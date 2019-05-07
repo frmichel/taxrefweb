@@ -1,19 +1,20 @@
 CONSTRUCT {
-    ?taxonUri a dwc:Taxon;
-        dwc:taxonID ?id;
-        dwc:scientificName ?scientificname;
-        taxrefp:hasRank ?rankUri;
-        schema:sameAs ?page;
-        skos:broader ?parentTaxon;
+    ?taxonUri 
+        a                   dwc:Taxon;
+        dwc:taxonID         ?id;
+        dwc:scientificName  ?scientificname;
+        taxrefp:hasRank     ?rankUri;
+        schema:sameAs       ?page;
+        skos:broader        ?parentTaxon;
         .
 }
 WHERE {
     ?content
-        api:key ?id;
+        api:key           ?id;
         api:canonicalName ?scientificname;
-        api:rank ?rankName.
+        api:rank          ?rankName.
         
-    OPTIONAL { ?content api:parentKey ?parentID}.
+    OPTIONAL { ?content api:parentKey ?parentID }.
 
     bind (IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)
@@ -28,7 +29,7 @@ WHERE {
 # INFRAFAMILY, INFRATRIBE, SUPRAGENERIC_NAME, INFRAGENUS, INFRAGENERIC_NAME, INFRASPECIFIC_NAME,
 # CONVARIETY, INFRASUBSPECIFIC_NAME, PROLES, GREX, PATHOVAR, BIOVAR, CHEMOVAR, MORPHOVAR, PHAGOVAR,
 # SEROVAR, CHEMOFORM, FORMA_SPECIALIS, CULTIVAR_GROUP, STRAIN, OTHER, UNRANKED
-function sms:getTaxrefRankName(?rankName){
+function sms:getTaxrefRankName(?rankName) {
     if      (?name = "LEGION")              { return("Legio") }
     else if (?name = "SPECIES_AGGREGATE")   { return("Aggregate") }
     else if (?name = "ABERRATION")          { return("Abberatio") }

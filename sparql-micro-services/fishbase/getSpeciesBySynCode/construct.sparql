@@ -1,27 +1,30 @@
 CONSTRUCT {
-    ?taxonUri a dwc:Taxon;
-        dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName ?name;
-        dwc:namePublishedInYear ?year;
-        dwc:vernacularName ?vernacularName;
-        taxrefp:hasRank ?rankUri;
-        taxrefp:habitat ?habitats;
+    ?taxonUri 
+        a                               dwc:Taxon;
+        dwc:scientificNameAuthorship    ?authorname;
+        dwc:scientificName              ?name;
+        dwc:namePublishedInYear         ?year;
+        dwc:vernacularName              ?vernacularName;
+        taxrefp:hasRank                 ?rankUri;
+        taxrefp:habitat                 ?habitats;
         .
 }
 WHERE {
     ?content
-        api:SpecCode ?specCode;
-        api:SynCode ?id;
-        api:SynGenus ?genus_name;
-        api:SynSpecies ?species;
-        api:Author ?author;
-        api:TaxonLevel ?rankName;
-        api:Status ?status;
-        api:Year ?year;
+        api:SpecCode    ?specCode;
+        api:SynCode     ?id;
+        api:SynGenus    ?genus_name;
+        api:SynSpecies  ?species;
+        api:Author      ?author;
+        api:TaxonLevel  ?rankName;
+        api:Status      ?status;
+        api:Year        ?year;
+        .
 
-	# the scientific name of the taxon is the concatenation of genus and species name
-	bind(concat(?genus_name, " ", ?species) AS ?name)
-	bind(IRI(concat("http://example.org/sparql-ms/fishbase/getSpeciesBySpecCode?id=", ?specCode)) AS ?service)
+    # the scientific name of the taxon is the concatenation of genus and species name
+    bind(concat(?genus_name, " ", ?species) AS ?name)
+    bind(IRI(concat("http://example.org/sparql-ms/fishbase/getSpeciesBySpecCode?id=", ?specCode)) AS ?service)
+    
     OPTIONAL {
         SERVICE ?service {
             [] taxrefp:habitat ?habitats;

@@ -1,25 +1,26 @@
 CONSTRUCT {
     ?taxonUri a dwc:Taxon;
+    
         dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName ?scientificname;
-        taxrefp:hasRank ?rankUri;
-        dwc:genus ?genus_name;
-        dwc:family ?family_name;
-        schema:sameAs ?page;
+        dwc:scientificName           ?scientificname;
+        taxrefp:hasRank              ?rankUri;
+        dwc:genus                    ?genus_name;
+        dwc:family                   ?family_name;
+        schema:sameAs                ?page;
         .
 }
 WHERE {
     ?c
-        api:NameId ?id;
-        api:Author ?author;
-        api:ScientificName ?scientificname;
-        api:ScientificNameWithAuthors ?full_reference_name;
-        api:Rank ?rankName.
+        api:NameId                      ?id;
+        api:Author                      ?author;
+        api:ScientificName              ?scientificname;
+        api:ScientificNameWithAuthors   ?full_reference_name;
+        api:Rank                        ?rankName.
         
-    OPTIONAL { ?c api:Genus ?genus_name}.
-    OPTIONAL { ?c api:Family ?family_name}.
-    OPTIONAL { ?c api:Source ?url}.
-    OPTIONAL { ?c api:BasionymAuthor ?basAuthor}.
+    OPTIONAL { ?c api:Genus          ?genus_name }
+    OPTIONAL { ?c api:Family         ?family_name }
+    OPTIONAL { ?c api:Source         ?url }
+    OPTIONAL { ?c api:BasionymAuthor ?basAuthor }
 
     #adding basionym name inside round brackets at the beginning of the authorname (as should be by convention in botany)
     bind (concat("(", ?basAuthor, ") ", ?author) AS ?fullauthor)
@@ -29,12 +30,12 @@ WHERE {
     bind (IRI(concat("http://example.org/ld/tropicos/taxon/", ?id)) AS ?taxonUri)
 }
 
-function sms:getTaxrefRankUri(?rankName){
+function sms:getTaxrefRankUri(?rankName) {
     IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
 }
 
 # Return the TAXREF-LD rank name given the rank name in Tropicos that is given in lowercase
-function sms:getTaxrefRankName(?rankName){
+function sms:getTaxrefRankName(?rankName) {
     # Transform "subabc" into "SubAbc", then same thing for Super, Infra and Parv
     if (strstarts(?rkName, "sub")) {
         let (?after = strafter(?rkName, "sub")) {
@@ -62,6 +63,6 @@ function sms:getTaxrefRankName(?rankName){
 # Format author name removing extra whitespaces at beginning and end of the name and after a dot
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-function sms:formatAuthorName(?author){
+function sms:formatAuthorName(?author) {
     replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
 }

@@ -1,17 +1,17 @@
 CONSTRUCT {
     []
-        dwc:scientificName ?fullname;
+        dwc:scientificName           ?fullname;
         dwc:scientificNameAuthorship ?authorname;
-        schema:sameAs ?page;
+        schema:sameAs                ?page;
         .
 }
 WHERE {
     ?c
-        api:valid_guid ?id;
-        api:scientificname ?scientificname;
-        api:authority ?author.
+        api:valid_guid      ?id;
+        api:scientificname  ?scientificname;
+        api:authority       ?author.
         
-	OPTIONAL {?c api:url ?url}
+	OPTIONAL { ?c api:url ?url }
 
     bind (sms:formatAuthorName(?author) AS ?authorname)
     bind (concat(?scientificname, " ", ?authorname) AS ?fullname)
@@ -21,6 +21,6 @@ WHERE {
 # Format author name removing extra spaces at beginning and end of the name and after a dot
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-function sms:formatAuthorName(?author){
+function sms:formatAuthorName(?author) {
     replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
 }

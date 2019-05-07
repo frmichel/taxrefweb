@@ -2,36 +2,38 @@ CONSTRUCT {
    ?taxonUri a dwc:Taxon;
 
         dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName ?scientificname;
-        dwc:acceptedNameUsage ?full_reference_name;
-        dwc:kingdom ?kingdom;
-        dwc:phylum ?phylum;
-        dwc:class ?class;
-        dwc:order ?order;
-        dwc:family ?family;
-        dwc:genus ?genus;
-        taxrefp:hasRank ?taxrefRankUri;
-        schema:sameAs ?page;
+        dwc:scientificName           ?scientificname;
+        dwc:acceptedNameUsage        ?full_reference_name;
+        
+        dwc:kingdom                  ?kingdom;
+        dwc:phylum                   ?phylum;
+        dwc:class                    ?class;
+        dwc:order                    ?order;
+        dwc:family                   ?family;
+        dwc:genus                    ?genus;
+        
+        taxrefp:hasRank              ?taxrefRankUri;
+        schema:sameAs                ?page;
         .
 }
 WHERE {
     ?c
-        api:GUID ?id;
-        api:authority ?author;
-        api:rank ?rkName;
-        api:scientificname ?scientificname.
+        api:GUID            ?id;
+        api:authority       ?author;
+        api:rank            ?rkName;
+        api:scientificname  ?scientificname.
     OPTIONAL {
         ?c	
-            api:valid_name ?valid_name;
+            api:valid_name      ?valid_name;
             api:valid_authority ?valid_author;
-    }.
-    OPTIONAL { ?c api:kingdom ?kingdom }.
-    OPTIONAL { ?c api:phylum ?phylum }.
-    OPTIONAL { ?c api:class ?class }.
-    OPTIONAL { ?c api:order ?order }.
-    OPTIONAL { ?c api:family ?family }.
-    OPTIONAL { ?c api:genus ?genus }.
-    OPTIONAL { ?c api:url ?url}.
+    }
+    OPTIONAL { ?c api:kingdom ?kingdom }
+    OPTIONAL { ?c api:phylum ?phylum }
+    OPTIONAL { ?c api:class ?class }
+    OPTIONAL { ?c api:order ?order }
+    OPTIONAL { ?c api:family ?family }
+    OPTIONAL { ?c api:genus ?genus }
+    OPTIONAL { ?c api:url ?url }
 
     bind (IRI(?url) AS ?page)
     bind (sms:getRankUri(?rkName) AS ?taxrefRankUri)
@@ -42,7 +44,7 @@ WHERE {
     bind (concat(concat(?valid_name, " "), sms:formatAuthorName(?valid_author)) AS ?full_reference_name)
 }
 
-function sms:getRankUri(?rankName){
+function sms:getRankUri(?rankName) {
     IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
 }
 
@@ -80,6 +82,6 @@ function sms:getTaxrefRankName(?rkName) {
 # Format author name removing extra spaces at beginning and end of the name and after a dot
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-function sms:formatAuthorName(?author){
+function sms:formatAuthorName(?author) {
     replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
 }

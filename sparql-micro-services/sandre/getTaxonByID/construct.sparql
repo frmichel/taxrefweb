@@ -1,26 +1,27 @@
 CONSTRUCT {
     ?taxonUri a dwc:Taxon;
-        dwc:taxonID ?id;
+    
+        dwc:taxonID                  ?id;
         dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName ?scientificname;
-        dwc:acceptedNameUsage ?ref_name;
-        dwc:vernacularName ?fr_name;
-        taxrefp:hasRank ?rankUri;
-        dwc:parentNameUsageID ?parentID;
-        skos:broader ?parentTaxon;
+        dwc:scientificName           ?scientificname;
+        dwc:acceptedNameUsage        ?ref_name;
+        dwc:vernacularName           ?fr_name;
+        taxrefp:hasRank              ?rankUri;
+        dwc:parentNameUsageID        ?parentID;
+        skos:broader                 ?parentTaxon;
         .
 }
 WHERE {
     ?c
-        api:CdAppelTaxon ?id;
-        api:AuteurAppelTaxon ?author;
-        api:NomLatinAppelTaxon ?scientificname;
-        api:TypeAppelTaxon ?typeTaxon;
-        api:NiveauTaxonomique[ api:LbNiveauTaxonomique ?rank ].
+        api:CdAppelTaxon        ?id;
+        api:AuteurAppelTaxon    ?author;
+        api:NomLatinAppelTaxon  ?scientificname;
+        api:TypeAppelTaxon      ?typeTaxon;
+        api:NiveauTaxonomique   [ api:LbNiveauTaxonomique ?rank ].
         
-    OPTIONAL { ?c api:AppelTaxonParent [ api:CdAppelTaxon ?parentID ] }
+    OPTIONAL { ?c api:AppelTaxonParent    [ api:CdAppelTaxon ?parentID ] }
     OPTIONAL { ?c api:NomCommunAppelTaxon [ api:LbNomCommunAppelTaxon ?frname] }
-    OPTIONAL { ?c api:EstSynonyme [ api:NomLatinAppelTaxon ?reference_name] }
+    OPTIONAL { ?c api:EstSynonyme         [ api:NomLatinAppelTaxon ?reference_name] }
 
     bind (sms:formatAuthorName(?author) AS ?authorname)
 
@@ -33,11 +34,11 @@ WHERE {
     bind (sms:getRankUri(?rank) AS ?rankUri)
 }
 
-function sms:getRankUri(?rankFrName){
+function sms:getRankUri(?rankFrName) {
     #If the rank name is unknown, then returns an unbound value
-	IF(?rankFrName = "Inconnu"){
+	IF (?rankFrName = "Inconnu") {
 		return(?x)
-	}ELSE{
+	} ELSE {
         IRI(CONCAT("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankFrName)))
 	}
 }
@@ -71,6 +72,6 @@ function sms:getTaxrefRankName(?rankName) {
 # Format author name removing extra spaces at beginning and end of the name and after a dot
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-function sms:formatAuthorName(?author){
+function sms:formatAuthorName(?author) {
     replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
 }

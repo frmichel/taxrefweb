@@ -1,20 +1,20 @@
 CONSTRUCT {
     ?taxonUri a dwc:Taxon;
-        dwc:taxonID ?id;
-        dwc:scientificName ?scientificname;
-        taxrefp:hasRank ?taxrefRankUri;
-        schema:sameAs ?webpage;
-        skos:broader ?parentTaxon;
+        dwc:taxonID         ?id;
+        dwc:scientificName  ?scientificname;
+        taxrefp:hasRank     ?taxrefRankUri;
+        schema:sameAs       ?webpage;
+        skos:broader        ?parentTaxon;
         .
 }
 WHERE {
     ?c
-        api:AphiaID ?id;
-        api:scientificname ?scientificname;
-        api:rank ?rkName.
+        api:AphiaID         ?id;
+        api:scientificname  ?scientificname;
+        api:rank            ?rkName.
      OPTIONAL {
-        ?c1 api:child ?c.
-        ?c1 api:AphiaID ?parentID.
+        ?c1 api:child       ?c.
+        ?c1 api:AphiaID     ?parentID.
      }
 
     bind(iri(concat("http://www.marinespecies.org/aphia.php?p=taxdetails&id=", ?id)) AS ?webpage)
@@ -23,7 +23,7 @@ WHERE {
     bind(IRI(concat("http://example.org/ld/worms/taxon/", ?parentID)) AS ?parentTaxon)
 }
 
-function sms:getRankUri(?rankName){
+function sms:getRankUri(?rankName) {
     IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
 }
 

@@ -27,7 +27,7 @@ WHERE {
         api:referenceName   ?full_reference_name;
         api:rankId          ?rankID.
         
-	OPTIONAL { ?c api:genusName             ?genus_name }
+    OPTIONAL { ?c api:genusName             ?genus_name }
     OPTIONAL { ?c api:familyName            ?family_name }
     OPTIONAL { ?c api:orderName             ?order_name }
     OPTIONAL { ?c api:className             ?class_name }
