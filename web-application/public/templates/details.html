@@ -1,0 +1,87 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Taxonomy</h5>
+        <p class="card-text">
+        <ul class="list-group details-list">
+            <li class="list-group-item" id="acceptedNameUsage">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Valid name: </h6>
+                        <span><%= acceptedNameUsage %></span>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#acceptedNameUsageCollapse"
+                       aria-expanded="false" aria-controls="acceptedNameUsageCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="acceptedNameUsageCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="scientificNameAuthorship">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Authority: </h6>
+                        <span><%= scientificNameAuthorship %></span>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#scientificNameAuthorshipCollapse"
+                       aria-expanded="false" aria-controls="scientificNameAuthorshipCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="scientificNameAuthorshipCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="hasRank">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Rank: </h6>
+                        <% if(typeof hasRank === "string"){ %>
+                        <span><%= hasRank %></span>
+                        <% } else { %>
+                        <a href="<%= hasRank.href %>" target="_blank"><%= hasRank.label %></a>
+                        <% } %>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#hasRankCollapse"
+                       aria-expanded="false" aria-controls="hasRankCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="hasRankCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="habitat">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Habitat: </h6>
+                        <% if(habitat) {%>
+                        <% if (!Array.isArray(habitat)) {%>
+                        <a href="<%= habitat.href %>" target="_blank"><%= habitat.label %></a>
+                        <% } else {%>
+                        <% for(var i = 0; i < habitat.length; i++) {%>
+                        <a href="<%= habitat[i].href %>" target="_blank"><%= habitat[i].label %></a>
+                        <% } } } %>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#habitatCollapse"
+                       aria-expanded="false" aria-controls="habitatCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="habitatCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="parentTaxon">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Parent taxon: </h6>
+                        <% if(parentTaxon) {%>
+                        <span><a href="<%= parentTaxon.sameAs.href %>"><%= parentTaxon.scientificName %> (<%= parentTaxon.hasRank.label %>)</a></span>
+                        <% } %>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#parentTaxonCollapse"
+                       aria-expanded="false" aria-controls="parentTaxonCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="parentTaxonCollapse">
+                </div>
+            </li>
+        </ul>
+        </p>
+
+    </div>
+</div>

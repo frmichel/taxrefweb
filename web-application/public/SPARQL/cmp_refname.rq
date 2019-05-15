@@ -1,0 +1,21 @@
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+
+#Select the acceptedNameUsage (valid name of a taxon) of the second service if its value is different from the accepted name
+#(with and without year) in the first service
+SELECT ?service ?o WHERE {
+    #Get the accepted name (usually with year) and the year of publication
+    SERVICE <<%= mainService %>> {
+        [] dwc:acceptedNameUsage ?refname;
+           dwc:namePublishedInYear ?year.
+    }
+    # Remove the year of publication from the accepted name
+    bind(replace(?refname, concat(", ", ?year), "") AS ?scientificRefName)
+
+    #Get the accepted name from the second service
+    SERVICE <<%= service.url %>> {
+        [] dwc:acceptedNameUsage ?o.
+    }
+    #filter comparing with the value of the first service, with and without year
+    FILTER (?o != ?refname && ?o != ?scientificRefName)
+    bind("<%= service.label %>" AS ?service)
+}

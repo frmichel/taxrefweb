@@ -1,0 +1,11 @@
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+PREFIX schema: <http://schema.org/>
+
+SELECT * WHERE {
+    SERVICE <<%= service %>>
+    {
+        ?s ?p ?o.
+        #Filter to get only the information we need: scientific name, author and link to the page describing that taxon
+        FILTER(?p  IN (dwc:scientificName, dwc:scientificNameAuthorship, schema:sameAs))
+    }
+}

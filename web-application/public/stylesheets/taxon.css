@@ -1,0 +1,152 @@
+body {
+    padding-left: 17rem;
+}
+
+.navbar-expand-lg .navbar-collapse {
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+}
+
+#sideNav {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 17rem;
+    height: 100vh;
+    background-color: #28a745;
+}
+
+#sideNav .navbar-nav {
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+#sideNav .navbar-nav .nav-item {
+    text-transform: uppercase;
+}
+
+#container {
+    background-color: #f7f9fa;
+    position: relative;
+}
+
+
+section {
+    padding: 30px;
+}
+
+section{
+    padding-top: 180px;
+    margin-top: -180px;
+}
+
+section ul h6{
+    margin-bottom: 0;
+    min-width: 125px;
+}
+
+section ul li.suggestion-row h6 {
+    min-width: auto;
+}
+
+section ul li.suggestion-row span{
+    margin-left: 105px;
+}
+
+section ul span, section ul a{
+    margin-left: 5px;
+    margin-top: -2px;
+}
+
+section#title {
+    border-bottom: 3px solid #28a745;
+    background-color: white;
+    padding: initial;
+    margin-left: 17rem;
+    margin-top:initial;
+
+}
+
+section#datasets-list {
+    margin-top: 0;
+}
+
+#container.no-datasets section#overview {
+    margin-top: 0;
+}
+
+.error-mark {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #ad0808 !important;
+    display: none;
+    text-decoration: none;
+}
+
+.warning-mark {
+    color: #ffd007 !important;
+    display: none;
+}
+
+.show-diff .warning-mark, .show-diff .error-mark{
+    display: block;
+}
+
+.show-diff .ok-mark{
+    display: none;
+}
+
+.warning-mark:hover, .error-mark:hover{
+    text-decoration: none;
+}
+
+.missing-services span.service-label {
+    min-width: 70px;
+    text-align: center;
+}
+
+.suggested-syns-container{
+    margin-top: 20px;
+    display: none;
+}
+
+.suggested-syns-container.show{
+    display: block;
+}
+
+.suggested-syns-container .card{
+    border: none;
+}
+
+.suggested-syns-container .card-body{
+    padding: 10px;
+}
+
+.error{
+    font-weight: bold;
+    color: #ad0808 !important;
+}
+
+section#datasets-list ul.datasets-list li div{
+    display: flex;
+}
+@media (max-width:992px) {
+    section {
+        padding-top: 110px;
+        margin-top: -110px;
+    }
+
+    section#datasets-list {
+        margin-top: 0;
+    }
+}

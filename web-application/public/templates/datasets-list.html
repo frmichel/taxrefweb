@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Datasets</h5>
+        <% if (data && data.length > 0) {%>
+        <p class="card-text">
+            This taxon is present in the following datasets:
+        <ul class="list-group datasets-list">
+            <% for (var i=0; i < data.length; i++){ %>
+            <li id="<%= data[i].service %>-list" class="list-group-item d-flex align-items-center justify-content-between">
+                <div>
+                    <h6><%= data[i].service %>:</h6>
+                    <span><% if(data[i].page) {%> <a target="_blank" href="<%= data[i].page %>"><%= data[i].name %></a><% } else {%> <span><%= data[i].name %></span> <% } %> [<%= data[i].ID %>]</span>
+                </div>
+                <div class="missing-services align-items-center d-flex">
+                    <span class="ok-mark">&#10004;</span>
+                    <span class="error-mark">&times;</span>
+                </div>
+            </li>
+            <% } %>
+        </ul>
+        </p>
+        <% } else { %>
+        <p class="card-text">
+            This taxon is present in no other dataset.
+        </p>
+
+        <% }%>
+    </div>
+</div>

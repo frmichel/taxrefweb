@@ -1,0 +1,8 @@
+<ul class="list-group list-group-flush">
+    <% for (var i=0; i < data.length; i++){ %>
+    <li class="suggestion-row list-group-item d-flex align-items-center justify-content-between">
+        <span><%= data[i].attrValue %></span>
+        <h6><%= data[i].service %></h6>
+    </li>
+    <% } %>
+</ul>

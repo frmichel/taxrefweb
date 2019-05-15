@@ -1,0 +1,13 @@
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>
+
+#Select taxonomic rank from the second service if it is different from the corresponding value in the first service
+SELECT ?service ?o WHERE {
+    SERVICE <<%= mainService %>> {
+        [] taxrefp:hasRank ?r.
+    }
+    SERVICE <<%= service.url %>> {
+        [] taxrefp:hasRank ?o.
+    }
+    FILTER (?o != ?r)
+    bind("<%= service.label %>" AS ?service)
+}

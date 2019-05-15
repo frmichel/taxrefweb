@@ -1,0 +1,8 @@
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+
+SELECT * WHERE {
+    SERVICE <<%= service %>> {
+        ?s a dwc:Taxon;
+          ?p ?o.
+    }
+}

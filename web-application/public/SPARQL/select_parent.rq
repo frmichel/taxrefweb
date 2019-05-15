@@ -1,0 +1,6 @@
+SELECT * WHERE {
+    #From the getClassification service, pick the most proximate parent taxon, given tis URI
+    SERVICE <<%= service %>> {
+        <<%= params.parentUri %>> ?p ?o.
+    }
+}

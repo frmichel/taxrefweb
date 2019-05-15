@@ -1,0 +1,28 @@
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+PREFIX schema: <http://schema.org/>
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>
+
+#Select scientific name, taxonomic rank and link to the webpage of the direct parent of a taxon from the second service,
+#if name or rank are different from the ones in the first service
+#This query is used when the classification of a taxon provided by the second service does not contain the taxon itself.
+#So, we first query the getTaxon service to get the URI of the parent taxon, and ,then, this URI is used, while querying the
+# getClassification service, in order to pick only the parent taxon.
+SELECT ?name ?rank ?page WHERE {
+    SERVICE <<%= mainService %>> {
+        #From the whole classification of the taxon, pick the most proximate parent, given its URI
+        <<%= params.parentUri %>> dwc:scientificName ?name1;
+                                  taxrefp:hasRank ?rank1;
+    }
+    # Query the getTaxon service to get the parent of the taxon
+    SERVICE <<%= params.urlParentID %>> {
+        [] skos:broader ?parentTaxon.
+    }
+    #Query the service to retrieve the whole classification of the taxon and pick the most proximate parent, that is
+    #the same returned by the previous service
+    SERVICE <<%= service.url %>> {
+         ?parentTaxon dwc:scientificName ?name;
+                      taxrefp:hasRank ?rank;
+                      schema:sameAs ?page.
+    }
+    FILTER (?name1 != ?name || ?rank1 != ?rank)
+}

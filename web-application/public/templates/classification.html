@@ -1,0 +1,88 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Classification</h5>
+        <p class="card-text">
+        <ul class="list-group">
+
+            <li class="list-group-item" id="kingdom">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Kingdom: </h6>
+                        <span><%= kingdom %></span>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#kingdomCollapse"
+                       aria-expanded="false" aria-controls="kingdomCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="kingdomCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="phylum">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Phylum: </h6>
+                        <span><%= phylum %></span>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#phylumCollapse"
+                       aria-expanded="false" aria-controls="phylumCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="phylumCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="classe">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Class: </h6>
+                        <span><%= classe %></span>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#classeCollapse"
+                       aria-expanded="false" aria-controls="classeCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="classeCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="order">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Order: </h6>
+                        <span><%= order %></span>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#orderCollapse"
+                       aria-expanded="false" aria-controls="orderCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="orderCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="family">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Family: </h6>
+                        <span><%= family %></span>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#familyCollapse"
+                       aria-expanded="false" aria-controls="familyCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="familyCollapse">
+                </div>
+            </li>
+            <li class="list-group-item" id="genus">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex">
+                        <h6> Genus: </h6>
+                        <span><%= genus %></span>
+                    </div>
+                    <a class="ok-mark">&#10004;</a>
+                    <a class="warning-mark fas fa-exclamation-triangle" data-toggle="collapse" href="#genusCollapse"
+                       aria-expanded="false" aria-controls="genusCollapse"></a>
+                </div>
+                <div class="collapse multi-collapse" id="genusCollapse">
+                </div>
+            </li>
+        </ul>
+        </p>
+    </div>
+</div>

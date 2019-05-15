@@ -1,0 +1,30 @@
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+PREFIX schema: <http://schema.org/>
+
+#Select the synonyms of the first service (scientific name and, if present, link to the synonym webpage)
+#that are not present (with or without year) in the second service.
+SELECT DISTINCT ?service ?o ?page WHERE{
+    #Get the list of synonyms in the first service
+   SERVICE <<%= service.url %>> {
+       ?s dwc:scientificName ?o.
+       OPTIONAL{?s schema:sameAs ?page}
+   } MINUS {
+        {
+            #Remove the ones that are present in the second service exactly as they are in the first one,
+            # i.e. if a scientific name is exactly the same (with or without year) in both services, it will be removed
+            SERVICE <<%= mainService %>> {
+                 [] dwc:scientificName ?o.
+            }
+        } UNION {
+            #Remove the ones that are present in the second service without taking year into account,
+            # i.e. if a scientific name does not contain year in the first service, but it has the year in the second one,
+            # it will be removed, since it is considered to be the same name
+            SERVICE <<%= mainService %>> {
+                [] dwc:scientificName ?name;
+                   dwc:namePublishedInYear ?year.
+                bind(replace(?name, concat(", ", ?year), "") AS ?o)
+            }
+        }
+   }
+   BIND( "<%= service.label %>" AS ?service)
+}

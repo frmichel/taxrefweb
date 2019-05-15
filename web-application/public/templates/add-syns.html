@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= service %></h6>
+        <p class="card-text">
+        <ul class="list-group">
+            <% for(var i = 0; i < values.length; i++) {%>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <% if(values[i].page) {%>
+                <a href="<%= values[i].page.value %> " target="_blank"><%= values[i].o.value %> </a>
+                <% } else { %>
+                <span><%= values[i].o.value %></span>
+                <% } %>
+            </li>
+            <% } %>
+        </ul>
+        </p>
+    </div>
+</div>

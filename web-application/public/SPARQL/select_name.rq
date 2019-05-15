@@ -1,0 +1,12 @@
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+PREFIX schema: <http://schema.org/>
+
+SELECT * WHERE {
+    #Select the name of the taxon and, if available, the link to the taxon webpage
+    SERVICE <<%= service.url %>>
+    {
+        [] dwc:scientificName ?name.
+        OPTIONAL {[] schema:sameAs ?page}.
+        BIND("<%= service.label %>" AS ?service)
+    }
+}

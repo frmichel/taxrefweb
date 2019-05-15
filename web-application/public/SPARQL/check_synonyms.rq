@@ -1,0 +1,23 @@
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+
+#Get the list of synonyms provided by the first service that are not present in the second one
+SELECT ?service ?name WHERE{
+    #Get the synonyms from the first service
+    SERVICE <<%= mainService %>> {
+        ?taxon dwc:scientificName ?name;
+           dwc:namePublishedInYear ?year.
+        bind(replace(?name, concat(", ", ?year), "") AS ?name_no_year)
+    } MINUS {
+    # Remove the ones that are present in the second service
+        {
+            SERVICE <<%= service.url %>> {
+                [] dwc:scientificName ?name_no_year.
+            }
+        }UNION {
+            SERVICE <<%= service.url %>> {
+                [] dwc:scientificName ?name.
+            }
+        }
+    }
+    BIND( "<%= service.label %>" AS ?service)
+}
