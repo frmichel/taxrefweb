@@ -15,7 +15,6 @@ CONSTRUCT {
         dwc:namePublishedInYear         ?year;
         taxrefp:hasRank                 ?taxrefRankUri;
         taxrefp:habitat                 ?habitats;
-        dwc:parentNameUsageID           ?parentID;
         skos:broader                    ?parentTaxon;
         .
 }

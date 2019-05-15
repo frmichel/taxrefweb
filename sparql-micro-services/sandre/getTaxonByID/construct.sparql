@@ -7,7 +7,6 @@ CONSTRUCT {
         dwc:acceptedNameUsage        ?ref_name;
         dwc:vernacularName           ?fr_name;
         taxrefp:hasRank              ?rankUri;
-        dwc:parentNameUsageID        ?parentID;
         skos:broader                 ?parentTaxon;
         .
 }
