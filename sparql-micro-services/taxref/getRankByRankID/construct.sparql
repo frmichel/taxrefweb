@@ -7,40 +7,7 @@ CONSTRUCT {
 WHERE {
 	?rank
         api:name ?name;
-        api:_links [
-            api:taxrefUri [
-                api:href ?taxrefUri
-            ]
-        ].
-    bind(IRI(sms:getTaxrefRank(?taxrefUri)) AS ?uri)
+        api:taxrefUri ?taxrefUri.
+    bind(IRI(?taxrefUri) AS ?uri)
     bind (STRLANG(?name, "fr") AS ?frname)
-}
-
-# Translate the (possible erroneous) rank URI into the right TAXREF-LD name
-function sms:getTaxrefRank(?rkUri) {
-    if      (strends(?rkUri, "Form"))     { return(?rkUri, "Form", "Forma") }
-    else if (strends(?rkUri, "Variety"))  { return(?rkUri, "Variety", "Varietas") }
-
-    # Transform "Sub-abc" into "SubAbc", then same thing for Super, Infra and Parv
-    else if (contains(?rkUri, "Sub-")) {
-        let (?after = strafter(?rkUri, "Sub-")) {
-            return(concat(strbefore(?rkUri, "Sub-"), "Sub", ucase(substr(?after, 1, 1)), substr(?after, 2)))
-        }
-    }
-    else if (contains(?rkUri, "Super-")) {
-        let (?after = strafter(?rkUri, "Super-")) {
-            return(concat(strbefore(?rkUri, "Super-"), "Super", ucase(substr(?after, 1, 1)), substr(?after, 2)))
-        }
-    }
-    else if (contains(?rkUri, "Infra-")) {
-        let (?after = strafter(?rkUri, "Infra-")) {
-            return(concat(strbefore(?rkUri, "Infra-"), "Infra", ucase(substr(?after, 1, 1)), substr(?after, 2)))
-        }
-    }
-    else if (contains(?rkUri, "Parv-")) {
-        let (?after = strafter(?rkUri, "Parv-")) {
-            return(concat(strbefore(?rkUri, "Parv-"), "Parv", ucase(substr(?after, 1, 1)), substr(?after, 2)))
-        }
-    }
-    else { return(?rkUri) }
 }
