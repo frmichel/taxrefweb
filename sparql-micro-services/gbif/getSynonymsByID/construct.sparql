@@ -1,18 +1,21 @@
 CONSTRUCT {
     []
-        dwc:scientificName           ?scientific_name;
+        dwc:scientificName           ?scientificName;
         dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificNameID         ?keyStr;
         schema:sameAs                ?page;
         .
 }
 WHERE {
-    ?content
-        api:key             ?id;
-        api:scientificName  ?scientific_name;
-        api:authorship      ?author.
+    ?results                api:results ?result.
+    ?result
+        api:key             ?key;
+        api:scientificName  ?scientificName;
+        api:authorship      ?authorship.
 
-    bind(sms:formatAuthorName(?author) AS ?authorname)
-    bind(IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
+    bind(sms:formatAuthorName(?authorship) AS ?authorname)
+    bind(IRI(concat("https://www.gbif.org/species/", ?key)) AS ?page)
+    bind (str(?key) AS ?keyStr)
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot

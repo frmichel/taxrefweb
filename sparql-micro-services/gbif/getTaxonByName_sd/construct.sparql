@@ -1,11 +1,14 @@
-CONSTRUCT {
-    ?taxonUri a dwc:Taxon;
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
 
+CONSTRUCT {
+    ?uri a dwc:Taxon;
+        schema:name                  {name};    # Réinject the input parameter
+        
         dwc:acceptedNameUsage        ?acceptedName;
         dwc:acceptedNameUsageID      ?acceptedNameId;
         dwc:scientificName           ?canonicalName;
-        dwc:scientificNameID         ?key;
-        dwc:scientificNameAuthorship ?authorshipname;
+        dwc:scientificNameID         ?keyStr;
+        dwc:scientificNameAuthorship ?authorname;
         dwc:namePublishedIn          ?publishedIn;
         dwc:nameAccordingTo          ?accordingTo;
         dwc:taxonomicStatus          ?status;
@@ -17,42 +20,45 @@ CONSTRUCT {
         dwc:family                   ?family;
         dwc:genus                    ?genus;
 
-        taxrefp:hasRank              ?rankUri;
         dwc:taxonRank                ?rankName;
+        taxrefp:hasRank              ?rankUri;
         schema:sameAs                ?page;
         skos:broader                 ?parentUri;
 		.
 }
 WHERE {
-    ?content
+    ?results                api:results ?result.
+    ?result
         api:key             ?key;
         api:authorship      ?authorship;
 	    api:canonicalName   ?canonicalName;
         api:scientificName  ?scientificName.
         
-    OPTIONAL { ?content api:accepted        ?accepted }
-    OPTIONAL { ?content api:acceptedKey     ?acceptedKey }
-    OPTIONAL { ?content api:taxonomicStatus ?status }
-    OPTIONAL { ?content api:kingdom         ?kingdom }
-    OPTIONAL { ?content api:phylum          ?phylum }
-    OPTIONAL { ?content api:order           ?order }
-    OPTIONAL { ?content api:family          ?family }
-    OPTIONAL { ?content api:genus           ?genus}
-    OPTIONAL { ?content api:rank            ?rankName }
-    OPTIONAL { ?content api:class           ?class }
-    OPTIONAL { ?content api:parentKey       ?parentKey }
-    OPTIONAL { ?content api:publishedIn     ?publishedIn }
-    OPTIONAL { ?content api:accordingTo     ?accordingTo }
-
+    OPTIONAL { ?result api:accepted        ?accepted }
+    OPTIONAL { ?result api:acceptedKey     ?acceptedKey }
+    OPTIONAL { ?result api:taxonomicStatus ?status }
+    OPTIONAL { ?result api:kingdom         ?kingdom }
+    OPTIONAL { ?result api:phylum          ?phylum }
+    OPTIONAL { ?result api:order           ?order }
+    OPTIONAL { ?result api:family          ?family }
+    OPTIONAL { ?result api:genus           ?genus}
+    OPTIONAL { ?result api:rank            ?rankName }
+    OPTIONAL { ?result api:class           ?class }
+    OPTIONAL { ?result api:parentKey       ?parentKey }
+    OPTIONAL { ?result api:publishedIn     ?publishedIn }
+    OPTIONAL { ?result api:accordingTo     ?accordingTo }
+  
     bind (IF(?status = "ACCEPTED", ?scientificName, ?accepted) AS ?acceptedName)
     bind (str(IF(?status = "ACCEPTED", ?key, ?acceptedKey)) AS ?acceptedNameId)
-
-    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?key)) AS ?taxonUri)
-    bind (IRI(concat("https://www.gbif.org/species/", ?key)) AS ?page)
-
-    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentKey)) AS ?parentUri)
     
-    bind (sms:formatAuthorName(?authorship) AS ?authorshipname)
+    bind (IRI(concat("http://example.org/ld/gbif/id/", ?key)) AS ?uri)
+    bind (IRI(concat("https://www.gbif.org/species/", ?key)) AS ?page)
+    bind (str(?key) AS ?keyStr)
+
+    bind (IRI(concat("http://example.org/ld/gbif/id/", ?parentKey)) AS ?parentUri)
+
+    bind (sms:formatAuthorName(?authorship) AS ?authorname)
+    
 
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	
 }
@@ -99,14 +105,12 @@ function sms:getTaxrefRankName(?rankName) {
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot
-# and moving basionymName (in round brackets at the end of the name) to the beginning of the name (like in TAXREF)
+# (like in TAXREF)
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-# "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
 function sms:formatAuthorName(?author) {
-    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
-        LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
-            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
-        }
-    }
+            replace( 
+                replace(?author, "(\\. )", "."), 
+                "(^ *)|( *$)",
+                "" )
 }

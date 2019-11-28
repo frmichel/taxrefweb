@@ -1,0 +1,91 @@
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#>.
+@prefix sd:      <http://www.w3.org/ns/sparql-service-description#>.
+@prefix frmt:    <http://www.w3.org/ns/formats/>.
+@prefix dct:     <http://purl.org/dc/terms/>.
+@prefix shacl:   <http://www.w3.org/ns/shacl#>.
+@prefix void:    <http://rdfs.org/ns/void#>.
+@prefix hydra:   <http://www.w3.org/ns/hydra/core#>.
+@prefix schema:  <http://schema.org/>.
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#>.
+@prefix dwc:     <http://rs.tdwg.org/dwc/terms/>.
+@prefix sms:     <http://ns.inria.fr/sparql-micro-service#>.
+
+@base            <http://example.org/gbif/getTaxonByName_sd/>.
+
+# This file is loaded as graph <ServiceDescription>
+<>
+    a sd:Service, sms:Service;
+    sd:endpoint <>;
+    sd:supportedLanguage sd:SPARQL11Query;
+    sd:feature sd:BasicFederatedQuery, sd:EmptyGraphs;
+    sd:resultFormat frmt:SPARQL_Results_XML, frmt:SPARQL_Results_JSON, frmt:SPARQL_Results_CSV, frmt:SPARQL_Results_TSV,
+                    frmt:RDF_XML, frmt:Turtle, frmt:JSON-LD, frmt:Trig;
+    schema:name "Retrieve information from GBIF about a taxon using a scientific name";
+    schema:description '''<p>This service retrieves information about a taxon from <a href="https://www.gbif.org/" target="_new">GBIF</a> (Global Biodiversity Information Facility). It takes as input a taxon name provided using property schema:name. The reason for using schema:name instead of e.g. dwc:scientificName is that the searched name may be accepted or a synonym. Hence the schema:name property that makes no assumption as to the nature of the name. </p>
+    <p>The graph produced may contain multiple taxa represented as instances of the dwc:Taxon class. Each one comes with the following information: currently accepted/valid name (dwc:acceptedNameUsage and dwc:acceptedNameUsageID), scientific name (dwc:scientificName and dwc:scientificNameID), scientific name authorhip (dwc:scientificNameAuthorship), article in which the name was published (dwc:namePublishedIn), source (dwc:nameAccordingTo), classification (dwc:kingdom, dwc:phylum, dwc:class, dwc:order, dwc:family, dwc:genus), parent taxon (skos:broader), taxonomic rank (dwc:taxonRank and taxrefp:hasRank), URL of the taxon name web page (schema:sameAs).</p>''';
+
+    sd:defaultDataset [
+        a sd:Dataset, void:Dataset;
+        sd:defaultGraph [ a sd:Graph; shacl:shapesGraph <ShapesGraph> ];
+        sd:namedGraph   [ a sd:Graph; sd:name <ServiceDescription> ];
+        sd:namedGraph   [ a sd:Graph; sd:name <ShapesGraph> ];
+        
+        void:vocabulary <http://schema.org/>, <http://rs.tdwg.org/dwc/terms/>, <http://www.w3.org/ns/shacl#>, <http://www.w3.org/ns/hydra/core#>;
+        void:sparqlEndpoint <>;
+    ];
+
+    schema:keywords "gbif", "biodiversity", "lifesciences", "fauna", "flora", "species", "taxon", "scientific name";
+    schema:publisher [ a schema:Organization;
+        schema:name "Université Côte d'Azur, CNRS, Inria, I3S";
+        schema:logo
+            "http://univ-cotedazur.fr/fr/university/communication-presse/charte-et-logos/logo/png/uca-logo-large",
+            "https://iww.inria.fr/dircom/logoinria-eng.png",
+            "http://www.cnrs.fr/themes/custom/cnrs/logo.svg";
+        schema:contactPoint [ a schema:ContactPoint;
+            schema:contactType "technical support";
+            schema:name "Franck Michel";
+            schema:email "franck.michel@cnrs.fr";
+            schema:url <http://modalis.i3s.unice.fr/fmichel>;
+        ];
+    ];
+
+    sms:exampleQuery '''
+    prefix dwc: <http://rs.tdwg.org/dwc/terms/>
+    prefix schema: <http://schema.org/>.
+
+    SELECT * WHERE {
+        ?taxon a dwc:Taxon;
+            schema:name                  "Alburnoides bipunctatus";
+            dwc:scientificName           ?name;
+            dwc:scientificNameID         ?nameID;
+            dwc:scientificNameAuthorship ?authorship;
+            dwc:acceptedNameUsage        ?acceptedName.
+    }
+        ''';
+
+    
+    # 432000s = 5 days, 2592000s = 30 days
+    sms:cacheExpiresAfter "P2592000S"^^xsd:duration;
+
+    # Add provenance information to the graph generated at each invocation?
+    sms:addProvenance "true"^^xsd:boolean;
+    
+    dct:source [
+        a schema:WebAPI; schema:name "GBIF API";
+        schema:url <https://www.gbif.org/developer/summary>;
+        schema:potentialAction <APIService>;
+    ];
+    .
+
+# Web API service being wrapped by this µ-service + parameters binding
+<APIService>
+    a schema:SearchAction;
+    a hydra:IriTemplate;
+    hydra:template "http://api.gbif.org/v1/species?name={name}";
+    hydra:mapping [
+        hydra:variable "name";
+        schema:description "scientific name.";
+        hydra:required "true"^^xsd:boolean;
+        hydra:property schema:name;
+        skos:example "Alburnoides bipunctatus";
+    ].

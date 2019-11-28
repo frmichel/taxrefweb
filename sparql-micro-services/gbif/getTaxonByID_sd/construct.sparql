@@ -1,10 +1,12 @@
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
+
 CONSTRUCT {
     ?taxonUri a dwc:Taxon;
-
+        
         dwc:acceptedNameUsage        ?acceptedName;
         dwc:acceptedNameUsageID      ?acceptedNameId;
         dwc:scientificName           ?canonicalName;
-        dwc:scientificNameID         ?key;
+        dwc:scientificNameID         {id};        # Reinject the service argument = ?key
         dwc:scientificNameAuthorship ?authorshipname;
         dwc:namePublishedIn          ?publishedIn;
         dwc:nameAccordingTo          ?accordingTo;
@@ -43,17 +45,17 @@ WHERE {
     OPTIONAL { ?content api:parentKey       ?parentKey }
     OPTIONAL { ?content api:publishedIn     ?publishedIn }
     OPTIONAL { ?content api:accordingTo     ?accordingTo }
-
+  
     bind (IF(?status = "ACCEPTED", ?scientificName, ?accepted) AS ?acceptedName)
     bind (str(IF(?status = "ACCEPTED", ?key, ?acceptedKey)) AS ?acceptedNameId)
-
-    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?key)) AS ?taxonUri)
+    
+    bind (IRI(concat("http://example.org/ld/gbif/id/", ?key)) AS ?taxonUri)
     bind (IRI(concat("https://www.gbif.org/species/", ?key)) AS ?page)
 
-    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentKey)) AS ?parentUri)
-    
-    bind (sms:formatAuthorName(?authorship) AS ?authorshipname)
+    bind (IRI(concat("http://example.org/ld/gbif/id/", ?parentKey)) AS ?parentUri)
 
+    bind (sms:formatAuthorName(?authorship) AS ?authorshipname)
+    
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	
 }
 
@@ -99,14 +101,12 @@ function sms:getTaxrefRankName(?rankName) {
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot
-# and moving basionymName (in round brackets at the end of the name) to the beginning of the name (like in TAXREF)
+# (like in TAXREF)
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-# "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
 function sms:formatAuthorName(?author) {
-    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
-        LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
-            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
-        }
-    }
+            replace( 
+                replace(?author, "(\\. )", "."), 
+                "(^ *)|( *$)",
+                "" )
 }
