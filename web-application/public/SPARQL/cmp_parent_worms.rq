@@ -2,23 +2,30 @@ PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
 PREFIX schema: <http://schema.org/>
 PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>
 
-#Select scientific name, taxonomic rank and link to the webpage of the direct parent of a taxon from the second service,
-#if name or rank are different from the ones in the first service.
-#This query is used when the classification of a taxon provided by the second service contains the taxon itself.
+# Select scientific name, taxonomic rank and webpage of the direct parent of a taxon from the second service
+# if name or rank are different from the ones in the first service.
+#
+# This query is used when the classification of a taxon provided by the second service contains the taxon itself.
 SELECT ?name ?rank ?page WHERE {
+
     SERVICE <<%= mainService %>> {
-        #From the whole classification of the taxon, pick the most proximate parent, given its URI
-        <<%= params.parentUri %>> dwc:scientificName ?name1;
-                                  taxrefp:hasRank ?rank1;
+        # From the whole classification of the taxon, pick the most proximate parent, given its URI
+        <<%= params.parentUri %>> 
+            dwc:scientificName ?name1;
+            taxrefp:hasRank ?rank1;
     }
+    
     SERVICE <<%= service.url %>> {
-        #From the whole classification, pick the parent of the taxon that has been queried
+        # From the whole classification, pick the parent of the taxon that has been queried
         [] dwc:taxonID <%= params.serviceTaxonID %>;
            skos:broader ?parentTaxon.
-        #Then, use the parent URI to get the information (scientific name, rank and webpage) about the parent of the first taxon
-        ?parentTaxon dwc:scientificName ?name;
-                    taxrefp:hasRank ?rank;
-                    schema:sameAs ?page.
+           
+        # Then, use the parent URI to get the information (scientific name, rank and webpage) about the parent of the first taxon
+        ?parentTaxon
+            dwc:scientificName ?name;
+            taxrefp:hasRank ?rank;
+            schema:sameAs ?page.
     }
+    
     FILTER (?name1 != ?name || ?rank1 != ?rank)
 }

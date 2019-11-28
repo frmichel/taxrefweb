@@ -1,13 +1,17 @@
 PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>
 
-#Select the habitats in the first service that are not present in the second one
-SELECT ?service ?habitat WHERE{
+# Select the habitats in the first service that are not present in the second one
+SELECT ?service ?habitat WHERE {
+
    SERVICE <<%= mainService %>> {
        [] taxrefp:habitat ?habitat.
-   } MINUS {
+   }
+   MINUS
+   {
         SERVICE <<%= service.url %>> {
-                 [] taxrefp:habitat ?habitat.
+            [] taxrefp:habitat ?habitat.
         }
    }
+   
    BIND( "<%= service.label %>" AS ?service)
 }

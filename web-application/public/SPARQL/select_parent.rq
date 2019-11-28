@@ -1,5 +1,5 @@
 SELECT * WHERE {
-    #From the getClassification service, pick the most proximate parent taxon, given tis URI
+    # From the getClassification service, pick the most proximate parent taxon, given its URI
     SERVICE <<%= service %>> {
         <<%= params.parentUri %>> ?p ?o.
     }

@@ -1,9 +1,10 @@
 PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
 
-#Select the scientificNameAuthorship of the second service if its value is different from the author name
-# (with and without year) in the first one
+# Select the scientificNameAuthorship of the second service if its value is different from
+# the author name (with and without year) in the first one
 SELECT ?service ?o WHERE {
-    #Get the scientificNameAuthorship (usually with year) and the year of publication
+
+    # Get the scientificNameAuthorship (usually with year) and the year of publication
     SERVICE <<%= mainService %>> {
         [] dwc:scientificNameAuthorship ?author;
            dwc:namePublishedInYear ?year.
@@ -11,11 +12,13 @@ SELECT ?service ?o WHERE {
     # Remove the year of publication from the authorship
     bind(replace(?author, concat(", ", ?year), "") AS ?authorName)
 
-    #Get the author name from the second service
+    # Get the author name from the second service
     SERVICE <<%= service.url %>> {
        [] dwc:scientificNameAuthorship ?o.
     }
-    #filter comparing with the value of the first service, with and without year
+    
+    # Filter comparing with the value of the first service, with and without year
     FILTER (?o != ?author && ?o != ?authorName)
+    
     bind("<%= service.label %>" AS ?service)
 }
