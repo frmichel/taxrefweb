@@ -4,7 +4,7 @@
 @prefix schema:  <http://schema.org/>.
 @prefix taxrefp: <http://taxref.mnhn.fr/lod/property/>.
 
-@base            <http://example.org/gbif/getTaxonByID_sd/>.
+@base            <http://example.org/sparql-ms/gbif/getTaxonByID_sd/>.
 
 <ShapesGraph#TaxonShape> a shacl:NodeShape;
     shacl:targetClass dwc:Taxon;

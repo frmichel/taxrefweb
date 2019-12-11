@@ -1,3 +1,5 @@
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
+
 CONSTRUCT {
     ?taxonUri a dwc:Taxon;
 

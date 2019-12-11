@@ -29,7 +29,6 @@ WHERE {
     bind (sms:formatAuthorName(?authorship) AS ?authorname)
     bind (str(?acceptedKey) AS ?acceptedKeyStr)
     bind (str(?key) AS ?keyStr)
-
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot
