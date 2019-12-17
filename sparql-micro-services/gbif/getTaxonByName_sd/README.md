@@ -4,7 +4,7 @@ This service retrieves information about a taxon from [GBIF (Global Biodiversity
 The reason for using `schema:name` instead of e.g. `dwc:scientificName` is that the searched name may be accepted or a synonym. Hence the `schema:name` property that makes no assumption as to the nature of the name.
 
 The graph produced may contain multiple taxa represented as instances of the `dwc:Taxon` class. Each one comes with the following information:
-- accepted name (`dwc:acceptedNameUsage` and `dwc:acceptedNameUsageID`),
+- currently accepted/valid name (`dwc:acceptedNameUsage` and `dwc:acceptedNameUsageID`) if different from the scientific name,
 - scientific name (`dwc:scientificName` and `dwc:scientificNameID`) 
 - scientific name authorhip (`dwc:scientificNameAuthorship`),
 - article in which the name was published (`dwc:namePublishedIn`),

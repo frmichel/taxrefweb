@@ -5,9 +5,9 @@
 This service retrieves information about a taxon from [GBIF (Global Biodiversity Information Facility)](https://www.gbif.org/) by using its identifier. 
 
 Each taxon is identified by an instance of the `dwc:Taxon` that provides the following information:
-- scientific name (`dwc:scientificName`),
+- currently accepted/valid name (`dwc:acceptedNameUsage` and `dwc:acceptedNameUsageID`) if different from the scientific name,
+- scientific name (`dwc:scientificName` and `dwc:scientificNameID`),
 - author (`dwc:scientificNameAuthorship`),
-- currently valid name (`dwc:acceptedNameUsage`),
 - classification (`dwc:kingdom`, `dwc:phylum`, `dwc:class`, `dwc:order`, `dwc:family`, `dwc:genus`),
 - the URL of the taxon Web page (`schema:sameAs`),
 - parent taxon (`skos:broader`),

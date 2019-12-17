@@ -3,7 +3,7 @@
 This service retrieves information about a taxon from [GBIF (Global Biodiversity Information Facility)](https://www.gbif.org/). It takes as input a name identifier (GBIF key) provided using property `dwc:scientificNameID`.
 
 In the graph produced, the taxon is represented as an instance of the `dwc:Taxon` class and comes with the following information:
-- currently accepted/valid name (`dwc:acceptedNameUsage` and `dwc:acceptedNameUsageID`),
+- currently accepted/valid name (`dwc:acceptedNameUsage` and `dwc:acceptedNameUsageID`) if different from the scientific name,
 - scientific name (`dwc:scientificName` and `dwc:scientificNameID`) 
 - scientific name authorhip (`dwc:scientificNameAuthorship`),
 - article in which the name was published (`dwc:namePublishedIn`),
