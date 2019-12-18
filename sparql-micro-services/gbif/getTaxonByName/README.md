@@ -1,4 +1,4 @@
-# gbif/getTaxonByName_sd
+# gbif/getTaxonByName
 
 This service retrieves information about a taxon from [GBIF (Global Biodiversity Information Facility)](https://www.gbif.org/) backbone taxonomy. It takes as input a taxon name provided using property `schema:name`.
 The reason for using `schema:name` instead of e.g. `dwc:scientificName` is that the searched name may be accepted or a synonym. Hence the `schema:name` property that makes no assumption as to the nature of the name.
