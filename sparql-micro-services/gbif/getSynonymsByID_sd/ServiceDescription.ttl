@@ -56,7 +56,8 @@
 
     SELECT * WHERE {
         ?taxon a dwc:Taxon;
-            dwc:acceptedNameUsageID     "2360305";
+            dwc:acceptedNameUsageID     "7707728";
+            dwc:acceptedNameUsage       ?acceptedName;
             taxrefp:hasSynonym          ?synonym.
             
         ?synonym
@@ -83,11 +84,11 @@
 <APIService>
     a schema:SearchAction;
     a hydra:IriTemplate;
-    hydra:template "http://api.gbif.org/v1/species?datasetKey=d7dddbf4-2cf0-4f39-9b2a-bb099caae36c&name={name}";
+    hydra:template "http://api.gbif.org/v1/species?datasetKey=d7dddbf4-2cf0-4f39-9b2a-bb099caae36c&id={id}";
     hydra:mapping [
         hydra:variable "id";
         schema:description "taxon name identifier (GBIF key).";
         hydra:required "true"^^xsd:boolean;
         hydra:property dwc:acceptedNameUsageID;
-        skos:example "2360305";
+        skos:example "7707728";
     ].
