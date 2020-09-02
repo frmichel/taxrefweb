@@ -1,0 +1,86 @@
+CONSTRUCT {
+    ?taxonUri 
+        a                               dwc:Taxon;
+        dwc:scientificNameAuthorship    ?authorname;
+        dwc:scientificName              ?name;
+        dwc:scientificNameID            ?id;
+        dwc:namePublishedInYear         ?year;
+        dwc:originalNameUsageID         ?basionymId;
+        dwc:vernacularName              ?vernacularName;
+        taxrefp:hasRank                 ?rankUri;
+        taxrefp:habitat                 ?habitats;
+        schema:sameAs                   ?page;
+        .
+}
+WHERE {
+    ?content
+        api:SpecCode    ?specCode;
+        api:SynCode     ?id;
+        api:SynGenus    ?genus_name;
+        api:SynSpecies  ?species;
+        api:Author      ?author;
+        api:TaxonLevel  ?rankName;
+        api:Status      ?status;
+        api:Year        ?year;
+        api:Combination ?combination;
+        .
+
+    # the scientific name of the taxon is the concatenation of genus and species name
+    bind(concat(?genus_name, " ", ?species) AS ?name)
+    bind (str(IF(?combination = "original combination", ?id, "")) AS ?basionymId)
+    bind(IRI(concat("http://example.org/sparql-ms/fishbase/getSpeciesBySpecCode?id=", ?specCode)) AS ?service)
+    
+    OPTIONAL {
+        SERVICE ?service {
+            [] taxrefp:habitat ?habitats;
+                dwc:vernacularName ?vernacularName;
+        }
+    }
+    bind (sms:getRankUri(?rankName) AS ?rankUri)
+    bind (sms:formatAuthorName(?author) AS ?authorname)
+    bind (IRI(concat("http://example.org/ld/fishbase/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("https://fishbase.ropensci.org/synonyms?SynCode=", ?id)) AS ?page)
+}
+
+
+function sms:getRankUri(?rankName){
+	IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
+}
+
+
+# Return the TAXREF-LD rank name, given the name rank name in FishBase
+function sms:getTaxrefRankName(?rkName){
+	if      (?rkName = "Forma")         { return("Form") }
+    else if (?rkName = "Subforma")      { return("SubForm") }
+        
+    # Transform "Subabc" into "SubAbc", then same thing for Super, Infra and Parv
+    else if (strstarts(?rkName, "Sub")) {
+        let (?after = strafter(?rkName, "Sub")) {
+            return(concat("Sub", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "Super")) {
+        let (?after = strafter(?rkName, "Super")) {
+            return(concat("Super", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "Infra")) {
+        let (?after = strafter(?rkName, "Infra")) {
+            return(concat("Infra", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "Parv")) {
+        let (?after = strafter(?rkName, "Parv")) {
+            return(concat("Parv", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else { return(?rkName) }
+}
+
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+function sms:formatAuthorName(?author){
+    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+}

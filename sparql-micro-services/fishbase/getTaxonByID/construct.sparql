@@ -3,10 +3,13 @@ CONSTRUCT {
         a                               dwc:Taxon;
         dwc:scientificNameAuthorship    ?authorname;
         dwc:scientificName              ?name;
+        dwc:scientificNameID            ?id;
         dwc:namePublishedInYear         ?year;
+        dwc:originalNameUsageID         ?basionymId;
         dwc:vernacularName              ?vernacularName;
         taxrefp:hasRank                 ?rankUri;
         taxrefp:habitat                 ?habitats;
+        schema:sameAs                   ?page;
         .
 }
 WHERE {
@@ -19,10 +22,12 @@ WHERE {
         api:TaxonLevel  ?rankName;
         api:Status      ?status;
         api:Year        ?year;
+        api:Combination ?combination;
         .
 
     # the scientific name of the taxon is the concatenation of genus and species name
     bind(concat(?genus_name, " ", ?species) AS ?name)
+    bind (str(IF(?combination = "original combination", ?id, "")) AS ?basionymId)
     bind(IRI(concat("http://example.org/sparql-ms/fishbase/getSpeciesBySpecCode?id=", ?specCode)) AS ?service)
     
     OPTIONAL {
@@ -34,6 +39,7 @@ WHERE {
     bind (sms:getRankUri(?rankName) AS ?rankUri)
     bind (sms:formatAuthorName(?author) AS ?authorname)
     bind (IRI(concat("http://example.org/ld/fishbase/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("https://fishbase.ropensci.org/synonyms?SynCode=", ?id)) AS ?page)
 }
 
 
