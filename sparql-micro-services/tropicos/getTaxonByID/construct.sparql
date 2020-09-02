@@ -1,11 +1,13 @@
 CONSTRUCT {
     ?taxonUri a dwc:Taxon;
-    
+
+        dwc:scientificNameID         ?id;
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName           ?scientificname;
         taxrefp:hasRank              ?rankUri;
         dwc:genus                    ?genus_name;
         dwc:family                   ?family_name;
+        dwc:namePublishedIn          ?publishedIn;
         schema:sameAs                ?page;
         .
 }
@@ -21,6 +23,7 @@ WHERE {
     OPTIONAL { ?c api:Family         ?family_name }
     OPTIONAL { ?c api:Source         ?url }
     OPTIONAL { ?c api:BasionymAuthor ?basAuthor }
+    OPTIONAL { ?c api:NamePublishedCitation     ?publishedIn }
 
     #adding basionym name inside round brackets at the beginning of the authorname (as should be by convention in botany)
     bind (concat("(", ?basAuthor, ") ", ?author) AS ?fullauthor)

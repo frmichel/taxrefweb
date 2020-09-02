@@ -3,7 +3,11 @@ CONSTRUCT {
 
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName           ?scientificname;
-        dwc:acceptedNameUsage        ?refName;
+        dwc:scientificNameID         ?id;
+        dwc:namePublishedIn          ?publishedIn;
+        dwc:originalNameUsageID      ?basionymId;
+        dwc:acceptedNameUsage        ?acceptedName;
+        dwc:acceptedNameUsageID      ?acceptedNameId;
         
         dwc:genus                    ?genus_name;
         dwc:family                   ?family_name;
@@ -11,7 +15,9 @@ CONSTRUCT {
         dwc:class                    ?class_name;
         dwc:phylum                   ?phylum_name;
         dwc:kingdom                  ?kingdom_name;
-        
+        dwc:country                  ?location;
+        dwc:associatedTaxa           ?associatedTaxa ;
+
         taxrefp:hasRank              ?rankUri;
         schema:sameAs                ?page;
         .
@@ -20,25 +26,47 @@ WHERE {
     ?c
         api:RECORD_x0020_NUMBER         ?id;
         api:AUTHORS                     ?author;
+        api:YEAR_x0020_OF_x0020_PUBLICATION ?year;
         api:NAME_x0020_OF_x0020_FUNGUS  ?scientificname;
         api:INFRASPECIFIC_x0020_RANK    ?rankAbbr.
-        
-    OPTIONAL { ?c api:CURRENT_x0020_NAME ?refName }
+
+    OPTIONAL { ?c api:pubAcceptedTitle     ?title }
+    OPTIONAL { ?c api:VOLUME     ?volume }
+    OPTIONAL { ?c api:PART     ?part }
+    OPTIONAL { ?c api:PAGE     ?page_ }
+    OPTIONAL { ?c api:BASIONYM_x0020_RECORD_x0020_NUMBER     ?basionymId }
+    OPTIONAL { ?c api:CURRENT_x0020_NAME            ?currentName }
+    OPTIONAL { ?c api:ORTHOGRAPHY_x0020_COMMENT     ?orthoComment }
+    OPTIONAL { ?c api:CURRENT_x0020_NAME_x0020_RECORD_x0020_NUMBER ?acceptedNameId }
     OPTIONAL { ?c api:Genus_x0020_name   ?genus_name }
     OPTIONAL { ?c api:Family_x0020_name  ?family_name }
     OPTIONAL { ?c api:Order_x0020_name   ?order_name }
     OPTIONAL { ?c api:Class_x0020_name   ?class_name }
     OPTIONAL { ?c api:Phylum_x0020_name  ?phylum_name }
     OPTIONAL { ?c api:Kingdom_x0020_name ?kingdom_name }
+    OPTIONAL { ?c api:LOCATION ?location }
+    OPTIONAL { ?c api:HOST ?host }
 
-    bind (sms:formatAuthorName(?author) AS ?authorname)
+    bind (concat(sms:formatAuthorName(?author), ", ", ?year) AS ?authorname)
+    bind(if(bound(?currentName), ?currentName, ?orthoComment) AS ?acceptedName)
+    bind (concat(?title,
+                    if (bound(?volume), concat(" ", ?volume), ""),
+                    if(bound(?part), concat("(" , ?part, ")"), ""),
+                    ": ", ?page_, " (", ?year, ")"
+          ) AS ?publishedIn)
     bind (IRI(concat("http://www.indexfungorum.org/Names/NamesRecord.asp?RecordID=", ?id)) AS ?page)
     bind (sms:getRankUriByAbbr(?rankAbbr) AS ?rankUri)
     bind (IRI(concat("http://example.org/ld/indexfungorum/taxon/", ?id)) AS ?taxonUri)
+    bind (concat("host: ", ?host) AS ?associatedTaxa)
 }
 
 function sms:getRankUriByAbbr(?rankAb) {
     IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankAb)))
+}
+
+# format publishedIn
+function sms:getPublishedIn(?title, ?volume, ?part, ?page_, ?year) {
+    if (bound(?volume), concat(?title, " ", ?volume, "(" , ?part, "): ", ?page_, " (", ?year, ")"), ?title)
 }
 
 # Return the TAXREF-LD rank name given the rank abbreviation
@@ -67,5 +95,5 @@ function sms:getTaxrefRankName(?rankAb) {
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
 function sms:formatAuthorName(?author) {
-    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+    replace(replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", ""), "\\.&", ". &")
 }

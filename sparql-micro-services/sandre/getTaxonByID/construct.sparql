@@ -2,8 +2,10 @@ CONSTRUCT {
     ?taxonUri a dwc:Taxon;
     
         dwc:taxonID                  ?id;
+        dwc:scientificNameID         ?id;
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName           ?scientificname;
+        dwc:acceptedNameUsageID      ?ref_id;
         dwc:acceptedNameUsage        ?ref_name;
         dwc:vernacularName           ?fr_name;
         taxrefp:hasRank              ?rankUri;
@@ -21,10 +23,12 @@ WHERE {
     OPTIONAL { ?c api:AppelTaxonParent    [ api:CdAppelTaxon ?parentID ] }
     OPTIONAL { ?c api:NomCommunAppelTaxon [ api:LbNomCommunAppelTaxon ?frname] }
     OPTIONAL { ?c api:EstSynonyme         [ api:NomLatinAppelTaxon ?reference_name] }
+    OPTIONAL { ?c api:EstSynonyme         [ api:CdAppelTaxon ?reference_id] }
 
     bind (sms:formatAuthorName(?author) AS ?authorname)
 
     #if there is not the reference name and the type taxon is R, the reference name is the scientific name of the current taxon
+    bind(if(!bound(?reference_id) && ?typeTaxon = "R", ?id, ?reference_id) AS ?ref_id)
     bind(if(!bound(?reference_name) && ?typeTaxon = "R", concat(?scientificname, " ", ?authorname), ?reference_name) AS ?ref_name)
 
     bind (IRI(concat("http://example.org/ld/sandre/taxon/", ?id)) AS ?taxonUri)

@@ -3,7 +3,9 @@ CONSTRUCT {
 
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName           ?scientificname;
+        dwc:scientificNameID         ?id;
         dwc:acceptedNameUsage        ?full_reference_name;
+        dwc:acceptedNameUsageID      ?acceptedNameId;
         
         dwc:kingdom                  ?kingdom;
         dwc:phylum                   ?phylum;
@@ -24,6 +26,7 @@ WHERE {
         api:scientificname  ?scientificname.
     OPTIONAL {
         ?c	
+            api:valid_guid      ?acceptedNameId;
             api:valid_name      ?valid_name;
             api:valid_authority ?valid_author;
     }

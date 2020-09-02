@@ -19,8 +19,8 @@ WHERE {
 
     bind(iri(concat("http://www.marinespecies.org/aphia.php?p=taxdetails&id=", ?id)) AS ?webpage)
     bind(sms:getRankUri(?rkName) AS ?taxrefRankUri)
-    bind(IRI(concat("http://example.org/ld/worms/taxon/", ?id)) AS ?taxonUri)
-    bind(IRI(concat("http://example.org/ld/worms/taxon/", ?parentID)) AS ?parentTaxon)
+    bind(IRI(concat("http://sms.i3s.unice.fr/ld/worms/taxon/", ?id)) AS ?taxonUri)
+    bind(IRI(concat("http://sms.i3s.unice.fr/ld/worms/taxon/", ?parentID)) AS ?parentTaxon)
 }
 
 function sms:getRankUri(?rankName) {

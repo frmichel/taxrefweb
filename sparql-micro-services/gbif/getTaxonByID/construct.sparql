@@ -8,7 +8,11 @@ CONSTRUCT {
         dwc:scientificName           ?canonicalName;
         dwc:scientificNameID         ?key;
         dwc:scientificNameAuthorship ?authorshipname;
+        dwc:parentNameUsageID        ?parentId;
+        dwc:parentNameUsage          ?parentName;
         dwc:namePublishedIn          ?publishedIn;
+        dwc:originalNameUsage        ?basionym;
+        dwc:originalNameUsageID      ?basionymId;
         dwc:nameAccordingTo          ?accordingTo;
         dwc:taxonomicStatus          ?status;
 
@@ -42,8 +46,11 @@ WHERE {
     OPTIONAL { ?content api:genus           ?genus}
     OPTIONAL { ?content api:rank            ?rankName }
     OPTIONAL { ?content api:class           ?class }
-    OPTIONAL { ?content api:parentKey       ?parentKey }
+    OPTIONAL { ?content api:parentKey       ?parentId }
+    OPTIONAL { ?content api:parent          ?parentName }
     OPTIONAL { ?content api:publishedIn     ?publishedIn }
+    OPTIONAL { ?content api:basionym        ?basionym }
+    OPTIONAL { ?content api:basionymKey     ?basionymId }
     OPTIONAL { ?content api:accordingTo     ?accordingTo }
 
     bind (IF(?status = "ACCEPTED", ?scientificName, ?accepted) AS ?acceptedName)
@@ -52,7 +59,7 @@ WHERE {
     bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?key)) AS ?taxonUri)
     bind (IRI(concat("https://www.gbif.org/species/", ?key)) AS ?page)
 
-    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentKey)) AS ?parentUri)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentId)) AS ?parentUri)
     
     bind (sms:formatAuthorName(?authorship) AS ?authorshipname)
 
@@ -106,9 +113,9 @@ function sms:getTaxrefRankName(?rankName) {
 # "A. Gray" => "A.Gray"
 # "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
 function sms:formatAuthorName(?author) {
-    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
+    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(replace(?author, "^.*(\\(.*\\))$", "$1"), ".&", ". &"), "")) {
         LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
-            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+            replace(replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", ""), ".&", ". &")
         }
     }
 }

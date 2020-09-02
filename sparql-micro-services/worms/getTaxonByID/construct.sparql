@@ -3,7 +3,11 @@ CONSTRUCT {
    
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName           ?scientificname;
+        dwc:scientificNameID         ?id;
         dwc:acceptedNameUsage        ?full_reference_name;
+        dwc:acceptedNameUsageID      ?acceptedNameId;
+        dwc:parentNameUsageID        ?parentId;
+        dwc:originalNameUsageID      ?basionymId;
         
         dwc:kingdom                  ?kingdom;
         dwc:phylum                   ?phylum;
@@ -14,7 +18,11 @@ CONSTRUCT {
         
         schema:sameAs                ?page;
         taxrefp:hasRank              ?taxrefRankUri;
-        taxrefp:habitat              ?habitats;
+        #taxrefp:habitat              ?habitats;
+        taxrefp:isMarine              ?isMarine;
+        taxrefp:isBrackish              ?isBrackish;
+        taxrefp:isFreshwater              ?isFreshwater;
+        taxrefp:isTerrestrial              ?isTerrestrial;
         .
 }
 WHERE {
@@ -27,7 +35,10 @@ WHERE {
     OPTIONAL {?c
             api:valid_name          ?valid_name;
             api:valid_authority     ?valid_author;
+            api:valid_AphiaID       ?acceptedNameId;
+            api:parentNameUsageID   ?parentId
     }
+    OPTIONAL { ?c api:unacceptreason           ?unacceptreason }
     OPTIONAL { ?c api:url           ?url }
     OPTIONAL { ?c api:kingdom       ?kingdom  }
     OPTIONAL { ?c api:phylum        ?phylum  }
@@ -35,21 +46,28 @@ WHERE {
     OPTIONAL { ?c api:order         ?order  }
     OPTIONAL { ?c api:family        ?family  }
     OPTIONAL { ?c api:genus         ?genus  }
-    OPTIONAL { ?c api:isBrackish    ?is_brackish }
-    OPTIONAL { ?c api:isMarine      ?is_marine }
-    OPTIONAL { ?c api:isFreshwater  ?is_freshwater  }
-    OPTIONAL { ?c api:isTerrestrial ?is_terrestrial }
+    OPTIONAL { ?c api:isMarine      ?is_Marine }
+    OPTIONAL { ?c api:isBrackish    ?is_Brackish }
+    OPTIONAL { ?c api:isFreshwater  ?is_Freshwater  }
+    OPTIONAL { ?c api:isTerrestrial ?is_Terrestrial }
 
     bind(IRI(?url) AS ?page)
     bind(sms:getRankUri(?rkName) AS ?taxrefRankUri)
     bind(IRI(concat("http://example.org/ld/worms/taxon/", ?id)) AS ?taxonUri)
 
+    bind (str(IF(strstarts(?unacceptreason, "original combination") || strstarts(?unacceptreason, "original binomen"), ?id, "")) AS ?basionymId)
+
+    bind (IF(EXISTS{?c api:isMarine ?is_Marine}, ?is_Marine, 0) AS ?isMarine)
+    bind (IF(EXISTS{?c api:isBrackish ?is_Brackish}, ?is_Brackish, 0) AS ?isBrackish)
+    bind (IF(EXISTS{?c api:isFreshwater ?is_Freshwater}, ?is_Freshwater, 0) AS ?isFreshwater)
+    bind (IF(EXISTS{?c api:isTerrestrial ?is_Terrestrial}, ?is_Terrestrial, 0) AS ?isTerrestrial)
+
     #The full reference name is the concatenation of the valid name and its author
     bind(concat(concat(?valid_name, " "), sms:formatAuthorName(?valid_author)) AS ?full_reference_name)
 
     bind(sms:formatAuthorName(?author) AS ?authorname)
-    bind(sms:getHabitatsList(coalesce(?is_marine, false), coalesce(?is_freshwater, false), coalesce(?is_brackish, false), coalesce(?is_terrestrial, false)) AS ?list)
-    OPTIONAL { values ?list { UNDEF }   values ?habitats { unnest(?list) } }
+    #bind(sms:getHabitatsList(coalesce(?is_marine, false), coalesce(?is_freshwater, false), coalesce(?is_brackish, false), coalesce(?is_terrestrial, false)) AS ?list)
+    #OPTIONAL { values ?list { UNDEF }   values ?habitats { unnest(?list) } }
 }
 
 
@@ -84,17 +102,16 @@ function sms:getTaxrefRankName(?rkName) {
 }
 
 # Return the list of the TAXREF-LD habitats URIs of the taxon
-function sms:getHabitatsList(?mar, ?fresh, ?brack, ?terr) {
-    if (!?mar && !?fresh && !?brack && !?terr) {
-        return(xt:list())
-    } else {
-        xt:merge(xt:merge(IF(?mar, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")), xt:list()), IF(?fresh, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")), xt:list())), xt:merge(IF(?brack, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/BrackishWater")), xt:list()), IF(?terr, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial")), xt:list())))
-    }
-}
+#function sms:getHabitatsList(?mar, ?fresh, ?brack, ?terr) {
+#    if (!?mar && !?fresh && !?brack && !?terr) {
+#        return(xt:list())
+#    } else {
+#        xt:merge(xt:merge(IF(?mar, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine")), xt:list()), IF(?fresh, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater")), xt:list())), xt:merge(IF(?brack, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/BrackishWater")), xt:list()), IF(?terr, xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial")), xt:list())))
+#    }
+#}
 
-# Format author name removing extra spaces at beginning and end of the name and after a dot
+# Format author name removing extra spaces at beginning and end of the name
 # " (Bloch, 1782)" => "(Bloch, 1782)";
-# "A. Gray" => "A.Gray"
 function sms:formatAuthorName(?author) {
-    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+    replace(?author, "(^ *)|( *$)", "")
 }

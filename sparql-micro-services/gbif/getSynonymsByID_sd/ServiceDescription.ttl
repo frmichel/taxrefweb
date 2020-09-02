@@ -21,9 +21,8 @@
     sd:resultFormat frmt:SPARQL_Results_XML, frmt:SPARQL_Results_JSON, frmt:SPARQL_Results_CSV, frmt:SPARQL_Results_TSV,
                     frmt:RDF_XML, frmt:Turtle, frmt:JSON-LD, frmt:Trig;
     schema:name "Retrieve from GBIF the synonyms of a taxon using its name identifier (GBIF key)";
-    schema:description '''This service retrieves the list of synonyms of a taxon from <a href="https://www.gbif.org/" target="_new">GBIF</a>'s backbone taxonomy (Global Biodiversity Information Facility). It takes as input the accepted name identifier (GBIF key) provided using property dwc:acceptedNameUsageID.<br>
-    
-    In the graph produced, the taxon is represented as an instance of the dwc:Taxon class, related to the synonyms with the http://taxref.mnhn.fr/lod/property/hasSynonym property. Each synonym comes with the following information: scientific name (dwc:scientificName and dwc:scientificNameID), scientific name authorship  (dwc:scientificNameAuthorship), URL of the taxon name web page (`schema:sameAs`).''';
+    schema:description '''<p>This service retrieves the list of synonyms of a taxon from <a href="https://www.gbif.org/" target="_new">GBIF</a>'s backbone taxonomy (Global Biodiversity Information Facility). It takes as input the accepted name identifier (GBIF key) provided using property dwc:acceptedNameUsageID.</p>
+    <p>In the graph produced, the taxon is represented as an instance of the dwc:Taxon class, related to the synonyms with the http://taxref.mnhn.fr/lod/property/hasSynonym property. Each synonym comes with the following information: scientific name (dwc:scientificName and dwc:scientificNameID), scientific name authorship  (dwc:scientificNameAuthorship), URL of the taxon name web page (schema:sameAs).</p>''';
 
     sd:defaultDataset [
         a sd:Dataset, void:Dataset;
@@ -46,7 +45,7 @@
             schema:contactType "technical support";
             schema:name "Franck Michel";
             schema:email "franck.michel@cnrs.fr";
-            schema:url <http://modalis.i3s.unice.fr/fmichel>;
+            schema:url <https://w3id.org/people/franckmichel>;
         ];
     ];
 

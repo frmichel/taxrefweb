@@ -9,7 +9,7 @@ CONSTRUCT {
 WHERE {
     ?c api:AppelTaxonParent [ api:CdAppelTaxon ?id ];
 
-    bind(IRI(concat("http://example.org/sparql-ms/sandre/getTaxonByID?id=", ?id)) AS ?service)
+    bind(IRI(concat("http://sms.i3s.unice.fr/sparql-ms-tw/sandre/getTaxonByID?id=", ?id)) AS ?service)
     SERVICE ?service {
         ?taxonUri 
             dwc:scientificName  ?scientificname;
