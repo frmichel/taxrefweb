@@ -1,0 +1,37 @@
+{
+  "name": "170854",
+  "result": [
+    {
+      "taxonid": 170854,
+      "scientific_name": "Macrogastra mellae",
+      "kingdom": "ANIMALIA",
+      "phylum": "MOLLUSCA",
+      "class": "GASTROPODA",
+      "order": "STYLOMMATOPHORA",
+      "family": "CLAUSILIIDAE",
+      "genus": "Macrogastra",
+      "main_common_name": "Massue du Piémont",
+      "authority": "(Stabile, 1864)",
+      "published_year": 2017,
+      "assessment_date": "2017-03-15",
+      "category": "LC",
+      "criteria": null,
+      "population_trend": "Stable",
+      "marine_system": false,
+      "freshwater_system": false,
+      "terrestrial_system": true,
+      "assessor": "Gargominy, O.",
+      "reviewer": "Allen, D.J., Bank, R. & Neubert, E.",
+      "aoo_km2": "100",
+      "eoo_km2": "6000",
+      "elevation_upper": 1200,
+      "elevation_lower": 600,
+      "depth_upper": null,
+      "depth_lower": null,
+      "errata_flag": null,
+      "errata_reason": null,
+      "amended_flag": null,
+      "amended_reason": null
+    }
+  ]
+}

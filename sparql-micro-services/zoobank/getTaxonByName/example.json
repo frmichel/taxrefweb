@@ -1,0 +1,18 @@
+[
+  {
+    "tnuuuid": "9b6f368e-41dd-4abe-bdb9-9fc095bb4d6a",
+    "OriginalReferenceUUID": "2c6327e1-5560-4db4-b9ca-76a0fa03d975",
+    "protonymuuid": "9b6f368e-41dd-4abe-bdb9-9fc095bb4d6a",
+    "label": "Pica Linnæus 1758",
+    "value": "Pica Linnæus 1758",
+    "lsid": "urn:lsid:zoobank.org:act:9B6F368E-41DD-4ABE-BDB9-9FC095BB4D6A",
+    "parentname": "",
+    "namestring": "Pica",
+    "rankgroup": "Species",
+    "usageauthors": "",
+    "taxonnamerankid": "",
+    "parentusageuuid": "",
+    "cleanprotonym": "Corvus Pica Linnæus, 1758",
+    "NomenclaturalCode": "ICZN"
+  }
+]

@@ -1,0 +1,72 @@
+{"REFERENTIELS@attributes":{
+    "xmlns:xsi": "http:\/\/www.w3.org\/2001\/XMLSchema-instance",
+    "xmlns": "http:\/\/xml.sandre.eaufrance.fr\/scenario\/referentiel\/3.1",
+    "xsi:schemaLocation": "http:\/\/xml.sandre.eaufrance.fr\/scenario\/referentiel\/3.1 http:\/\/xml.sandre.eaufrance.fr\/scenario\/referentiel\/3.1\/sandre_sc_referentiel.xsd"
+},"REFERENTIELS":{"Scenario":{
+    "CodeScenario": "REFERENTIEL",
+    "VersionScenario": "3.1",
+    "NomScenario": "Diffusion de listes de r\u00e9f\u00e9rence par le Sandre",
+    "DateCreationFichier": "2019-03-28",
+    "DateDebutReference": "1987-03-20",
+    "DateFinReference": "2019-03-28",
+    "Emetteur": {
+        "CdIntervenant@attributes": {
+            "schemeAgencyID": "SANDRE"
+        },
+        "CdIntervenant": "1470",
+        "NomIntervenant": "Service d'Administration Nationale des Donn\u00e9es et R\u00e9f\u00e9rentiels sur l'Eau"
+    }
+},"Referentiel":{"CdReferentiel@attributes":{
+    "schemeAgencyID": "SANDRE"
+},"CdReferentiel":"APT","NomReferentiel":"Appellation de taxons","TypeReferentiel":"1","StReferentiel":"Valid\u00e9","DateMajReferentiel":"2019-03-28T09:10:16","NbOccurrences":"1","AppelTaxon":[{
+    "CdAppelTaxon@attributes": {
+        "schemeAgencyID": "sandre"
+    },
+    "CdAppelTaxon": "2088",
+    "NomLatinAppelTaxon": "Alburnoides bipunctatus",
+    "StAppelTaxon": "Valid\u00e9",
+    "TypeAppelTaxon": "R",
+    "DateCreationAppelTaxon": "1994-01-01",
+    "DateMajAppelTaxon": "2016-03-07",
+    "RedacteurFicheAppelTaxon": "Conseil Sup\u00e9rieur de la P\u00eache",
+    "RefBiblioAppelTaxon": "",
+    "ComAppelTaxon": "MAJ : ajout du code alternatif 67104 du MNHN\nMAJ : ajout du code alternatif Quadrige\u00b2\n MAJ : suppression automatique du code alternatif d'origine \"ONEMA\" : \"99130201\"",
+    "AuteurAppelTaxon": "(Bloch, 1782)",
+    "AppelTaxonParent": {
+        "CdAppelTaxon@attributes": {
+            "schemeAgencyID": "SANDRE"
+        },
+        "CdAppelTaxon": "2087",
+        "NomLatinAppelTaxon": "Alburnoides"
+    },
+    "NiveauTaxonomique": {
+        "AbTax": "15",
+        "LbNiveauTaxonomique": "Esp\u00e8ce",
+        "HierNiveauTaxonomique": "24"
+    },
+    "ThemeTaxonAppel": {
+        "CdThemeTaxon": "1",
+        "LbThemeTaxon": "Poissons"
+    },
+    "CodeAlternatifAp": [
+        {
+            "IdCdAlternatif": "928",
+            "CdAlternatif": "67104",
+            "OrgCdAlternatif": "TAXREF"
+        },
+        {
+            "IdCdAlternatif": "873",
+            "CdAlternatif": "SPI",
+            "OrgCdAlternatif": "ASPE"
+        },
+        {
+            "IdCdAlternatif": "68273",
+            "CdAlternatif": "60005523",
+            "OrgCdAlternatif": "Quadrige\u00b2"
+        }
+    ],
+    "NomCommunAppelTaxon": {
+        "IdNomCommunAppelTaxon": "403",
+        "LbNomCommunAppelTaxon": "Spirlin"
+    }
+}]}}}

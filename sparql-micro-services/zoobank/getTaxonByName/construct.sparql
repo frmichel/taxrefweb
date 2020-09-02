@@ -1,0 +1,27 @@
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
+
+CONSTRUCT {
+    ?taxonUri a dwc:Taxon;
+
+        dwc:scientificName           ?scientificName;
+        dwc:scientificNameID         ?id;
+        dwc:scientificNameAuthorship ?authorshipName;
+
+        schema:sameAs                ?page;
+        #skos:broader                 ?parentUri;
+		.
+}
+WHERE {
+    ?result
+        api:tnuuuid          ?id;
+        api:label            ?label;
+        api:namestring       ?namestring;
+        api:cleanprotonym    ?cleanprotonym.
+
+    bind (IRI(concat("http://example.org/ld/col/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("http://zoobank.org/NomenclaturalActs/", ?id)) AS ?page)
+
+    bind(replace(replace(replace(?label, concat(?namestring, " "), ""), " 1", ", 1"), " 2", ", 2") AS ?authorshipName)
+    bind(replace(?cleanprotonym, concat(" ", ?authorshipName), "") AS ?scientificName)
+
+}

@@ -1,0 +1,126 @@
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
+
+CONSTRUCT {
+    ?taxonUri a dwc:Taxon;
+
+        dwc:acceptedNameUsage        ?acceptedName;
+        dwc:acceptedNameUsageID      ?acceptedNameId;
+        dwc:scientificName           ?scientificName;
+        dwc:scientificNameID         ?id;
+        dwc:scientificNameAuthorship ?authorshipName;
+        dwc:namePublishedIn          ?publishedIn;
+        dwc:originalNameUsage        ?basionym;
+        dwc:originalNameUsageID      ?basionymId;
+        dwc:nameAccordingTo          ?accordingTo;
+        dwc:taxonomicStatus          ?status;
+
+        dwc:kingdom                  ?kingdom;
+        dwc:phylum                   ?phylum;
+        dwc:class                    ?class;
+        dwc:order                    ?order;
+        dwc:family                   ?family;
+        dwc:genus                    ?genus;
+
+        taxrefp:hasRank              ?rankUri;
+        dwc:taxonRank                ?rankName;
+        schema:sameAs                ?page;
+        skos:broader                 ?parentUri;
+		.
+}
+WHERE {
+    ?results                api:taxon ?result.
+    ?result
+        api:lsid          ?id;
+        api:genus    ?genus_name;
+        api:species  ?species;
+        api:subspecies  ?subspecies;
+        api:author      ?authorship.
+        
+    OPTIONAL { ?result api:accepted        ?accepted }
+    OPTIONAL { ?result api:acceptedKey     ?acceptedKey }
+    OPTIONAL { ?result api:status          ?status }
+    OPTIONAL { ?result api:kingdom         ?kingdom }
+    OPTIONAL { ?result api:phylum          ?phylum }
+    OPTIONAL { ?result api:order           ?order }
+    OPTIONAL { ?result api:familyObject [ api:family ?family] }
+    OPTIONAL { ?result api:genus           ?genus}
+    OPTIONAL { ?result api:rank            ?rankName }
+    OPTIONAL { ?result api:class           ?class }
+    OPTIONAL { ?result api:parentKey       ?parentKey }
+    OPTIONAL { ?result api:referenceObject [ api:reference ?publishedIn] }
+    OPTIONAL { ?result api:basionym        ?basionym }
+    OPTIONAL { ?result api:basionymKey     ?basionymId }
+    OPTIONAL { ?result api:accordingTo     ?accordingTo }
+
+    OPTIONAL { ?result api:accepted_name     ?accepted }
+    OPTIONAL { ?accepted api:id     ?acceptedKey }
+    OPTIONAL { ?accepted api:name     ?acceptedName_ }
+    OPTIONAL { ?accepted api:author   ?acceptedNameAuthor }
+
+    bind(concat(?genus_name, " ", ?species, " ", ?subspecies) AS ?scientificName)
+    bind (IF(?status = "VALID", concat(?scientificName, " ", ?authorship), concat(?acceptedName_, " ", ?acceptedNameAuthor)) AS ?acceptedName)
+    bind (str(IF(?status = "accepted name", ?id, ?acceptedKey)) AS ?acceptedNameId)
+
+    bind (IRI(concat("http://example.org/ld/col/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("http://wsc.nmbe.ch/speciesLsid/", ?id)) AS ?page)
+
+    bind (IRI(concat("http://example.org/ld/col/taxon/", ?parentKey)) AS ?parentUri)
+    
+    bind (sms:formatAuthorName(?authorship) AS ?authorshipName)
+
+    bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	
+}
+
+# Translate the GBIF rank name into the corresponding TAXREF-LD name.
+# The ranks in GBIF that do not exist in TAXREF-LD will still be translated into URIs 
+# following the Camel-case convention. This applies to: 
+# SUPERLEGION, SUBLEGION, INFRALEGION, SUPERCOHORT, SUBCOHORT, INFRACOHORT, MAGNORDER, GRANDORDER, 
+# INFRAFAMILY, INFRATRIBE, SUPRAGENERIC_NAME, INFRAGENUS, INFRAGENERIC_NAME, INFRASPECIFIC_NAME,
+# CONVARIETY, INFRASUBSPECIFIC_NAME, PROLES, GREX, PATHOVAR, BIOVAR, CHEMOVAR, MORPHOVAR, PHAGOVAR,
+# SEROVAR, CHEMOFORM, FORMA_SPECIALIS, CULTIVAR_GROUP, STRAIN, OTHER, UNRANKED
+function sms:getTaxrefRankName(?rankName) {
+    if      (?rankName = "LEGION")              { return("Legio") }
+    else if (?rankName = "SPECIES_AGGREGATE")   { return("Aggregate") }
+    else if (?rankName = "ABERRATION")          { return("Abberatio") }
+    else if (?rankName = "MORPH")               { return("Morpha") }
+    else if (?rankName = "FORM")                { return("Forma") }
+    else if (?rankName = "SUBFORM")             { return("SubForma") }
+    else if (?rankName = "VARIETY")             { return("Varietas") }
+    else if (?rankName = "SUBVARIETY")          { return("SubVarietas") }
+
+    # Transform "SUBABCD..." into "SubAbc", then same thing for Super, Infra and Parv
+    else if (strstarts(?rankName, "SUB")) {
+        let (?after = strafter(?rankName, "SUB")) {
+            return(concat("Sub", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else if (strstarts(?rankName, "SUPER")) {
+        let (?after = strafter(?rankName, "SUPER")) {
+            return(concat("Super", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else if (strstarts(?rankName, "INFRA")) {
+        let (?after = strafter(?rankName, "INFRA")) {
+            return(concat("Infra", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else if (strstarts(?rankName, "PARV")) {
+        let (?after = strafter(?rankName, "PARV")) {
+            return(concat("Parv", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else { return(concat(substr(?rankName, 1, 1), lcase(substr(?rankName, 2)))) }
+}
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# and moving basionymName (in round brackets at the end of the name) to the beginning of the name (like in TAXREF)
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+# "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
+function sms:formatAuthorName(?author) {
+    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
+        LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
+            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+        }
+    }
+}

@@ -1,0 +1,69 @@
+CONSTRUCT {
+    ?taxonUri a dwc:Taxon;
+    
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName           ?scientificname;
+        dwc:scientificNameID         ?id;
+        taxrefp:hasRank              ?rankUri;
+        dwc:genus                    ?genus_name;
+        dwc:family                   ?family_name;
+        schema:sameAs                ?page;
+        .
+}
+WHERE {
+    ?c
+        api:NameId                      ?id;
+        api:Author                      ?author;
+        api:ScientificName              ?scientificname;
+        api:ScientificNameWithAuthors   ?full_reference_name;
+        api:RankAbbreviation            ?rankName.
+        
+    OPTIONAL { ?c api:Genus          ?genus_name }
+    OPTIONAL { ?c api:Family         ?family_name }
+    OPTIONAL { ?c api:Source         ?url }
+    OPTIONAL { ?c api:BasionymAuthor ?basAuthor }
+
+    #adding basionym name inside round brackets at the beginning of the authorname (as should be by convention in botany)
+    bind (concat("(", ?basAuthor, ") ", ?author) AS ?fullauthor)
+    bind (sms:formatAuthorName(coalesce(?fullauthor, ?author)) AS ?authorname)
+    bind (IRI(?url) AS ?page)
+    bind (sms:getTaxrefRankUri(?rankName) AS ?rankUri)
+    bind (IRI(concat("http://sms.i3s.unice.fr/ld/tropicos/taxon/", ?id)) AS ?taxonUri)
+}
+
+function sms:getTaxrefRankUri(?rankName) {
+    IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
+}
+
+# Return the TAXREF-LD rank name given the rank name in Tropicos that is given in lowercase
+function sms:getTaxrefRankName(?rankName) {
+    # Transform "subabc" into "SubAbc", then same thing for Super, Infra and Parv
+    if (strstarts(?rkName, "sub")) {
+        let (?after = strafter(?rkName, "sub")) {
+            return(concat("Sub", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "super")) {
+        let (?after = strafter(?rkName, "super")) {
+            return(concat("Super", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "infra")) {
+        let (?after = strafter(?rkName, "infra")) {
+            return(concat("Infra", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "parv")) {
+        let (?after = strafter(?rkName, "parv")) {
+            return(concat("Parv", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else { return(?rkName) }
+}
+
+# Format author name removing extra whitespaces at beginning and end of the name and after a dot
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+function sms:formatAuthorName(?author) {
+    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+}
