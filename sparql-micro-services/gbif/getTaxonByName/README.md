@@ -1,10 +1,10 @@
 # gbif/getTaxonByName
 
-This service retrieves information about a taxon from [GBIF (Global Biodiversity Information Facility)](https://www.gbif.org/) backbone taxonomy. It takes as input a taxon name provided using property `schema:name`.
+This service retrieves information about a taxon from [GBIF (Global Biodiversity Information Facility)](https://www.gbif.org/). It takes as input a taxon name provided using property `schema:name`.
 The reason for using `schema:name` instead of e.g. `dwc:scientificName` is that the searched name may be accepted or a synonym. Hence the `schema:name` property that makes no assumption as to the nature of the name.
 
 The graph produced may contain multiple taxa represented as instances of the `dwc:Taxon` class. Each one comes with the following information:
-- currently accepted/valid name (`dwc:acceptedNameUsage` and `dwc:acceptedNameUsageID`),
+- accepted name (`dwc:acceptedNameUsage` and `dwc:acceptedNameUsageID`),
 - scientific name (`dwc:scientificName` and `dwc:scientificNameID`) 
 - scientific name authorhip (`dwc:scientificNameAuthorship`),
 - article in which the name was published (`dwc:namePublishedIn`),
