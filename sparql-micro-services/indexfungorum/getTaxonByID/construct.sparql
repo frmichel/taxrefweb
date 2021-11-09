@@ -26,10 +26,10 @@ WHERE {
     ?c
         api:RECORD_x0020_NUMBER         ?id;
         api:AUTHORS                     ?author;
-        api:YEAR_x0020_OF_x0020_PUBLICATION ?year;
         api:NAME_x0020_OF_x0020_FUNGUS  ?scientificname;
         api:INFRASPECIFIC_x0020_RANK    ?rankAbbr.
 
+    OPTIONAL { ?c api:YEAR_x0020_OF_x0020_PUBLICATION     ?year }
     OPTIONAL { ?c api:pubAcceptedTitle     ?title }
     OPTIONAL { ?c api:VOLUME     ?volume }
     OPTIONAL { ?c api:PART     ?part }
@@ -47,7 +47,7 @@ WHERE {
     OPTIONAL { ?c api:LOCATION ?location }
     OPTIONAL { ?c api:HOST ?host }
 
-    bind (concat(sms:formatAuthorName(?author), ", ", ?year) AS ?authorname)
+    bind (concat(sms:formatAuthorName(?author), if (bound(?year), concat(", ", ?year), "")) AS ?authorname)
     bind(if(bound(?currentName), ?currentName, ?orthoComment) AS ?acceptedName)
     bind (concat(?title,
                     if (bound(?volume), concat(" ", ?volume), ""),

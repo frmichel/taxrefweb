@@ -32,11 +32,15 @@ WHERE {
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot
+# and moving basionymName (in round brackets at the end of the name) to the beginning of the name 
+# (like in TAXREF)
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
+# "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
 function sms:formatAuthorName(?author) {
-            replace(
-                replace(?author, "(\\. )", "."),
-                "(^ *)|( *$)",
-                "" )
+    LET(?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")){
+        LET(?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))){
+            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+        }
+    }
 }

@@ -57,7 +57,7 @@ WHERE {
     OPTIONAL { ?accepted api:name     ?acceptedName_ }
     OPTIONAL { ?accepted api:author   ?acceptedNameAuthor }
 
-    bind(concat(?genus_name, " ", ?species, " ", ?subspecies) AS ?scientificName)
+    bind(replace(concat(?genus_name, " ", ?species, " ", ?subspecies), " $", "") AS ?scientificName)
     bind (IF(?status = "VALID", concat(?scientificName, " ", ?authorship), concat(?acceptedName_, " ", ?acceptedNameAuthor)) AS ?acceptedName)
     bind (str(IF(?status = "accepted name", ?id, ?acceptedKey)) AS ?acceptedNameId)
 

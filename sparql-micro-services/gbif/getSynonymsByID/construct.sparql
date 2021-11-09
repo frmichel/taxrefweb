@@ -1,42 +1,31 @@
-PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
-
 CONSTRUCT {
-    ?uri
-        a                            dwc:Taxon;
-        dwc:acceptedNameUsage        ?accepted;
-        dwc:acceptedNameUsageID      ?acceptedKeyStr;
-
-        taxrefp:hasSynonym [
-            dwc:scientificName           ?canonicalName;
-            dwc:scientificNameAuthorship ?authorname;
-            dwc:scientificNameID         ?keyStr;
-            schema:sameAs                ?page;
-        ].
+    []
+        dwc:scientificName           ?scientific_name;
+        dwc:scientificNameAuthorship ?authorname;
+        schema:sameAs                ?page;
+        .
 }
 WHERE {
-    ?results                api:results ?result.
-    ?result
-        api:key             ?key;
-        api:canonicalName   ?canonicalName;
-        api:authorship      ?authorship;
-        api:accepted        ?accepted;
-        api:acceptedKey     ?acceptedKey;
-        .
+    ?content
+        api:key             ?id;
+        api:scientificName  ?scientific_name;
+        api:authorship      ?author.
 
-    bind (IRI(concat("http://example.org/ld/gbif/id/", ?acceptedKey)) AS ?uri)
-    bind (IRI(concat("https://www.gbif.org/species/", ?key)) AS ?page)
-
-    bind (sms:formatAuthorName(?authorship) AS ?authorname)
-    bind (str(?acceptedKey) AS ?acceptedKeyStr)
-    bind (str(?key) AS ?keyStr)
+    bind(IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
+    
+    bind(sms:formatAuthorName(?author) AS ?authorname)
 }
 
 # Format author name removing extra spaces at beginning and end of the name and after a dot
+# and moving basionymName (in round brackets at the end of the name) to the beginning of the name 
+# (like in TAXREF)
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
+# "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
 function sms:formatAuthorName(?author) {
-            replace(
-                replace(?author, "(\\. )", "."),
-                "(^ *)|( *$)",
-                "" )
+    LET(?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")){
+        LET(?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))){
+            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+        }
+    }
 }

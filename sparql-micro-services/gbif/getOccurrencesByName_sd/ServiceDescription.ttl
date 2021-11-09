@@ -21,13 +21,13 @@
     sd:resultFormat frmt:SPARQL_Results_XML, frmt:SPARQL_Results_JSON, frmt:SPARQL_Results_CSV, frmt:SPARQL_Results_TSV,
                     frmt:RDF_XML, frmt:Turtle, frmt:JSON-LD, frmt:Trig;
     schema:name "Retrieve occurrences of a taxon from GBIF using its scientific name";
-    schema:description '''<p>This service retrieves occurrences of a taxon from <a href="https://www.gbif.org/" target="_gbif">GBIF</a> (Global Biodiversity Information Facility). It takes as input a taxon name provided using property schema:name. The reason for using schema:name instead of e.g. dwc:scientificName is that the searched name may be accepted or a synonym. Hence the schema:name property that makes no assumption as to the nature of the name. </p><p>Occurrences are represented according to the <a href="https://github.com/darwin-sw/dsw" target="_dsw">Darwin-SW</a> specification.''';
+    schema:description '''<p>This service retrieves occurrences of a taxon from <a href="https://www.gbif.org/" target="_new">GBIF</a> (Global Biodiversity Information Facility). It takes as input a taxon name provided using property schema:name. The reason for using schema:name instead of e.g. dwc:scientificName is that the searched name may be accepted or a synonym. Hence the schema:name property that makes no assumption as to the nature of the name. </p><p>Occurrences are represented according to the <a href="https://github.com/darwin-sw/dsw">Darwin-SW</a> specification.''';
 
     sd:defaultDataset [
         a sd:Dataset, void:Dataset;
         sd:defaultGraph [ a sd:Graph ];
         sd:namedGraph   [ a sd:Graph; sd:name <ServiceDescription> ];
-        
+
         void:vocabulary <http://schema.org/>, <http://rs.tdwg.org/dwc/terms/>, <http://www.w3.org/ns/shacl#>, <http://www.w3.org/ns/hydra/core#>;
         void:sparqlEndpoint <>;
     ];
@@ -64,9 +64,9 @@ SELECT * WHERE {
     ?occurrence a           dwc:Occurrence;
         dct:identifier      ?occid;
         schema:url          ?page;
-        
+
         dsw:occurrenceOf    [ dsw:hasIdentification [ dwciri:toTaxon ?taxon ]];
-        
+
         dsw:atEvent [
             dwc:recordedBy  ?rightsHolder;
             dwc:eventDate   ?date;
@@ -80,13 +80,13 @@ SELECT * WHERE {
 }
 ''';
 
-    
+
     # 432000s = 5 days, 2592000s = 30 days
     sms:cacheExpiresAfter "P2592000S"^^xsd:duration;
 
     # Add provenance information to the graph generated at each invocation?
-    sms:addProvenance "true"^^xsd:boolean;
-    
+    sms:addProvenance "false"^^xsd:boolean;
+
     dct:source [
         a schema:WebAPI; schema:name "GBIF API";
         schema:url <https://www.gbif.org/developer/summary>;
@@ -98,7 +98,7 @@ SELECT * WHERE {
 <APIService>
     a schema:SearchAction;
     a hydra:IriTemplate;
-    hydra:template "http://api.gbif.org/v1/occurrence/search?q={name}&limit=300";
+    hydra:template "http://api.gbif.org/v1/occurrence/search?q={name}&limit=5000";
     hydra:mapping [
         hydra:variable "name";
         schema:description "scientific name.";

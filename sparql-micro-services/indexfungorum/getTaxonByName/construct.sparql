@@ -22,10 +22,10 @@ WHERE {
     ?c
         api:RECORD_x0020_NUMBER         ?id;
         api:AUTHORS                     ?author;
-        api:YEAR_x0020_OF_x0020_PUBLICATION ?year;
         api:NAME_x0020_OF_x0020_FUNGUS  ?scientificname;
         api:INFRASPECIFIC_x0020_RANK    ?rankAbbr.
 
+    OPTIONAL { ?c api:YEAR_x0020_OF_x0020_PUBLICATION     ?year }
     OPTIONAL { ?c api:BASIONYM_x0020_RECORD_x0020_NUMBER     ?basionymId }
     OPTIONAL { ?c api:CURRENT_x0020_NAME ?refName }
     OPTIONAL { ?c api:Genus_x0020_name   ?genus_name }
@@ -36,11 +36,12 @@ WHERE {
     OPTIONAL { ?c api:Kingdom_x0020_name ?kingdom_name }
     OPTIONAL { ?c api:EDITORIAL_x0020_COMMENT ?comment }
 
-    bind (concat(sms:formatAuthorName(?author), ", ", ?year) AS ?authorname)
+    bind (concat(sms:formatAuthorName(?author), if (bound(?year), concat(", ", ?year), "")) AS ?authorname)
     bind (IRI(concat("http://www.indexfungorum.org/Names/NamesRecord.asp?RecordID=", ?id)) AS ?page)
     bind (sms:getRankUriByAbbr(?rankAbbr) AS ?rankUri)
     bind (IRI(concat("http://example.org/ld/indexfungorum/taxon/", ?id)) AS ?taxonUri)
 
+    FILTER (?scientificname = {name})
     filter ( if(bound(?comment), !strstarts(?comment, "DEPRECATED RECORD"), true))
 }
 
@@ -74,5 +75,5 @@ function sms:getTaxrefRankName(?rankAb) {
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
 function sms:formatAuthorName(?author) {
-    replace(replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", ""), ".&", ". &")
+    replace(replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", ""), "\\.&", ". &")
 }

@@ -1,5 +1,5 @@
 
-# fishbase/getTaxonByID
+# fishbase/getSpeciesBySynCode
 
 
 This service retrieves the information about a taxon from [FishBase](https://www.fishbase.se/search.php) by using its name identifier (SynCode). 
