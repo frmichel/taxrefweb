@@ -1,4 +1,13 @@
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
+
 CONSTRUCT {
+
+    ?rootTaxonUri
+        a                    dwc:Taxon;
+        dwc:scientificNameID {id};        # Reinject the service argument = ?key
+        skos:broader         ?taxonUri;
+        .
+    
     ?taxonUri 
         a                    dwc:Taxon;
         dwc:scientificNameID ?id;
@@ -18,6 +27,7 @@ WHERE {
 
     bind (IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)
+    bind (IRI(concat("http://example.org/ld/gbif/id/", {id})) AS ?rootTaxonUri)
     bind (IRI(concat("http://example.org/ld/gbif/id/", ?id)) AS ?taxonUri)
     bind (IRI(concat("http://example.org/ld/gbif/id/", ?parentID)) AS ?parentTaxon)
 }

@@ -61,7 +61,7 @@ WHERE {
     bind (IF(?taxonomicStatus = "ACCEPTED", ?scientificName, ?acceptedScientificName) AS ?acceptedName)
     bind (str(IF(?taxonomicStatus = "ACCEPTED", ?taxonKey, ?acceptedTaxonKey)) AS ?acceptedTaxonId)
 
-    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?acceptedTaxonId)) AS ?taxonUri)
+    bind (IRI(concat("http://example.org/ld/gbif/id/", ?acceptedTaxonId)) AS ?taxonUri)
     bind (str(?key) AS ?occurrenceKeyStr)
     bind (IRI(concat("http://example.org/ld/gbif/occurrence/", ?key)) AS ?occurrenceUri)
     bind (IRI(concat("https://www.gbif.org/occurrence/", ?key)) AS ?page)
