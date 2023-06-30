@@ -1,0 +1,15 @@
+CONSTRUCT {
+    <http://example.org/ld/taxon/{urlencode(name)}>
+        a dwc:Taxon;
+        schema:identifier ?code;
+
+        # Reinject the service argument into the graph
+        dwc:scientificName {name};
+        .
+}
+WHERE {
+    ?content
+        api:name ?name;
+        api:code ?code;
+       .
+}

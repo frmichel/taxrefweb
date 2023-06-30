@@ -1,0 +1,22 @@
+CONSTRUCT {
+    [] a schema:AudioObject;
+        schema:contentUrl ?contentUrl;
+        schema:thumbnailUrl ?thumbnail;
+        schema:mainEntityOfPage ?page;
+        schema:author ?authorName;
+        schema:description ?comments;
+        .
+}
+WHERE {
+    ?content
+        api:mediaType "audio";
+        api:assetId ?id;
+        api:userDisplayName ?authorName;
+    .
+    OPTIONAL { ?content api:mediaNotes ?comments }
+       
+      
+    bind(iri(concat("https://cdn.download.ams.birds.cornell.edu/api/v1/asset/", ?id, "/audio")) as ?contentUrl)
+    bind(iri(concat("https://cdn.download.ams.birds.cornell.edu/api/v1/asset/", ?id, "/poster")) as ?thumbnail)
+    bind(iri(concat("https://macaulaylibrary.org/asset/", ?id)) as ?page)
+}
