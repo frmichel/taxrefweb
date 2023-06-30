@@ -1,0 +1,74 @@
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
+
+CONSTRUCT {
+
+    ?rootTaxonUri
+        a                    dwc:Taxon;
+        dwc:scientificNameID {id};        # Reinject the service argument = ?key
+        skos:broader         ?taxonUri;
+        .
+
+    ?taxonUri
+        a                    dwc:Taxon;
+        dwc:scientificNameID ?id;
+        dwc:scientificName   ?scientificname;
+        taxrefp:hasRank      ?rankUri;
+        schema:sameAs        ?page;
+        skos:broader         ?parentTaxon;
+        .
+}
+WHERE {
+    ?content
+        api:key           ?id;
+        api:canonicalName ?scientificname;
+        api:rank          ?rankName.
+
+    OPTIONAL { ?content api:parentKey ?parentID }.
+
+    bind (IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
+    bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)
+    bind (IRI(concat("https://sparql-micro-services.org/ld/gbif/id/", {id})) AS ?rootTaxonUri)
+    bind (IRI(concat("https://sparql-micro-services.org/ld/gbif/id/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("https://sparql-micro-services.org/ld/gbif/id/", ?parentID)) AS ?parentTaxon)
+}
+
+# Translate the GBIF rank name into the corresponding TAXREF-LD name.
+# The ranks in GBIF that do not exist in TAXREF-LD will still be translated into URIs
+# following the Camel-case convention. This applies to:
+# SUPERLEGION, SUBLEGION, INFRALEGION, SUPERCOHORT, SUBCOHORT, INFRACOHORT, MAGNORDER, GRANDORDER,
+# INFRAFAMILY, INFRATRIBE, SUPRAGENERIC_NAME, INFRAGENUS, INFRAGENERIC_NAME, INFRASPECIFIC_NAME,
+# CONVARIETY, INFRASUBSPECIFIC_NAME, PROLES, GREX, PATHOVAR, BIOVAR, CHEMOVAR, MORPHOVAR, PHAGOVAR,
+# SEROVAR, CHEMOFORM, FORMA_SPECIALIS, CULTIVAR_GROUP, STRAIN, OTHER, UNRANKED
+function sms:getTaxrefRankName(?rankName) {
+    if      (?rankName = "LEGION")              { return("Legio") }
+    else if (?rankName = "SPECIES_AGGREGATE")   { return("Aggregate") }
+    else if (?rankName = "ABERRATION")          { return("Abberatio") }
+    else if (?rankName = "MORPH")               { return("Morpha") }
+    else if (?rankName = "FORM")                { return("Forma") }
+    else if (?rankName = "SUBFORM")             { return("SubForma") }
+    else if (?rankName = "VARIETY")             { return("Varietas") }
+    else if (?rankName = "SUBVARIETY")          { return("SubVarietas") }
+
+    # Transform "SUBABCD..." into "SubAbc", then same thing for Super, Infra and Parv
+    else if (strstarts(?rankName, "SUB")) {
+        let (?after = strafter(?rankName, "SUB")) {
+            return(concat("Sub", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else if (strstarts(?rankName, "SUPER")) {
+        let (?after = strafter(?rankName, "SUPER")) {
+            return(concat("Super", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else if (strstarts(?rankName, "INFRA")) {
+        let (?after = strafter(?rankName, "INFRA")) {
+            return(concat("Infra", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else if (strstarts(?rankName, "PARV")) {
+        let (?after = strafter(?rankName, "PARV")) {
+            return(concat("Parv", substr(?after, 1, 1), lcase(substr(?after, 2))))
+        }
+    }
+    else { return(concat(substr(?rankName, 1, 1), lcase(substr(?rankName, 2)))) }
+}
