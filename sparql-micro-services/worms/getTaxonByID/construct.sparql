@@ -28,10 +28,10 @@ CONSTRUCT {
 WHERE {
     ?c
         api:AphiaID                 ?id;
-        api:authority               ?author;
         api:rank                    ?rkName;
         api:scientificname          ?scientificname.
-    
+
+    OPTIONAL { ?c api:authority         ?author. }
     OPTIONAL {?c
             api:valid_name          ?valid_name;
             api:valid_authority     ?valid_author;
@@ -65,7 +65,7 @@ WHERE {
     #The full reference name is the concatenation of the valid name and its author
     bind(concat(concat(?valid_name, " "), sms:formatAuthorName(?valid_author)) AS ?full_reference_name)
 
-    bind(sms:formatAuthorName(?author) AS ?authorname)
+    bind(coalesce(sms:formatAuthorName(?author), "") AS ?authorname)
     #bind(sms:getHabitatsList(coalesce(?is_marine, false), coalesce(?is_freshwater, false), coalesce(?is_brackish, false), coalesce(?is_terrestrial, false)) AS ?list)
     #OPTIONAL { values ?list { UNDEF }   values ?habitats { unnest(?list) } }
 }

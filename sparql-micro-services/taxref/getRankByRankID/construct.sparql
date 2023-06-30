@@ -11,4 +11,3 @@ WHERE {
     bind(IRI(?taxrefUri) AS ?uri)
     bind (STRLANG(?name, "fr") AS ?frname)
 }
-

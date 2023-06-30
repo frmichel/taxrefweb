@@ -38,7 +38,7 @@ WHERE {
     OPTIONAL { ?content api:taxonRank       ?rankName }
     OPTIONAL { ?content api:country         ?country }
 
-    bind (IRI(concat("http://example.org/ld/gbif/id/", ?taxonKey)) AS ?taxonUri)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?taxonKey)) AS ?taxonUri)
 
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	
 }

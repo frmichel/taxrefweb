@@ -1,0 +1,62 @@
+PREFIX taxrefp: <http://taxref.mnhn.fr/lod/property/>.
+
+CONSTRUCT {
+    ?taxonUri a dwc:Taxon;
+
+        dwc:acceptedNameUsage        ?acceptedName;
+        dwc:acceptedNameUsageID      ?acceptedNameId;
+        dwc:scientificName           ?scientificName;
+        dwc:scientificNameID         ?id;
+        dwc:scientificNameAuthorship ?authorshipName;
+        dwc:namePublishedIn          ?publishedIn;
+        dwc:originalNameUsage        ?basionym;
+        dwc:originalNameUsageID      ?basionymId;
+        dwc:nameAccordingTo          ?accordingTo;
+        dwc:taxonomicStatus          ?status;
+
+        dwc:kingdom                  ?kingdom;
+        dwc:phylum                   ?phylum;
+        dwc:class                    ?class;
+        dwc:order                    ?order;
+        dwc:family                   ?family;
+        dwc:genus                    ?genus;
+
+        taxrefp:hasRank              ?rankUri;
+        dwc:taxonRank                ?rankName;
+        schema:sameAs                ?page;
+        #skos:broader                 ?parentUri;
+		.
+}
+WHERE {
+    OPTIONAL { ?species api:species         ?species }
+    OPTIONAL { ?subspecies api:subspecies      ?subspecies }
+    bind (if (bound(?species), ?species, ?subspecies) AS ?result)
+    ?result
+        api:id                  ?id;
+        api:author_citation     ?authorship;
+        api:name_cache          ?scientificName.
+        
+    OPTIONAL { ?result api:original_combination        ?originalCombination }
+    #OPTIONAL { ?result api:current_taxon_id        ?acceptedNameId }
+
+    bind (str(IF(?originalCombination = "true", ?id, "")) AS ?basionymId)
+
+    bind (IRI(concat("http://example.org/ld/antcat/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("http://www.antcat.org/catalog/", ?id)) AS ?page)
+    
+    bind (sms:formatAuthorName(?authorship) AS ?authorshipName)
+}
+
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# and moving basionymName (in round brackets at the end of the name) to the beginning of the name (like in TAXREF)
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+# "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
+function sms:formatAuthorName(?author) {
+    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
+        LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
+            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+        }
+    }
+}

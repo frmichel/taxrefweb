@@ -1,0 +1,7 @@
+{
+  "@context": {
+    "@base": "http://ns.inria.fr/sparql-micro-service/item/",
+    "@vocab": "http://ns.inria.fr/sparql-micro-service/api#",
+    "classification": { "@container": "@list" }
+  }
+}

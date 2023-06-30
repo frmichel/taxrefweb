@@ -1,11 +1,11 @@
 CONSTRUCT {
     ?taxonUri 
-        a                    dwc:Taxon;
-        dwc:scientificNameID ?id;
-        dwc:scientificName   ?scientificname;
-        taxrefp:hasRank      ?rankUri;
-        schema:sameAs        ?page;
-        skos:broader         ?parentTaxon;
+        a                   dwc:Taxon;
+        dwc:taxonID         ?id;
+        dwc:scientificName  ?scientificname;
+        taxrefp:hasRank     ?rankUri;
+        schema:sameAs       ?page;
+        skos:broader        ?parentTaxon;
         .
 }
 WHERE {
@@ -18,8 +18,8 @@ WHERE {
 
     bind (IRI(concat("https://www.gbif.org/species/", ?id)) AS ?page)
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)
-    bind (IRI(concat("http://example.org/ld/gbif/id/", ?id)) AS ?taxonUri)
-    bind (IRI(concat("http://example.org/ld/gbif/id/", ?parentID)) AS ?parentTaxon)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?id)) AS ?taxonUri)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentID)) AS ?parentTaxon)
 }
 
 # Translate the GBIF rank name into the corresponding TAXREF-LD name.

@@ -1,7 +1,8 @@
 CONSTRUCT {
     []
-        dwc:scientificNameAuthorship ?author;
-        dwc:scientificName           ?fullname;
+        dwc:scientificNameID         ?id;
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName           ?scientific_name;
         schema:sameAs                ?page;
         .
 }
@@ -14,7 +15,6 @@ WHERE {
 
     bind(sms:getAuthorFromName(?scientific_name, ?full_name) AS ?author)
     bind(sms:formatAuthorName(?author) AS ?authorname)
-    bind(concat(?scientific_name, " ", ?authorname) AS ?fullname)
     bind(IRI(concat("https://www.tropicos.org/Name/", ?id)) AS ?page)
 }
 

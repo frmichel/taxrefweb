@@ -1,0 +1,92 @@
+CONSTRUCT {
+   ?taxonUri a dwc:Taxon;
+
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName           ?scientificname;
+        dwc:scientificNameID         ?id;
+        dwc:acceptedNameUsage        ?full_reference_name;
+        dwc:acceptedNameUsageID      ?acceptedNameId;
+        
+        dwc:kingdom                  ?kingdom;
+        dwc:phylum                   ?phylum;
+        dwc:class                    ?class;
+        dwc:order                    ?order;
+        dwc:family                   ?family;
+        dwc:genus                    ?genus;
+        
+        taxrefp:hasRank              ?taxrefRankUri;
+        schema:sameAs                ?page;
+        .
+}
+WHERE {
+    ?c
+        api:GUID            ?id;
+        api:authority       ?author;
+        api:rank            ?rkName;
+        api:scientificname  ?scientificname.
+    OPTIONAL {
+        ?c	
+            api:valid_guid      ?acceptedNameId;
+            api:valid_name      ?valid_name;
+            api:valid_authority ?valid_author;
+    }
+    OPTIONAL { ?c api:kingdom ?kingdom }
+    OPTIONAL { ?c api:phylum ?phylum }
+    OPTIONAL { ?c api:class ?class }
+    OPTIONAL { ?c api:order ?order }
+    OPTIONAL { ?c api:family ?family }
+    OPTIONAL { ?c api:genus ?genus }
+    OPTIONAL { ?c api:url ?url }
+
+    bind (IRI(?url) AS ?page)
+    bind (sms:getRankUri(?rkName) AS ?taxrefRankUri)
+    bind (IRI(concat("http://example.org/ld/pesi/taxon/", ?id)) AS ?taxonUri)
+
+    bind (sms:formatAuthorName(?author) AS ?authorname)
+    #Build the full reference name concatenating the valid scientific name its author
+    bind (concat(concat(?valid_name, " "), sms:formatAuthorName(?valid_author)) AS ?full_reference_name)
+
+    filter ( strstarts(?id, "urn:lsid:faunaeur.org:taxname:"))
+}
+
+function sms:getRankUri(?rankName) {
+    IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
+}
+
+# Translate the rank name into the corresponding TAXREF-LD name
+function sms:getTaxrefRankName(?rkName) {
+    if      (?rkName = "Variety")    { return("Varietas") }
+    else if (?rkName = "Subvariety") { return("SubVarietas") }
+    else if (?rkName = "Form")       { return("Forma") }
+    else if (?rkName = "Subform")    { return("SubForma") }
+
+    # Transform "Subabc" into "SubAbc", then same thing for Super, Infra and Parv
+    else if (strstarts(?rkName, "Sub")) {
+        let (?after = strafter(?rkName, "Sub")) {
+            return(concat("Sub", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "Super")) {
+        let (?after = strafter(?rkName, "Super")) {
+            return(concat("Super", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "Infra")) {
+        let (?after = strafter(?rkName, "Infra")) {
+            return(concat("Infra", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else if (strstarts(?rkName, "Parv")) {
+        let (?after = strafter(?rkName, "Parv")) {
+            return(concat("Parv", ucase(substr(?after, 1, 1)), substr(?after, 2)))
+        }
+    }
+    else { return(?rkName) }
+}
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+function sms:formatAuthorName(?author) {
+    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+}

@@ -29,7 +29,7 @@ WHERE {
     ?results                api:results ?result.
     ?result
         api:key             ?key;
-        api:authorship      ?authorship;
+        api:authorship      ?authorname;#authorship
         api:canonicalName   ?canonicalName;
         api:scientificName  ?scientificName.
         
@@ -56,7 +56,7 @@ WHERE {
 
     bind (IRI(concat("https://sparql-micro-services.org/ld/gbif/id/", ?parentKey)) AS ?parentUri)
 
-    bind (sms:formatAuthorName(?authorship) AS ?authorname)
+    #bind (sms:formatAuthorName(?authorship) AS ?authorname)
     
 
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	

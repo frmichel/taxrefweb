@@ -32,7 +32,7 @@ CONSTRUCT {
 WHERE {
     ?content
         api:key             ?key;
-        api:authorship      ?authorship;
+        api:authorship      ?authorshipname;#authorship
 	    api:canonicalName   ?canonicalName;
         api:scientificName  ?scientificName.
         
@@ -56,12 +56,12 @@ WHERE {
     bind (IF(?status = "ACCEPTED", ?scientificName, ?accepted) AS ?acceptedName)
     bind (str(IF(?status = "ACCEPTED", ?key, ?acceptedKey)) AS ?acceptedNameId)
 
-    bind (IRI(concat("http://example.org/ld/gbif/id/", ?key)) AS ?taxonUri)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?key)) AS ?taxonUri)
     bind (IRI(concat("https://www.gbif.org/species/", ?key)) AS ?page)
 
-    bind (IRI(concat("http://example.org/ld/gbif/id/", ?parentId)) AS ?parentUri)
+    bind (IRI(concat("http://example.org/ld/gbif/taxon/", ?parentId)) AS ?parentUri)
     
-    bind (sms:formatAuthorName(?authorship) AS ?authorshipname)
+    #bind (sms:formatAuthorName(?authorship) AS ?authorshipname)
 
     bind (IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName))) AS ?rankUri)	
 }

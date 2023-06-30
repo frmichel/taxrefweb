@@ -6,7 +6,7 @@ global $customArgs;
 global $logger;
 
 // Read the service custom arguments
-$name = $customArgs['name'];
+$name = $customArgs['name'][0];
 
 $arr = explode(' ',trim($name), 2);
 

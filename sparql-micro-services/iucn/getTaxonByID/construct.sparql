@@ -17,6 +17,9 @@ CONSTRUCT {
 
         schema:sameAs                ?page;
         #skos:broader                 ?parentUri;
+        taxrefp:isMarine              ?isMarine;
+        taxrefp:isFreshwater              ?isFreshwater;
+        taxrefp:isTerrestrial              ?isTerrestrial;
 		.
 }
 WHERE {
@@ -33,11 +36,18 @@ WHERE {
     OPTIONAL { ?result api:order           ?order }
     OPTIONAL { ?result api:family          ?family }
     OPTIONAL { ?result api:genus           ?genus}
+    OPTIONAL { ?result api:marine_system      ?is_Marine }
+    OPTIONAL { ?result api:freshwater_system  ?is_Freshwater  }
+    OPTIONAL { ?result api:terrestrial_system ?is_Terrestrial }
 
     bind (IRI(concat("http://example.org/ld/col/taxon/", ?id)) AS ?taxonUri)
     bind (IRI(concat("http://apiv3.iucnredlist.org/api/v3/taxonredirect/", ?id)) AS ?page)
     
     bind (sms:formatAuthorName(?authorship) AS ?authorshipName)
+
+    bind(IF(?is_Marine = "true"^^xsd:boolean, 1, 0) AS ?isMarine)
+    bind(IF(?is_Freshwater = "true"^^xsd:boolean, 1, 0) AS ?isFreshwater)
+    bind(IF(?is_Terrestrial  = "true"^^xsd:boolean, 1, 0) AS ?isTerrestrial)
 
 }
 

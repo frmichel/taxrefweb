@@ -1,0 +1,64 @@
+CONSTRUCT {
+    ?taxonUri 
+        a                               dwc:Taxon;
+        dwc:scientificNameID            ?id;
+        dwc:scientificNameAuthorship    ?authorname;
+        dwc:scientificName              ?scientificname;
+        dwc:acceptedNameUsageID         ?acceptedNameId;
+        dwc:acceptedNameUsage           ?acceptedName;
+        dwc:parentNameUsageID           ?parentId;
+        taxrefp:hasRank                 ?taxrefRankUri;
+        taxrefp:habitat                 ?habitats;
+        .
+}
+WHERE {
+    ?results    api:results ?c.
+    ?c
+        api:id              ?id;
+        api:lb_auteur       ?authorname;
+        api:lb_nom          ?scientificname;
+        api:id_ref          ?id_ref;
+        api:rang            ?rankID.
+
+    OPTIONAL { ?c api:id_sup              ?id_sup}
+#    OPTIONAL { ?c api:habitat               ?habitat.
+#               values ?habitats { unnest(sms:getHabitats(replace(replace(?habitat, "https://fatercal.ird.nc/api/habitats/", ""), "/\\?format=json", ""))) }
+#             }
+    OPTIONAL { ?c api:habitat               ?habitat}
+
+    #bind(sms:getHabitats(replace(replace(?habitat, "https://fatercal.ird.nc/api/habitats/", ""), "/\\?format=json", "")) AS ?habitats)
+    bind(replace(replace(?habitat, "https://fatercal.ird.nc/api/habitats/", ""), "/\\?format=json", "") AS ?habitats)
+    bind(replace(replace(?id_ref, "https://fatercal.ird.nc/api/taxons/", ""), "/\\?format=json", "") AS ?acceptedNameId)
+    bind(replace(replace(?id_sup, "https://fatercal.ird.nc/api/taxons/", ""), "/\\?format=json", "") AS ?parentId)
+    bind(IRI(concat("http://example.org/ld/fatercal/taxon/", ?id)) AS ?taxonUri)
+    #bind(?scientificname AS ?acceptedName)
+    bind(if(xsd:integer(?acceptedNameId)=?id, ?scientificname, sms:getAlternateName(?acceptedNameId)
+    ) AS ?acceptedName)
+}
+
+# Return the accepted name
+function sms:getAlternateName(?cd) {
+    let (
+            select ?z ?a ?cd where {
+                values ?cd {undef}
+                bind( IRI(concat("http://sms.i3s.unice.fr/sparql-ms/fatercal/getTaxonByID?id=", ?cd)) as ?taxonService )
+                SERVICE ?taxonService { [] dwc:scientificName ?z; dwc:scientificNameAuthorship    ?a . }
+            }
+    ) { concat(?z, " ", ?a) }
+}
+
+# Return the list of thr TAXREF-LD habitats URIs, given the habitat code in TAXREF
+function sms:getHabitats(?habitat) {
+    if      (?habitat = "1")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine"))) }
+    else if (?habitat = "2")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater"))) }
+    else if (?habitat = "3")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial"))) }
+    else if (?habitat = "4")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine"),
+                                                 IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater"))) }
+    else if (?habitat = "5")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine"),
+                                                 IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial"))) }
+    else if (?habitat = "6")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Brackish"))) }
+    else if (?habitat = "7" || ?habitat= "8")
+                                { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater"),
+                                                 IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial"))) }
+    else                        { return(xt:list()) }
+}

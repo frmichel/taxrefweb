@@ -1,0 +1,93 @@
+CONSTRUCT {
+    ?taxonUri
+        a                               dwc:Taxon;
+        dwc:scientificNameID            ?id;
+        dwc:scientificNameAuthorship    ?authorname;
+        dwc:scientificName              ?scientificname;
+        dwc:acceptedNameUsageID         ?acceptedNameId;
+        dwc:acceptedNameUsage           ?acceptedName;
+        dwc:parentNameUsageID           ?parentId;
+        #dwc:parentNameUsage             ?parentName;
+        #dwc:genus                       ?genus_name;
+        dwc:vernacularName              ?fr_name;
+        dwc:vernacularName              ?eng_name;
+        dwc:namePublishedInYear         ?year;
+        taxrefp:hasRank                 ?taxrefRankUri;
+        taxrefp:habitat                 ?habitats;
+        skos:broader                    ?parentTaxon;
+        .
+}
+WHERE {
+    ?results                api:data ?c.
+    ?c
+        api:CD_NOM              ?id;
+        api:LB_AUTEUR       ?author;
+        api:LB_DATE         ?year;
+        api:LB_NOM  ?scientificname;
+        api:rang          ?rankID.
+
+    #OPTIONAL { ?c api:GENRE             ?genus_name }
+    OPTIONAL { ?c api:NOM_VERN          ?frname }
+    OPTIONAL { ?c api:NOM_VERN_ENG      ?engname }
+    OPTIONAL { ?c api:CD_SUP            ?parentId}
+    OPTIONAL { ?c api:CD_REF            ?acceptedNameId}
+    OPTIONAL { ?c api:HABITAT           ?habitat.
+               values ?habitats { unnest(sms:getHabitats(?habitat)) }
+             }
+
+    bind(if(?year=0, ?author, concat(?author, ", ", ?year)) AS ?authority)
+
+    bind(if(?acceptedNameId=?id, ?scientificname, sms:getAlternateName(?acceptedNameId)
+    ) AS ?acceptedName)
+    #bind(sms:getAlternateName(?parentId) AS ?parentName)
+#    bind(IRI(concat("http://sms.i3s.unice.fr/sparql-ms/adonif/getAcceptedByID?id=", ?acceptedNameId)) AS ?taxonService)
+#    SERVICE ?taxonService { [] dwc:scientificName ?acceptedName. }
+
+    bind(IRI(concat("http://sms.i3s.unice.fr/sparql-ms/taxref/getRankByRankID?id=", ?rankID)) AS ?rankService)
+    SERVICE ?rankService { [] schema:url ?taxrefRankUri. }
+
+    bind(IRI(concat("http://example.org/ld/taxref/taxon/", ?id)) AS ?taxonUri)
+    bind(STRLANG(?frname, "fr") AS ?fr_name)
+    bind(STRLANG(?engname, "en") AS ?eng_name)
+    bind(sms:formatAuthorName(?authority) AS ?authorname)
+    bind(IRI(concat("http://example.org/ld/adonif/taxon/", ?parentId)) AS ?parentTaxon)
+}
+
+# Return the accepted name
+function sms:getAlternateName(?cd) {
+    let (
+            select ?z ?a ?cd where {
+                values ?cd {undef}
+                bind( IRI(concat("http://sms.i3s.unice.fr/sparql-ms/adonif/getTaxonByID?id=", ?cd)) as ?taxonService )
+                SERVICE ?taxonService { [] dwc:scientificName ?z; dwc:scientificNameAuthorship    ?a . }
+            }
+    ) { concat(?z, " ", ?a) }
+}
+
+# Return the list of thr TAXREF-LD habitats URIs, given the habitat code in TAXREF
+function sms:getHabitats(?habitat) {
+    if      (?habitat = "1")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine"))) }
+    else if (?habitat = "2")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater"))) }
+    else if (?habitat = "3")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial"))) }
+    else if (?habitat = "4")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine"),
+                                                 IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater"))) }
+    else if (?habitat = "5")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Marine"),
+                                                 IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial"))) }
+    else if (?habitat = "6")    { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/Brackish"))) }
+    else if (?habitat = "7" || ?habitat= "8")
+                                { return(xt:list(IRI("http://taxref.mnhn.fr/lod/habitat/FreshWater"),
+                                                 IRI("http://taxref.mnhn.fr/lod/habitat/Terrestrial"))) }
+    else                        { return(xt:list()) }
+}
+
+# Return the year in which a name was coined, given the full author name
+function sms:getYearFromAuthority(?author) {
+    replace(?author, "^.*([1-2][0-9]{3}).*$", "$1")
+}
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+function sms:formatAuthorName(?author){
+    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+}

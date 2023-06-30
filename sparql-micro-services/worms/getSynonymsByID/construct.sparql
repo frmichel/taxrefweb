@@ -1,20 +1,24 @@
 CONSTRUCT {
     []
+        dwc:scientificNameID         ?id;
         dwc:scientificNameAuthorship ?authorname;
-        dwc:scientificName           ?fullname;
+        dwc:scientificName           ?scientificname;
+        dwc:taxonomicStatus            ?status;
+        dwc:taxonRemarks            ?unacceptreason;
         schema:sameAs                ?wormsPage;
         .
 }
 WHERE {
-    ?content
+    ?c
         api:AphiaID         ?id;
         api:authority       ?author;
         api:scientificname  ?scientificname;
         api:url             ?url;
         .
-        
+    OPTIONAL { ?c api:unacceptreason           ?unacceptreason }
+    OPTIONAL { ?c api:status           ?status }
+
     bind(sms:formatAuthorName(?author) AS ?authorname)
-    bind(concat(?scientificname, " ", ?authorname) AS ?fullname)
     bind (IRI(?url) AS ?wormsPage)
 }
 

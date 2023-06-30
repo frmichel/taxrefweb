@@ -1,0 +1,26 @@
+CONSTRUCT {
+    []
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName           ?fullname;
+        .
+}
+WHERE {
+    ?content
+        api:SynCode     ?id;
+        api:Author      ?author;
+        api:SynGenus    ?genus_name;
+        api:SynSpecies  ?species.
+
+    # the scientific name of the taxon is the concatenation of genus and species name
+    bind(concat(?genus_name, " ", ?species) AS ?name)
+
+    bind(sms:formatAuthorName(?author) AS ?authorname)
+    bind(concat(?name, " ", ?authorname) AS ?fullname)
+}
+
+# Format author name removing extra spaces at beginning and end of the name and after a dot
+# " (Bloch, 1782)" => "(Bloch, 1782)";
+# "A. Gray" => "A.Gray"
+function sms:formatAuthorName(?author){
+    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+}

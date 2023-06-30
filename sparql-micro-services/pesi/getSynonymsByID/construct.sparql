@@ -1,6 +1,7 @@
 CONSTRUCT {
     []
-        dwc:scientificName           ?fullname;
+        dwc:scientificNameID         ?id;
+        dwc:scientificName           ?scientificname;
         dwc:scientificNameAuthorship ?authorname;
         schema:sameAs                ?page;
         .
@@ -14,7 +15,6 @@ WHERE {
 	OPTIONAL { ?c api:url ?url }
 
     bind (sms:formatAuthorName(?author) AS ?authorname)
-    bind (concat(?scientificname, " ", ?authorname) AS ?fullname)
     bind (IRI(?url) AS ?page)
 }
 

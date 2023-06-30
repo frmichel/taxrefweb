@@ -1,12 +1,12 @@
 CONSTRUCT {
     ?taxonUri a dwc:Taxon;
-    
+
+        dwc:scientificNameID         ?id;
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName           ?scientificname;
-        dwc:scientificNameID         ?id;
         taxrefp:hasRank              ?rankUri;
-        dwc:genus                    ?genus_name;
         dwc:family                   ?family_name;
+        dwc:namePublishedIn          ?publishedIn;
         schema:sameAs                ?page;
         .
 }
@@ -15,55 +15,47 @@ WHERE {
         api:NameId                      ?id;
         api:Author                      ?author;
         api:ScientificName              ?scientificname;
-        api:ScientificNameWithAuthors   ?full_reference_name;
-        api:RankAbbreviation            ?rankName.
-        
-    OPTIONAL { ?c api:Genus          ?genus_name }
+        api:RankAbbreviation            ?rankAbbr.
+
     OPTIONAL { ?c api:Family         ?family_name }
-    OPTIONAL { ?c api:Source         ?url }
-    OPTIONAL { ?c api:BasionymAuthor ?basAuthor }
+    OPTIONAL { ?c api:DisplayDate         ?date }
+    OPTIONAL { ?c api:DisplayReference     ?publishedIn }
 
-    #adding basionym name inside round brackets at the beginning of the authorname (as should be by convention in botany)
-    bind (concat("(", ?basAuthor, ") ", ?author) AS ?fullauthor)
-    bind (sms:formatAuthorName(coalesce(?fullauthor, ?author)) AS ?authorname)
-    bind (IRI(?url) AS ?page)
-    bind (sms:getTaxrefRankUri(?rankName) AS ?rankUri)
-    bind (IRI(concat("http://sms.i3s.unice.fr/ld/tropicos/taxon/", ?id)) AS ?taxonUri)
+    bind(coalesce(concat(?author, ", ", ?date), ?author) AS ?authorname)
+    bind (sms:getRankUriByAbbr(?rankAbbr) AS ?rankUri)
+    bind (IRI(concat("https://www.tropicos.org/Name/", ?id)) AS ?page)
+    bind (IRI(concat("http://example.org/ld/tropicos/taxon/", ?id)) AS ?taxonUri)
 }
 
-function sms:getTaxrefRankUri(?rankName) {
-    IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankName)))
+function sms:getRankUriByAbbr(?rankAb) {
+    IRI(concat("http://taxref.mnhn.fr/lod/taxrank/", sms:getTaxrefRankName(?rankAb)))
 }
 
-# Return the TAXREF-LD rank name given the rank name in Tropicos that is given in lowercase
-function sms:getTaxrefRankName(?rankName) {
-    # Transform "subabc" into "SubAbc", then same thing for Super, Infra and Parv
-    if (strstarts(?rkName, "sub")) {
-        let (?after = strafter(?rkName, "sub")) {
-            return(concat("Sub", ucase(substr(?after, 1, 1)), substr(?after, 2)))
-        }
-    }
-    else if (strstarts(?rkName, "super")) {
-        let (?after = strafter(?rkName, "super")) {
-            return(concat("Super", ucase(substr(?after, 1, 1)), substr(?after, 2)))
-        }
-    }
-    else if (strstarts(?rkName, "infra")) {
-        let (?after = strafter(?rkName, "infra")) {
-            return(concat("Infra", ucase(substr(?after, 1, 1)), substr(?after, 2)))
-        }
-    }
-    else if (strstarts(?rkName, "parv")) {
-        let (?after = strafter(?rkName, "parv")) {
-            return(concat("Parv", ucase(substr(?after, 1, 1)), substr(?after, 2)))
-        }
-    }
-    else { return(?rkName) }
+# Return the TAXREF-LD rank name given the rank abbreviation
+function sms:getTaxrefRankName(?rankAb) {
+    if      (?rankAb = "regn.")    { return("Kingdom") }
+    else if (?rankAb = "subregn.") { return("SubKingdom") }
+    else if (?rankAb = "phyl.")    { return("Phylum") }
+    else if (?rankAb = "subphyl.") { return("SubPhylum") }
+    else if (?rankAb = "class.")   { return("Class") }
+    else if (?rankAb = "subclass."){ return("SubClass") }
+    else if (?rankAb = "ord.")     { return("Order") }
+    else if (?rankAb = "subord.")  { return("SubOrder") }
+    else if (?rankAb = "fam.")     { return("Family") }
+    else if (?rankAb = "gen.")     { return("Genus") }
+    else if (?rankAb = "sp.")      { return("Species") }
+    else if (?rankAb = "subsp.")   { return("SubSpecies") }
+    else if (?rankAb = "f.")       { return("Forma") }
+    else if (?rankAb = "f.sp.")    { return("FormaSpecies") }
+    else if (?rankAb = "trib.")    { return("Tribe") }
+    # '*' or a single greek or latin letter represents variety
+    else if (?rankAb = "var." || ?rankAb = "*" || (STRLEN(?rankAb) = 1 && REGEX(?rankAb, "([α-ω])|([A-Ω])|([a-z])|([A-Z])")))
+                                   { return("Varietas") }
 }
 
 # Format author name removing extra whitespaces at beginning and end of the name and after a dot
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
-function sms:formatAuthorName(?author) {
-    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
-}
+#function sms:formatAuthorName(?author) {
+#    replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+#}
