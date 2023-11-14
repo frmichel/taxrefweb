@@ -1,0 +1,139 @@
+[
+  {
+    "EASINID": "R00001",
+    "Name": "Abax parallelus",
+    "Authorship": "(Duftschmid, 1812)",
+    "FirstIntroductionsInEU": [
+      {
+        "Country": "UK",
+        "Year": "1800",
+        "Ref": "Denux O, Zagatti P, 2010, Coleoptera families other than Cerambycidae, Curculionidae sensu lato, Chrysomelidae sensu lato and Coccinellidae., BioRisk, 4, 315-406"
+      }
+    ],
+    "PresentInCountries": [
+      {
+        "Country": "AT"
+      },
+      {
+        "Country": "BE"
+      },
+      {
+        "Country": "CH"
+      },
+      {
+        "Country": "DE"
+      },
+      {
+        "Country": "FR"
+      },
+      {
+        "Country": "LU"
+      },
+      {
+        "Country": "NL"
+      },
+      {
+        "Country": "RS"
+      },
+      {
+        "Country": "UK"
+      }
+    ],
+    "Status": "A",
+    "IsHighImpact": false,
+    "IsEUConcern": false,
+    "EUConcernName": null,
+    "IsOutermostConcern": false,
+    "ConcernedOutermostRegions": null,
+    "IsMSConcern": false,
+    "ConcernedMS": null,
+    "IsPartNative": true,
+    "NativeRange": [
+      {
+        "Country": "AT"
+      },
+      {
+        "Country": "BA"
+      },
+      {
+        "Country": "BE"
+      },
+      {
+        "Country": "BG"
+      },
+      {
+        "Country": "CH"
+      },
+      {
+        "Country": "CZ"
+      },
+      {
+        "Country": "DE"
+      },
+      {
+        "Country": "FR"
+      },
+      {
+        "Country": "HR"
+      },
+      {
+        "Country": "HU"
+      },
+      {
+        "Country": "IT"
+      },
+      {
+        "Country": "LI"
+      },
+      {
+        "Country": "LU"
+      },
+      {
+        "Country": "MD"
+      },
+      {
+        "Country": "ME"
+      },
+      {
+        "Country": "NL"
+      },
+      {
+        "Country": "PL"
+      },
+      {
+        "Country": "RO"
+      },
+      {
+        "Country": "RS"
+      },
+      {
+        "Country": "RU"
+      },
+      {
+        "Country": "SI"
+      },
+      {
+        "Country": "SK"
+      },
+      {
+        "Country": "UA"
+      }
+    ],
+    "IsHorizonScanning": false,
+    "LastRevisionDate": null,
+    "Kingdom": "Animalia",
+    "Phylum": "Arthropoda",
+    "Class": "Insecta",
+    "Order": "Coleoptera",
+    "Family": "Carabidae",
+    "CommonNames": null,
+    "Synonyms": null,
+    "CBD_Pathways": [
+      {
+        "Path_type": "P",
+        "Uncertainty": null,
+        "Name": "UNKNOWN"
+      }
+    ]
+  }
+]

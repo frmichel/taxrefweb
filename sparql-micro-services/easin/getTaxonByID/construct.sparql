@@ -1,0 +1,31 @@
+CONSTRUCT {
+   ?taxonUri a dwc:Taxon;
+
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName           ?scientificname;
+        dwc:scientificNameID         ?id;
+#        dwc:acceptedNameUsage        ?full_reference_name;
+#        dwc:acceptedNameUsageID      ?acceptedNameId;
+
+        dwc:kingdom                  ?kingdom;
+        dwc:phylum                   ?phylum;
+        dwc:class                    ?class;
+        dwc:order                    ?order;
+        dwc:family                   ?family;
+        dwc:genus                    ?genus;
+        .
+}
+WHERE {
+    ?c
+        api:EASINID            ?id;
+        api:Authorship       ?author;
+        api:Name  ?scientificname.
+    OPTIONAL { ?c api:Kingdom ?kingdom }
+    OPTIONAL { ?c api:Phylum ?phylum }
+    OPTIONAL { ?c api:Class ?class }
+    OPTIONAL { ?c api:Order ?order }
+    OPTIONAL { ?c api:Family ?family }
+
+    #Build the full reference name concatenating the valid scientific name its author
+    #bind (concat(concat(?valid_name, " "), sms:formatAuthorName(?valid_author)) AS ?full_reference_name)
+}
