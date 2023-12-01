@@ -1,5 +1,5 @@
 CONSTRUCT {
-   ?taxonUri a dwc:Taxon;
+   [] a dwc:Taxon;
 
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName           ?scientificname;
@@ -12,7 +12,6 @@ CONSTRUCT {
         dwc:class                    ?class;
         dwc:order                    ?order;
         dwc:family                   ?family;
-        dwc:genus                    ?genus;
         .
 }
 WHERE {
