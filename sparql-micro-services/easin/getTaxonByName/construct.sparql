@@ -4,8 +4,8 @@ CONSTRUCT {
         dwc:scientificNameAuthorship ?authorname;
         dwc:scientificName           ?scientificname;
         dwc:scientificNameID         ?id;
-#        dwc:acceptedNameUsage        ?full_reference_name;
-#        dwc:acceptedNameUsageID      ?acceptedNameId;
+        dwc:acceptedNameUsage        ?scientificname;
+        dwc:acceptedNameUsageID      ?id;
 
         dwc:kingdom                  ?kingdom;
         dwc:phylum                   ?phylum;
@@ -18,7 +18,7 @@ CONSTRUCT {
 WHERE {
     ?c
         api:EASINID            ?id;
-        api:Authorship       ?author;
+        api:Authorship       ?authorname;
         api:Name  ?scientificname.
     OPTIONAL { ?c api:Kingdom ?kingdom }
     OPTIONAL { ?c api:Phylum ?phylum }
