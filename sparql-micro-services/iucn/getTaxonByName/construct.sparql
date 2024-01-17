@@ -37,7 +37,8 @@ WHERE {
     bind (IRI(concat("http://example.org/ld/col/taxon/", ?id)) AS ?taxonUri)
     bind (IRI(concat("http://apiv3.iucnredlist.org/api/v3/taxonredirect/", ?id)) AS ?page)
 
-    bind (sms:formatAuthorName(?authorship) AS ?authorshipName)
+    bind (replace(?authorship, " &amp; ", " & ") AS ?authorshipName)
+    #bind (sms:formatAuthorName(?authorship) AS ?authorshipName)
 
 }
 
@@ -46,10 +47,10 @@ WHERE {
 # " (Bloch, 1782)" => "(Bloch, 1782)";
 # "A. Gray" => "A.Gray"
 # "E.Mey., 1839 (L.)" => "(L.) E.Mey., 1839"
-function sms:formatAuthorName(?author) {
-    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
-        LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
-            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
-        }
-    }
+#function sms:formatAuthorName(?author) {
+#    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
+#        LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
+#            replace(replace(replace(?author, "amp;", ""), "(\\. )", "."), "(^ *)|( *$)", "")
+#        }
+#    }
 }

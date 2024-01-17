@@ -59,7 +59,7 @@ WHERE {
 #function sms:formatAuthorName(?author) {
 #    LET (?basionym = IF(regex(?author, "\\(.*\\)$"), replace(?author, "^.*(\\(.*\\))$", "$1"), "")) {
 #        LET (?author = concat(?basionym , " ", replace(?author, "\\(.*\\)$", ""))) {
-#            replace(replace(?author, "(\\. )", "."), "(^ *)|( *$)", "")
+#            replace(replace(replace(?author, "amp;", ""), "(\\. )", "."), "(^ *)|( *$)", "")
 #        }
 #    }
 #}
