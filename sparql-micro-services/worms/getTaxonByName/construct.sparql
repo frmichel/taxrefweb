@@ -83,6 +83,7 @@ function sms:getTaxrefRankName(?rkName) {
             return(concat("Parv", ucase(substr(?after, 1, 1)), substr(?after, 2)))
         }
     }
+    else if (?rkName = "Variety") { return("Varietas") }
     else { return(?rkName) }
 }
 
