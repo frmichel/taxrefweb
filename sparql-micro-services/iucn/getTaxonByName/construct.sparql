@@ -20,22 +20,21 @@ CONSTRUCT {
 		.
 }
 WHERE {
-    ?results                api:result ?result.
+    ?results                api:taxon ?result.
     ?result
-        api:taxonid          ?id;
+        api:sis_id          ?id;
         api:authority      ?authorship;
         api:scientific_name        ?scientificName.
 
-    OPTIONAL { ?result api:name_status     ?status }
-    OPTIONAL { ?result api:kingdom         ?kingdom }
-    OPTIONAL { ?result api:phylum          ?phylum }
-    OPTIONAL { ?result api:class           ?class }
-    OPTIONAL { ?result api:order           ?order }
-    OPTIONAL { ?result api:family          ?family }
-    OPTIONAL { ?result api:genus           ?genus}
+    OPTIONAL { ?result api:kingdom_name         ?kingdom }
+    OPTIONAL { ?result api:phylum_name          ?phylum }
+    OPTIONAL { ?result api:class_name           ?class }
+    OPTIONAL { ?result api:order_name           ?order }
+    OPTIONAL { ?result api:family_name          ?family }
+    OPTIONAL { ?result api:genus_name           ?genus}
 
     bind (IRI(concat("http://example.org/ld/col/taxon/", ?id)) AS ?taxonUri)
-    bind (IRI(concat("http://apiv3.iucnredlist.org/api/v3/taxonredirect/", ?id)) AS ?page)
+    bind (IRI(concat("https://api.iucnredlist.org/api/v4/taxa/sis/", ?id)) AS ?page)
 
     bind (replace(?authorship, " &amp; ", " & ") AS ?authorshipName)
     #bind (sms:formatAuthorName(?authorship) AS ?authorshipName)
