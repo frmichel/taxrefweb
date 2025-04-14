@@ -16,7 +16,6 @@ CONSTRUCT {
         dwc:genus                    ?genus;
 
         schema:sameAs                ?page;
-        #skos:broader                 ?parentUri;
 		.
 }
 WHERE {
