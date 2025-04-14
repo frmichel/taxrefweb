@@ -16,17 +16,32 @@ global $apiQuery;
 global $customArgs;
 global $logger;
 
-// Read the service custom arguments
-$name = $customArgs['name'];
+// Read the service custom argument
+$name = trim($customArgs['name']);
 
-$tab = explode(" ", $name);
-$genus_name = $tab[0] ?? null;
-$species_name = $tab[1] ?? null;
-$infra_name = $tab[2] ?? null;
+// Split the name
+$parts = preg_split('/\s+/', $name);
+
+// Assign default values
+$genus_name = $species_name = $infra_name = "";
+
+switch (count($parts)) {
+    case 1:
+        list($genus_name) = $parts;
+        break;
+    case 2:
+        list($genus_name, $species_name) = $parts;
+        break;
+    case 3:
+        list($genus_name, $species_name, $infra_name) = $parts;
+        break;
+    default:
+        $logger->warning("Name " . $name . " should have 1 to 3 strings");
+        break;
+}
 
 // Format the Web API query URL
 $apiQuery = str_replace('{genus_name}', urlencode($genus_name), $apiQuery);
 $apiQuery = str_replace('{species_name}', urlencode($species_name), $apiQuery);
 $apiQuery = str_replace('{infra_name}', urlencode($infra_name), $apiQuery);
-
 ?>
