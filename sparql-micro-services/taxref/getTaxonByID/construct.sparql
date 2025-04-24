@@ -3,6 +3,8 @@ CONSTRUCT {
         a                               dwc:Taxon;
         dwc:scientificNameAuthorship    ?authorname;
         dwc:scientificName              ?scientificname;
+        dwc:originalNameUsageID         ?originalNameId;
+        dwc:acceptedNameUsageID         ?acceptedNameId;
         dwc:acceptedNameUsage           ?full_reference_name;
         dwc:genus                       ?genus_name;
         dwc:family                      ?family_name;
@@ -35,6 +37,8 @@ WHERE {
     OPTIONAL { ?c api:frenchVernacularName  ?frname }
     OPTIONAL { ?c api:englishVernacularName ?engname }
     OPTIONAL { ?c api:parentId              ?parentID}
+    OPTIONAL { ?c api:originalNameId        ?originalNameId}
+    OPTIONAL { ?c api:referenceId           ?acceptedNameId}
     OPTIONAL { ?c api:habitat               ?habitat.
                values ?habitats { unnest(sms:getHabitats(?habitat)) }
              }
