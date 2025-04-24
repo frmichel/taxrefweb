@@ -1,0 +1,43 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 781315,
+      "category": "species",
+      "monomial": "Streptococcus",
+      "authority": "Bouvet et al. 1989",
+      "full_name": "Streptococcus defectivus",
+      "molecules": [
+        {
+          "kind": "16S rRNA gene",
+          "database": "insdc-nucleotide",
+          "identifier": "D50541"
+        }
+      ],
+      "proposed_as": "sp. nov.",
+      "lpsn_address": "https://lpsn.dsmz.de/species/streptococcus-defectivus",
+      "is_legitimate": true,
+      "lpsn_parent_id": 517118,
+      "species_epithet": "defectivus",
+      "publication_kind": "effective and valid",
+      "publication_text": "Bouvet A, Grimont F, Grimont PAD. Streptococcus defectivus sp. nov. and Streptococcus adjacens sp. nov., nutritionally variant streptococci from human clinical specimens. Int. J. Syst. Bacteriol. 1989; 39:290-294.",
+      "type_strain_names": [
+        "ATCC 49176",
+        "CCUG 27639",
+        "CCUG 27804",
+        "CIP 103.242",
+        "DSM 9849",
+        "GIFU 12707",
+        "LMG 14740",
+        "SC 10"
+      ],
+      "validly_published": "ICNP",
+      "lpsn_correct_name_id": 772468,
+      "nomenclatural_status": "validly published under the ICNP",
+      "is_spelling_corrected": false,
+      "lpsn_taxonomic_status": "synonym"
+    }
+  ]
+}

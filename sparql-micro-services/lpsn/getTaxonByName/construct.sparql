@@ -1,0 +1,34 @@
+CONSTRUCT {
+   [] a dwc:Taxon;
+
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName           ?scientificname;
+        dwc:scientificNameID         ?id;
+        dwc:acceptedNameUsage        ?scientificname;
+        dwc:acceptedNameUsageID      ?id;
+        dwc:originalNameUsageID      ?basionymId;
+        dwc:acceptedNameUsageID      ?acceptedNameId;
+        dwc:parentNameUsageID        ?parentId;
+        schema:sameAs                ?page;
+        .
+}
+WHERE {
+    ?results    api:result          ?result.
+    ?result
+        api:id                      ?id.
+
+
+    bind(IRI(concat("http://sms.i3s.unice.fr/sparql-ms/lpsn/getTaxonByID?id=", ?id)) AS ?taxonService)
+    SERVICE ?taxonService {
+       ?t
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName           ?scientificname;
+        dwc:scientificNameID         ?id;
+        dwc:acceptedNameUsage        ?scientificname;
+        dwc:acceptedNameUsageID      ?id.
+        OPTIONAL { ?t dwc:originalNameUsageID      ?basionymId }
+        OPTIONAL { ?t dwc:acceptedNameUsageID      ?acceptedNameId }
+        OPTIONAL { ?t dwc:parentNameUsageID        ?parentId }
+        OPTIONAL { ?t schema:sameAs                ?page }
+         }
+}

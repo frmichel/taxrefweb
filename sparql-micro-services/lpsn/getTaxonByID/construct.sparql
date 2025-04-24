@@ -1,0 +1,25 @@
+CONSTRUCT {
+   [] a dwc:Taxon;
+
+        dwc:scientificNameAuthorship ?authorname;
+        dwc:scientificName           ?scientificname;
+        dwc:scientificNameID         ?id;
+        dwc:acceptedNameUsage        ?acceptedNameId;
+        dwc:acceptedNameUsageID      ?id;
+        dwc:originalNameUsageID      ?basionymId;
+        dwc:acceptedNameUsageID      ?acceptedNameId;
+        dwc:parentNameUsageID        ?parentId;
+        schema:sameAs                ?page;
+        .
+}
+WHERE {
+    ?results    api:result          ?result.
+    ?result
+        api:id                      ?id;
+        api:authority               ?authorname;
+        api:full_name	            ?scientificname.
+        OPTIONAL { ?result api:basonym_id	            ?basionymId }
+        OPTIONAL { ?result api:lpsn_correct_name_id    ?acceptedNameId }
+        OPTIONAL { ?result api:lpsn_parent_id          ?parentId }
+        OPTIONAL { ?result api:lpsn_address            ?page }
+}
